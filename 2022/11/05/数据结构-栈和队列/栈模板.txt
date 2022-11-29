@@ -1,0 +1,22 @@
+#include<iostream>
+using namespace std;
+const int N = 100010;
+
+// tt表示栈顶，初始时栈为空，tt为0
+int stk[N], tt = 0;
+
+// 向栈顶插入一个数
+// 栈中第一个元素存于stk[0]还是stk[1]全凭个人喜好
+stk[ ++ tt] = x; // 此时栈中第一个元素存于stk[1]，栈中第二个元素存于stk[2]，以此类推……stk[0]为空
+
+// 从栈顶弹出一个数
+tt -- ;
+
+// 查询栈顶元素
+stk[tt];
+
+// 判断栈是否为空
+if (tt > 0)
+{
+
+}

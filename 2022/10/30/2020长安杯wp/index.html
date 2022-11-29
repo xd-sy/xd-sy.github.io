@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-pen.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-pen.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css">
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xd-sy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本篇博客简单记录了我对2020长安杯电子数据取证比赛的学习复盘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2020长安杯wp">
+<meta property="og:url" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/index.html">
+<meta property="og:site_name" content="Blog">
+<meta property="og:description" content="本篇博客简单记录了我对2020长安杯电子数据取证比赛的学习复盘">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/timu1.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/timu2.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/timu3.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/timu4.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/timu5.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/timu6.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/1.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/2.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/3.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/4.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/5.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/6.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/7.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/8.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/9.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/10.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/11.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/12.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/13.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/14.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/15.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/16.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/17.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/18.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/19.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/20.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/21.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/22.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/23.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/24.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/25.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/26.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/27.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/28.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/29.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/30.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/31.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/32.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/33.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/34.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/35.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/36.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/37.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/38.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/39.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/40.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/41.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/42.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/43.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/44.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/45.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/46.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/47.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/48.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/49.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/50.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/51.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/52.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/53.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/54.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/55.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/56.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/57.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/58.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/59.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/60.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/61.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/62.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/63.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/64.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/65.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/66.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/67.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/68.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/69.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/70.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/71.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/72.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/73.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/74.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/75.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/76.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/77.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/78.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/79.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/80.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/81.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/82.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/83.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/84.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/85.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/86.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/87.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/88.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/89.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/90.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/91.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/92.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/93.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/94.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/95.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/96.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/97.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/98.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/99.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/100.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/101.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/102.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/103.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/104.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/105.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/106.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/107.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/108.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/109.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/110.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/111.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/112.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/113.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/114.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/115.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/116.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/117.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/118.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/119.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/120.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/121.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/122.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/123.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/124.png">
+<meta property="article:published_time" content="2022-10-30T13:48:37.000Z">
+<meta property="article:modified_time" content="2022-10-31T13:23:20.677Z">
+<meta property="article:author" content="sheyu">
+<meta property="article:tag" content="电子数据取证">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/timu1.png">
+
+<link rel="canonical" href="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>2020长安杯wp | Blog</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?aa230141ff1b40a6faeceb23894d3e74";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband">
+	<a target="_blank" rel="noopener" href="https://github.com/xd-sy" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    </div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-photos">
+
+    <a href="/photos/" rel="section"><i class="fa fa-camera fa-fw"></i>photos</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+      <meta itemprop="name" content="sheyu">
+      <meta itemprop="description" content="学习笔记 & 日常分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2020长安杯wp
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-30 21:48:37" itemprop="dateCreated datePublished" datetime="2022-10-30T21:48:37+08:00">2022-10-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-31 21:23:20" itemprop="dateModified" datetime="2022-10-31T21:23:20+08:00">2022-10-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%94%B5%E5%AD%90%E6%95%B0%E6%8D%AE%E5%8F%96%E8%AF%81/" itemprop="url" rel="index"><span itemprop="name">电子数据取证</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>10k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>10 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本篇博客简单记录了我对2020长安杯电子数据取证比赛的学习复盘</p>
+<span id="more"></span>
+
+<h1 id="赛题背景"><a href="#赛题背景" class="headerlink" title="赛题背景"></a>赛题背景</h1><img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/timu1.png" class="">
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/timu2.png" class="">
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/timu3.png" class="">
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/timu4.png" class="">
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/timu5.png" class="">
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/timu6.png" class="">
+
+<h1 id="检材-1"><a href="#检材-1" class="headerlink" title="检材 1"></a>检材 1</h1><p>接群众举报，网站 “<a target="_blank" rel="noopener" href="http://www.kkzjc.com”/">www.kkzjc.com”</a> 可能涉嫌非法交易，警方调取了该网站的云服务器镜像（检材 1.DD）， 请对检材 1 进行分析，获取证据，并根据线索解锁更多检材，深入挖掘出更多与案件有关的信息</p>
+<h2 id="检材-1-的操作系统版本是"><a href="#检材-1-的操作系统版本是" class="headerlink" title="检材 1 的操作系统版本是"></a>检材 1 的操作系统版本是</h2><p>使用火眼证据分析软件打开检材1.DD，查看系统信息</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/1.png" class="">
+
+<p>或者仿真后也能看到</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/2.png" class="">
+
+<h2 id="检材-1-中，操作系统的内核版本是"><a href="#检材-1-中，操作系统的内核版本是" class="headerlink" title="检材 1 中，操作系统的内核版本是"></a>检材 1 中，操作系统的内核版本是</h2><p>还是在系统信息中（填 3.10.0 就好）</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/3.png" class="">
+
+<p>或仿真后使用 uname 查看</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uname -a</span><br><span class="line">uname -r</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/4.png" class="">
+
+<p>或直接看版本存储文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/version</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/5.png" class="">
+
+<h2 id="检材-1-中磁盘包含一个-LVM-逻辑卷，该-LVM-开始的逻辑区块地址（LBA）是"><a href="#检材-1-中磁盘包含一个-LVM-逻辑卷，该-LVM-开始的逻辑区块地址（LBA）是" class="headerlink" title="检材 1 中磁盘包含一个 LVM 逻辑卷，该 LVM 开始的逻辑区块地址（LBA）是"></a>检材 1 中磁盘包含一个 LVM 逻辑卷，该 LVM 开始的逻辑区块地址（LBA）是</h2><p>确实有 LVM 逻辑卷，大小是38.99G</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/6.png" class="">
+
+<p>所以查看检材1.DD的分区详情就好啦</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/7.png" class="">
+
+<p>或仿真后 <code>fdisk -l</code></p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/8.png" class="">
+
+<h2 id="检材-1-中网站-“www-kkzjc-com”-对应的-Web-服务对外开放的端口是"><a href="#检材-1-中网站-“www-kkzjc-com”-对应的-Web-服务对外开放的端口是" class="headerlink" title="检材 1 中网站 “www.kkzjc.com” 对应的 Web 服务对外开放的端口是"></a>检材 1 中网站 “<a target="_blank" rel="noopener" href="http://www.kkzjc.com”/">www.kkzjc.com”</a> 对应的 Web 服务对外开放的端口是</h2><p>查看历史命令有所发现</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/9.png" class="">
+
+<p>但是软件导不出该文件，也打不开它，那就用火眼仿真取证软件试试吧</p>
+<p>root&#x2F;123456 登录服务器后，执行指令 <code>more /etc/nginx/conf.d/www.kkzjc.com</code> 就好啦</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/10.png" class="">
+
+<p>或仿真后全局搜索关键字 <code>find / -name &quot;*www.kkzjc.com&quot;</code> ，好像还更快一点</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/11.png" class="">
+
+<h2 id="检材-1-所在的服务器共绑定了（）个对外开放的域名"><a href="#检材-1-所在的服务器共绑定了（）个对外开放的域名" class="headerlink" title="检材 1 所在的服务器共绑定了（）个对外开放的域名"></a>检材 1 所在的服务器共绑定了（）个对外开放的域名</h2><img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/12.png" class="">
+
+<p>显然是 3 个</p>
+<h2 id="检材-1-所在的服务器的原始-IP-地址"><a href="#检材-1-所在的服务器的原始-IP-地址" class="headerlink" title="检材 1 所在的服务器的原始 IP 地址"></a>检材 1 所在的服务器的原始 IP 地址</h2><p>见第 9 题</p>
+<h2 id="嫌疑人曾经远程登录过检材-1-所在的服务器，分析并找出其登录使用的IP-地址是（并使用该地址解压检材-2）"><a href="#嫌疑人曾经远程登录过检材-1-所在的服务器，分析并找出其登录使用的IP-地址是（并使用该地址解压检材-2）" class="headerlink" title="嫌疑人曾经远程登录过检材 1 所在的服务器，分析并找出其登录使用的IP 地址是（并使用该地址解压检材 2）"></a>嫌疑人曾经远程登录过检材 1 所在的服务器，分析并找出其登录使用的IP 地址是（并使用该地址解压检材 2）</h2><p>直接在火眼证据分析软件里看登录日志就好了</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/13.png" class="">
+
+<p>可以看到一共有俩，题目说正确的地址能解压检材2，具体是哪个试一下就好了</p>
+<h2 id="检材-1-所在的服务器，其主要功能之一为反向代理。找出-“www-kkzjc-com”-转发的后台网站所使用的-IP-地址是（）（并用该-IP-地址解压检材3）"><a href="#检材-1-所在的服务器，其主要功能之一为反向代理。找出-“www-kkzjc-com”-转发的后台网站所使用的-IP-地址是（）（并用该-IP-地址解压检材3）" class="headerlink" title="检材 1 所在的服务器，其主要功能之一为反向代理。找出 “www.kkzjc.com” 转发的后台网站所使用的 IP 地址是（）（并用该 IP 地址解压检材3）"></a>检材 1 所在的服务器，其主要功能之一为反向代理。找出 “<a target="_blank" rel="noopener" href="http://www.kkzjc.com”/">www.kkzjc.com”</a> 转发的后台网站所使用的 IP 地址是（）（并用该 IP 地址解压检材3）</h2><p>找了半天没啥收获，发现服务器是有 docker 的，那就去 docker 里看看。首先需要开启 docker 服务：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker</span><br><span class="line">systemctl status docker</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/14.png" class="">
+
+<p>然后查看镜像和容器</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/15.png" class="">
+
+<p>从上图可以发现，当前有一个正在运行的容器（为 nginx 服务器），它的端口映射是把自己的 80 端口映射到虚拟机的 8091 端口上，这和第4题图中 nginx 的代理配置是相同的，所以我们可以知道，“<a target="_blank" rel="noopener" href="http://www.kkzjc.com”/">www.kkzjc.com”</a> 网站会经过 nginx 的代理进行转发</p>
+<p>接着我们进入交互式终端</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it 08f64376a2e3 /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>查看历史记录（history）</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/16.png" class="">
+
+<p>把历史记录里出现的配置文件都找一找，最终在 hl.conf 文件中找到了 “<a target="_blank" rel="noopener" href="http://www.kkzjc.com”/">www.kkzjc.com”</a> 转发的后台网站所使用的 IP 地址（解压检材3试试就知道啦）</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/17.png" class="">
+
+<h2 id="嫌疑人曾经从题-7-的-IP-地址，通过-WEB-方式远程访问过网站，统计出检材-1-中该IP-出现的次数为"><a href="#嫌疑人曾经从题-7-的-IP-地址，通过-WEB-方式远程访问过网站，统计出检材-1-中该IP-出现的次数为" class="headerlink" title="嫌疑人曾经从题 7 的 IP 地址，通过 WEB 方式远程访问过网站，统计出检材 1 中该IP 出现的次数为"></a>嫌疑人曾经从题 7 的 IP 地址，通过 WEB 方式远程访问过网站，统计出检材 1 中该IP 出现的次数为</h2><p>题干中提到，嫌疑人曾通过 WEB 方式远程访问过网站，由第 8 题的分析可知，访问该网站会经 nginx 反向代理到另一后台网站，所以，其实我们可以通过分析 nginx 服务的日志来判断嫌疑人访问网站的次数</p>
+<p>我们可以从 docker 中 nginx 的主配置文件中知晓 nginx 日志的位置</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/18.png" class="">
+
+<p>但是当我们进入 <code>/var/log/nginx</code> 目录时，会发现 access.log 文件无法直接打开</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/19.png" class="">
+
+<p>原来是 access.log 文件与 <code>/dev/stdout</code> 做了软连接，所以我们要用主机中的 <code>docker logs</code> 命令来查看日志</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">先退出容器：Ctrl+P+Q</span><br><span class="line">再利用 grep 命令来统计次数：docker logs 08f64376a2e3 | grep -o &quot;192.168.99.222&quot; | grep -c &quot;192.168.99.222&quot;</span><br><span class="line">-o 是显示所有匹配位置；-c 是统计匹配行数；一步到位</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/20.png" class="">
+
+<p>可以看到一共 18 个</p>
+<p>同时，我们还能找到第6题的答案。我们知道，nginx 预定义了名为 combined 的日志格式，在没有明确指定日志格式的情况下默认使用该格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">log_format combined &#x27;$remote_addr - $remote_user [$time_local] &#x27;</span><br><span class="line">​          &#x27;&quot;$request&quot; $status $body_bytes_sent &#x27;</span><br><span class="line">​          &#x27;&quot;$http_referer&quot; &quot;$http_user_agent&quot;&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>从上图中我们可以看到，与 “$http_referer” 字段相对应的值恰好是 “<a target="_blank" rel="noopener" href="http://192.168.99.3:8091/dl&quot;">http://192.168.99.3:8091/dl&quot;</a> ，也就是说这个请求是从 192.168.99.3:8091 这个 IP 转发过来的，而 8091 恰好又是 nginx 映射到宿主机，也就是这个服务器虚拟机上的端口，由此可以判断出第 6 题的答案就是192.168.99.3</p>
+<h2 id="Part1-小结"><a href="#Part1-小结" class="headerlink" title="Part1 小结"></a>Part1 小结</h2><p>第一部分的题目均围绕服务器镜像展开，负载均衡、反向代理的考点在长安杯中也算比较常见，20年的题目涉及 nginx 反向代理，21年的题目涉及负载均衡服务器。该部分考察了好几个 IP 地址，我们需要搞清楚 <strong>钓鱼网站、后台 IP 地址、远程登陆地址和服务器原始地址</strong> 这几个地址之间的关系与联系：</p>
+<ol>
+<li><p>nginx 作为 docker 容器，与宿主机服务器（此处就是指本机，宿主机是相对于本机上的虚拟机而言）之间存在端口映射的关系 80&#x2F;tcp -&gt; 8091</p>
+</li>
+<li><p>嫌疑人远程登录检材1所在的服务器，在服务器中留下登录日志记录（192.168.99.222，检材 2 解压密码）</p>
+</li>
+<li><p>受害人访问钓鱼网站，访问请求会通过宿主机服务器（原始地址，8091端口）转发到 nginx 服务器（docker，80端口），并在 nginx 日志中留下记录</p>
+</li>
+<li><p>三个钓鱼网站都通过 nginx 反向代理把访问请求转发到相同的后台 IP 地址（192.168.1.176，检材 3 解压密码）</p>
+</li>
+</ol>
+<h1 id="检材-2"><a href="#检材-2" class="headerlink" title="检材 2"></a>检材 2</h1><p>警方找到了嫌疑人使用的个人 PC（检材 2.zip），请使用第 7 题的答案作为密码解压检材 2，分析并回答下列问题</p>
+<h2 id="检材-2-的原始磁盘-SHA256值为"><a href="#检材-2-的原始磁盘-SHA256值为" class="headerlink" title="检材 2 的原始磁盘 SHA256值为"></a>检材 2 的原始磁盘 SHA256值为</h2><img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/21.png" class="">
+
+<h2 id="检材-2-所在计算机的-OS-内部版本号是"><a href="#检材-2-所在计算机的-OS-内部版本号是" class="headerlink" title="检材 2 所在计算机的 OS 内部版本号是"></a>检材 2 所在计算机的 OS 内部版本号是</h2><p>仿真后在桌面右键，选择“显示设置”，在面板左边栏选择“关于”，就能看到具体的 OS 内部版本啦</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/22.png" class="">
+
+<h2 id="检材-2-所在计算机最后一次正常关机的时间为"><a href="#检材-2-所在计算机最后一次正常关机的时间为" class="headerlink" title="检材 2 所在计算机最后一次正常关机的时间为"></a>检材 2 所在计算机最后一次正常关机的时间为</h2><p>这题有点坑，正确答案不在“开关机时间”里，而在“操作系统信息”里</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/23.png" class="">
+
+<p>在“开关机时间”里显示 2020-9-22 是未关机或非正常关机，但在“操作系统信息”里却显示 2020-9-22 是有正常关机的</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/24.png" class="">
+
+<h2 id="检材-2-中，VMware程序的安装时间为"><a href="#检材-2-中，VMware程序的安装时间为" class="headerlink" title="检材 2 中，VMware程序的安装时间为"></a>检材 2 中，VMware程序的安装时间为</h2><p>这题也是有点陷阱的，不要被桌面快捷方式的创建时间骗了</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/25.png" class="">
+
+<p>应该是安装包的最后运行时间</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/26.png" class="">
+
+<h2 id="检材-2-中，Vmware-exe-程序总计启动过（）次"><a href="#检材-2-中，Vmware-exe-程序总计启动过（）次" class="headerlink" title="检材 2 中，Vmware.exe 程序总计启动过（）次"></a>检材 2 中，Vmware.exe 程序总计启动过（）次</h2><p>这里就要用到取证大师了，查看一下“应用程序运行痕迹”</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/27.png" class="">
+
+<p>很明显一共启动过 6 次</p>
+<h2 id="嫌疑人通过-Web-方式，从检材-2-访问检材-1-所在的服务器上的网站时，连接的目标端口是"><a href="#嫌疑人通过-Web-方式，从检材-2-访问检材-1-所在的服务器上的网站时，连接的目标端口是" class="headerlink" title="嫌疑人通过 Web 方式，从检材 2 访问检材 1 所在的服务器上的网站时，连接的目标端口是"></a>嫌疑人通过 Web 方式，从检材 2 访问检材 1 所在的服务器上的网站时，连接的目标端口是</h2><p>其实第 6 题已经给出答案了，但因为嫌疑人是通过 Web 方式嘛，所以我们也再搜一下浏览器的历史记录来佐证一下</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/28.png" class="">
+
+<h2 id="接-15-题，该端口上运行的进程的程序名称（Program-name）为"><a href="#接-15-题，该端口上运行的进程的程序名称（Program-name）为" class="headerlink" title="接 15 题，该端口上运行的进程的程序名称（Program name）为"></a>接 15 题，该端口上运行的进程的程序名称（Program name）为</h2><p>在检材一的虚拟机中执行指令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">netstat -anp | grep 8091</span><br><span class="line">-p 获取进程名、进程号以及用户ID</span><br></pre></td></tr></table></figure>
+
+<p>不过要注意，要先开启 docker 服务哦</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/29.png" class="">
+
+<h2 id="嫌疑人从检材-2-上访问该网站时，所使用的域名为"><a href="#嫌疑人从检材-2-上访问该网站时，所使用的域名为" class="headerlink" title="嫌疑人从检材 2 上访问该网站时，所使用的域名为"></a>嫌疑人从检材 2 上访问该网站时，所使用的域名为</h2><p>查看 hosts 文件，<code>C:\Windows\System32\drivers\etc\hosts</code></p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/30.png" class="">
+
+<h2 id="检材-2-中，嫌疑人所使用的微信-ID-是"><a href="#检材-2-中，嫌疑人所使用的微信-ID-是" class="headerlink" title="检材 2 中，嫌疑人所使用的微信 ID 是"></a>检材 2 中，嫌疑人所使用的微信 ID 是</h2><p>在 Win10 电脑里找半天没找到微信，突然想到微信不一定必须安在电脑上，微信也可以安在手机上，然后其实在取证大师案例概览的重要信息里也提示我们了</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/31.png" class="">
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/32.png" class="">
+
+<p>上图可见，系统最后打开的是一个 iPhone 手机的备份文件夹，在虚拟机中打开一看文件夹里是 .tar 格式的备份文件，导出后继续用火眼证据分析软件对其进行分析（导出这里应该是需要安装 VMware tools ，火眼证据分析软件竟然能直接把 .tar 格式的文件当作镜像导入，震惊我一年）</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/33.png" class="">
+
+<p>导入分析的时候提示需要 Keychain ，好像影响不大，先进到微信里看就是</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/34.png" class="">
+
+<h2 id="分析检材-2，嫌疑人为推广其网站，与广告位供应商沟通时使用的通联工具的名称为"><a href="#分析检材-2，嫌疑人为推广其网站，与广告位供应商沟通时使用的通联工具的名称为" class="headerlink" title="分析检材 2，嫌疑人为推广其网站，与广告位供应商沟通时使用的通联工具的名称为"></a>分析检材 2，嫌疑人为推广其网站，与广告位供应商沟通时使用的通联工具的名称为</h2><p>按照题目意思把几个社交软件的聊天记录翻一番就 ok 了</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/35.png" class="">
+
+<h2 id="分析检材-2，嫌疑人使用虚拟货币与供应商进行交易，该虚拟货币的名称是"><a href="#分析检材-2，嫌疑人使用虚拟货币与供应商进行交易，该虚拟货币的名称是" class="headerlink" title="分析检材 2，嫌疑人使用虚拟货币与供应商进行交易，该虚拟货币的名称是"></a>分析检材 2，嫌疑人使用虚拟货币与供应商进行交易，该虚拟货币的名称是</h2><p>也在聊天记录里</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/36.png" class="">
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/37.png" class="">
+
+<p>一看 DOGE 收款，那肯定是和 DOGE 相关的虚拟货币，百度一查就知道啦</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/38.png" class="">
+
+<h2 id="上述交易中，对方的收款地址是"><a href="#上述交易中，对方的收款地址是" class="headerlink" title="上述交易中，对方的收款地址是"></a>上述交易中，对方的收款地址是</h2><p>也在上面收款码的图里，<code>DPBEgbwap7VW5HbNdGi9TyKJbqTLWYYkvf</code></p>
+<h2 id="上述交易中，嫌疑人和供应商的交易时间是"><a href="#上述交易中，嫌疑人和供应商的交易时间是" class="headerlink" title="上述交易中，嫌疑人和供应商的交易时间是"></a>上述交易中，嫌疑人和供应商的交易时间是</h2><p>见 23 题</p>
+<h2 id="上述交易中，嫌疑人支付货币的数量为"><a href="#上述交易中，嫌疑人支付货币的数量为" class="headerlink" title="上述交易中，嫌疑人支付货币的数量为"></a>上述交易中，嫌疑人支付货币的数量为</h2><p>之所以和第 22 题一起，是因为这两题需要我们上网去查找能够查询狗狗币交易记录的网站——Dogecoin 浏览器，能够通过收款地址查询狗狗币交易，<a target="_blank" rel="noopener" href="https://explorer.viawallet.com/doge?lang=zh_Hans_CN">https://explorer.viawallet.com/doge?lang=zh_Hans_CN</a></p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/39.png" class="">
+
+<p>交易时间和支付货币的数量就一目了然啦</p>
+<h2 id="检材-2-中，嫌疑人使用的虚拟机的虚拟磁盘被加密，其密码为"><a href="#检材-2-中，嫌疑人使用的虚拟机的虚拟磁盘被加密，其密码为" class="headerlink" title="检材 2 中，嫌疑人使用的虚拟机的虚拟磁盘被加密，其密码为"></a>检材 2 中，嫌疑人使用的虚拟机的虚拟磁盘被加密，其密码为</h2><p>这道题实际上在手机的微信聊天记录中有提示</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/40.png" class="">
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/41.png" class="">
+
+<p>还提示了 github ，去浏览器历史记录里看看</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/42.png" class="">
+
+<p>发现历史记录的访问时间还和聊天记录的时间对上了，此外搜的还都是 pyvmx-cracker ，那我们也搜一搜看，<a target="_blank" rel="noopener" href="https://github.com/axcheron/pyvmx-cracker">https://github.com/axcheron/pyvmx-cracker</a></p>
+<p>在 github 上找到 pyvmx-cracker 后发现它果然是用于破解虚拟机加密的工具，接下来我们就可以利用该工具进行解密啦（ VMware 对虚拟机进行加密，实际上是对虚拟机的配置文件 vmx 进行加密，在未加密的时候 vmx 文件中存储的是有关该虚拟机配置的明文信息）</p>
+<p>检材 2 中的虚拟机 Windows 10 x64 的配置文件 vmx 还藏的挺深的</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/43.png" class="">
+
+<p>导出该文件，用 pyvmx-cracker 爆破即可，字典就用工具自带的字典</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python .\pyvmx-cracker.py -v Windows 10 x64.vmx -d wordlist.txt</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/44.png" class="">
+
+<h2 id="检材-2-中，嫌疑人发送给广告商的邮件中的图片附件的-SHA256-值为"><a href="#检材-2-中，嫌疑人发送给广告商的邮件中的图片附件的-SHA256-值为" class="headerlink" title="检材 2 中，嫌疑人发送给广告商的邮件中的图片附件的 SHA256 值为"></a>检材 2 中，嫌疑人发送给广告商的邮件中的图片附件的 SHA256 值为</h2><p>检材 2 中并没有邮箱的使用记录，所以想到去上一题中解密完的虚拟机中寻找，这需要把整个虚拟机的文件夹导出来。打开发现不太对，竟然还需要登录密码</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/45.png" class="">
+
+<p>那先关闭虚拟机，然后选中 VM 上边栏“虚拟机”，点击“设置”</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/46.png" class="">
+
+<p>移除加密后用火眼仿真取证软件打开，就能拿到密码</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/47.png" class="">
+
+<p>重新登录虚拟机，发现桌面上有 Foxmail ，好家伙必须点进去看看啊</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/48.png" class="">
+
+<p>不用找就能直接发现</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/49.png" class="">
+
+<p>另存到本地算一下哈希就好啦</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/50.png" class="">
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cc7ea3ab90ab6b28417e08c715c243ce58ea76d71fd141b93f055a58e9ba561a</span><br></pre></td></tr></table></figure>
+
+<h2 id="检材-2-中，嫌疑人给广告商发送广告图片邮件的发送时间是"><a href="#检材-2-中，嫌疑人给广告商发送广告图片邮件的发送时间是" class="headerlink" title="检材 2 中，嫌疑人给广告商发送广告图片邮件的发送时间是"></a>检材 2 中，嫌疑人给广告商发送广告图片邮件的发送时间是</h2><p>Foxmail里已经记录的很清楚啦</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/51.png" class="">
+
+<h2 id="检材-2-中，嫌疑人的邮箱密码是"><a href="#检材-2-中，嫌疑人的邮箱密码是" class="headerlink" title="检材 2 中，嫌疑人的邮箱密码是"></a>检材 2 中，嫌疑人的邮箱密码是</h2><p>用火眼证据分析软件打开虚拟机镜像进行取证，找 Foxmail 的账户信息就是了</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/52.png" class="">
+
+<p>其实猜也应该猜 honglian7001</p>
+<h2 id="检材-2-中，嫌疑人使用了（）远程管理工具，登录了检材-1-所在的服务器"><a href="#检材-2-中，嫌疑人使用了（）远程管理工具，登录了检材-1-所在的服务器" class="headerlink" title="检材 2 中，嫌疑人使用了（）远程管理工具，登录了检材 1 所在的服务器"></a>检材 2 中，嫌疑人使用了（）远程管理工具，登录了检材 1 所在的服务器</h2><p>看看虚拟机桌面上还剩些啥，那只能是 Xshell 了</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/53.png" class="">
+
+<p>继续在虚拟机镜像的取证结果里找</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/54.png" class="">
+
+<p>确认为 Xshell 无疑</p>
+<h2 id="检材-2-中，嫌疑人使用上述工具连接服务器时，使用的登录密码为"><a href="#检材-2-中，嫌疑人使用上述工具连接服务器时，使用的登录密码为" class="headerlink" title="检材 2 中，嫌疑人使用上述工具连接服务器时，使用的登录密码为"></a>检材 2 中，嫌疑人使用上述工具连接服务器时，使用的登录密码为</h2><p>见第 28 题图</p>
+<h2 id="Part2-小结"><a href="#Part2-小结" class="headerlink" title="Part2 小结"></a><strong>Part2</strong> 小结</h2><p>检材 2 中包含了嫌疑人的手机备份和嫌疑人用来远程连接检材 1 服务器的虚拟机镜像，嫌疑人主要的通信行为和远程管理都在手机和虚拟机上完成，宿主机（即检材二最本身的 Win 机）中并未存在太多有用信息。其中一个比较新颖的考点是对 VMware 加密虚拟机的破解，此外还涉及到了一些对于虚拟货币的基础了解。虚拟货币这块也一直是近几年的热门话题，经常出现在各种网络犯罪行为中。</p>
+<p>截止目前，检材间的关联如下：</p>
+<ol>
+<li><p>检材 2 主机中主要包含嫌疑人通过 Web 方式访问检材 1 中网站的历史记录</p>
+</li>
+<li><p>检材 2 中包含嫌疑人使用的手机备份，手机备份中含有嫌疑人与外界交流的各种通信应用</p>
+</li>
+<li><p>检材 2 中包含一台 Windows 7 虚拟机，嫌疑人通过该虚拟机与广告供应商进行联系，还通过该虚拟机上的 xshell软件远程管理检材 1 服务器</p>
+</li>
+</ol>
+<h1 id="检材-3"><a href="#检材-3" class="headerlink" title="检材 3"></a>检材 3</h1><p>请使用第 8 题的答案作为密码解压检材 3，分析并回答下列问题</p>
+<h2 id="检材-3-的原始磁盘-SHA256值为"><a href="#检材-3-的原始磁盘-SHA256值为" class="headerlink" title="检材 3 的原始磁盘 SHA256值为"></a>检材 3 的原始磁盘 SHA256值为</h2><img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/55.png" class="">
+
+<h2 id="检材-3-所在的计算机的操作系统版本是"><a href="#检材-3-所在的计算机的操作系统版本是" class="headerlink" title="检材 3 所在的计算机的操作系统版本是"></a>检材 3 所在的计算机的操作系统版本是</h2><img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/56.png" class="">
+
+<h2 id="检材-3-中，部署的网站名称是"><a href="#检材-3-中，部署的网站名称是" class="headerlink" title="检材 3 中，部署的网站名称是"></a>检材 3 中，部署的网站名称是</h2><p>见第 34 题</p>
+<h2 id="检材-3-中，部署的网站对应的网站根目录是"><a href="#检材-3-中，部署的网站对应的网站根目录是" class="headerlink" title="检材 3 中，部署的网站对应的网站根目录是"></a>检材 3 中，部署的网站对应的网站根目录是</h2><p>见第 34 题</p>
+<h2 id="检材-3-中，部署的网站绑定的端口是"><a href="#检材-3-中，部署的网站绑定的端口是" class="headerlink" title="检材 3 中，部署的网站绑定的端口是"></a>检材 3 中，部署的网站绑定的端口是</h2><p>使用火眼仿真取证软件对检材 3 进行仿真，在打开的虚拟机中选择“Server”用户进行登录，登录后即可看到一个“服务器管理器”面板，发现有一个 Web 服务器（IIS），然后一层层打开</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/57.png" class="">
+
+<p>点击“高级设置”，打开就是三道题一起的答案啦</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/58.png" class="">
+
+<p>其中物理路径就是网站根目录</p>
+<h2 id="检材-3-中，具备登陆功能的代码页，对应的文件名为"><a href="#检材-3-中，具备登陆功能的代码页，对应的文件名为" class="headerlink" title="检材 3 中，具备登陆功能的代码页，对应的文件名为"></a>检材 3 中，具备登陆功能的代码页，对应的文件名为</h2><p>在浏览器的 Main History 中可以发现嫌疑人曾访问过一个名为“代理登录”的网站，网址为 <a target="_blank" rel="noopener" href="http://localhost/dl">http://localhost/dl</a></p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/59.png" class="">
+
+<p>我们在检材 3 的虚拟机中尝试访问这个网站，发现可以直接访问，并且其确实具有登录功能</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/60.png" class="">
+
+<p>那我们就去网站根目录下找找看（这也是为什么第 33 题要求我们找网站根目录，其实都是有铺垫的）</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/61.png" class="">
+
+<p>网站根目录下有个 Web.config 文件，很诱人点进去看看，全局查找 dl 真的很容易就找到了</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/62.png" class="">
+
+<p>dl 就是代理的意思，dllogin 不就是“代理登录”的意思吗，这和之前找到的网站名完美匹配</p>
+<h2 id="检材-3-中，请对网站代码进行分析，网站登录过程中，代码中对输入的明文密码作了追加（）字符串处理"><a href="#检材-3-中，请对网站代码进行分析，网站登录过程中，代码中对输入的明文密码作了追加（）字符串处理" class="headerlink" title="检材 3 中，请对网站代码进行分析，网站登录过程中，代码中对输入的明文密码作了追加（）字符串处理"></a>检材 3 中，请对网站代码进行分析，网站登录过程中，代码中对输入的明文密码作了追加（）字符串处理</h2><p>在上一题的目录下（&#x2F;dr&#x2F;login）找到 dllogin.aspx 文件，查看源码</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/63.png" class="">
+
+<p>很明显是在输入的明文密码后追加了“OvO”。其实，直接F12看登录页面的源码也是可以的</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/64.png" class="">
+
+<h2 id="检材-3-中，请对网站代码进行分析，网站登录过程中，代码中调用的动态扩展库文件的完整名称为"><a href="#检材-3-中，请对网站代码进行分析，网站登录过程中，代码中调用的动态扩展库文件的完整名称为" class="headerlink" title="检材 3 中，请对网站代码进行分析，网站登录过程中，代码中调用的动态扩展库文件的完整名称为"></a>检材 3 中，请对网站代码进行分析，网站登录过程中，代码中调用的动态扩展库文件的完整名称为</h2><p>继续看 dllogin.aspx 文件源码，发现“App_Web_dllogin.aspx.7d7c2f33”十分可疑</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/65.png" class="">
+
+<p>所以就去文件系统里搜一搜，发现果然是 .dll 后缀，那么也就可以确定答案了</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/66.png" class="">
+
+<h2 id="检材-3-中，网站登录过程中，后台接收到明文密码后进行加密处理，首先使用的算法是-Encryption-中的（）函数"><a href="#检材-3-中，网站登录过程中，后台接收到明文密码后进行加密处理，首先使用的算法是-Encryption-中的（）函数" class="headerlink" title="检材 3 中，网站登录过程中，后台接收到明文密码后进行加密处理，首先使用的算法是 Encryption 中的（）函数"></a>检材 3 中，网站登录过程中，后台接收到明文密码后进行加密处理，首先使用的算法是 Encryption 中的（）函数</h2><p>直觉上来说，这题肯定和上一题找到的 App_Web_dllogin.aspx.7d7c2f33.dll 文件有关，但导出后直接用记事本打开竟是乱码，尽管如此还是可是发现，里面是包含 Encryption 信息的</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/67.png" class="">
+
+<p>所以想办法把这个文件正确打开就肯定能找到答案，经过尝试发现只有 dnspy（一款反编译软件）可以正常打开，然后就很快找到答案啦</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/68.png" class="">
+
+<h2 id="检材-3-中，分析该网站连接的数据库地址为（）并使用该地址解压检材-4"><a href="#检材-3-中，分析该网站连接的数据库地址为（）并使用该地址解压检材-4" class="headerlink" title="检材 3 中，分析该网站连接的数据库地址为（）并使用该地址解压检材 4"></a>检材 3 中，分析该网站连接的数据库地址为（）并使用该地址解压检材 4</h2><p>在上题的 dll 文件中，还可以看到 dl_login_dllogin 类调用的外部动态链接库，其中有一个叫 DBManager，看名字就是和数据库相关的库</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/69.png" class="">
+
+<p>可以发现的是，这个 dll 文件也在 bin 目录下，导出后用 dnspy 进行分析。在 DBcon 类的最下面可以看到连接 sql 数据库的默认配置</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/70.png" class="">
+
+<p>其中有数据库地址（192.168.1.174，检材 4 解压密码）和端口号（1433）</p>
+<h2 id="检材-3-中，网站连接数据库使用的密码为"><a href="#检材-3-中，网站连接数据库使用的密码为" class="headerlink" title="检材 3 中，网站连接数据库使用的密码为"></a>检材 3 中，网站连接数据库使用的密码为</h2><p>同样是在 DBcon 中，不过是在最上面</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/71.png" class="">
+
+<p>我们尝试理解一下这块代码的逻辑。如果 this.Conn 为空（未被赋值），则使用默认的连接信息（红色框）；但事实上 this.Conn 已经被赋值了（黄色框），也就是说我们需要利用 AESDecrypt 方法来解密这串加密信息。查看该方法，可以发现这是 Encryption 类下的静态方法，可以直接通过 PowerShell 调用，但必须注意的是，调用静态方法一定要使用方括号加上双冒号 :: 的形式，而且要先在当前的 PowerShell 环境下引入这个动态链接库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Import-Module .\DBManager.dll</span><br><span class="line">[DBManager.Encryption]::AESDecrypt(&quot;Mcyj19i/VubvqSM21YPjWnnGzk8G/GG6x9+qwdcOJd9bTEyprEOxs8TD9Ma1Lz1Ct72xlK/g8DDRAQ+X0GtJ8w==&quot;, &quot;HL&quot;, &quot;forensix&quot;)</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/72.png" class="">
+
+<p>其中有数据库地址（192.168.1.174）、端口号（1433）、用户名（sa）、密码（c4f2737e88）以及数据库名（v7sq3）</p>
+<h2 id="检材-3-中，网站连接数据库服务器的端口是"><a href="#检材-3-中，网站连接数据库服务器的端口是" class="headerlink" title="检材 3 中，网站连接数据库服务器的端口是"></a>检材 3 中，网站连接数据库服务器的端口是</h2><p>由 39、40 题均可知</p>
+<h2 id="Part3-小结"><a href="#Part3-小结" class="headerlink" title="Part3 小结"></a>Part3 小结</h2><p>检材 3 是一个 Windows Server 服务器，上面部署了一个 IIS 网站，主要考察点还是在网站架构（根目录下文件存放路径）、配置信息以及对动态链接库的分析上。如果能搞清楚 aspx 与 dll 之间的继承关系，各个 dll 之间的调用关系，以及找到对应的文件，将对解题很有帮助：</p>
+<ol>
+<li><p>检材 3 中搭建了名为 card 的网站，登录页面为 &#x2F;dl</p>
+</li>
+<li><p>登录页面的源文件为 dllogin.aspx，位于 &#x2F;dr&#x2F;login 目录下</p>
+</li>
+<li><p>源码继承自 App_Web_dllogin.aspx.7d7c2f33.dll，位于 &#x2F;bin 目录下</p>
+</li>
+<li><p>App_Web_dllogin.aspx.7d7c2f33.dll中调用了 DBManager.dll的 Encryption.AESEncrypt 方法，也位于 &#x2F;bin 目录下</p>
+</li>
+<li><p>DBManager.dll 中存储了连接数据库的默认配置信息和嫌疑人实际使用的配置信息，调用解密方法即可得到明文</p>
+</li>
+</ol>
+<p>数据库名：v7sq3</p>
+<p>用户名 &#x2F; 密码：sa &#x2F; c4f2737e88</p>
+<p>数据库 IP 地址：192.168.1.174（检材 4 解压密码）</p>
+<p>数据库端口号：1433</p>
+<h1 id="检材-4"><a href="#检材-4" class="headerlink" title="检材 4"></a>检材 4</h1><p>请使用第 39 题的答案作为密码解压检材 4，分析并回答下列问题</p>
+<h2 id="检材-4-的原始磁盘-SHA256值为"><a href="#检材-4-的原始磁盘-SHA256值为" class="headerlink" title="检材 4 的原始磁盘 SHA256值为"></a>检材 4 的原始磁盘 SHA256值为</h2><p>使用39题拿到的解压密码打开检材 4</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/73.png" class="">
+
+<p>我们可以发现，从第 43 题起，后面几乎每一题都涉及“网站重构”。那么如何重构？客官别急且看下面</p>
+<p>我们对检材 4 进行仿真，查看 history 可以发现，里面涉及到了许多数据库相关的操作（mssql），再结合检材 3 可以发现，这很明显是一个站库分离的架构，检材 3 是站，检材 4 是库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">history | grep mssql</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/74.png" class="">
+
+<p>此外我们还可以看到，history 中有 docker cp 命令对 LDF 文件（日志数据库文件）的操作，其中数据库的名字与检材 3 中分析到的完全相同，均为 v7sq3（可见第 40 题）</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/75.png" class="">
+
+<p>据此我们可以判断，真正的数据库就在docker中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker # 启动docker服务</span><br><span class="line">systemctl status docker # 查看服务状态</span><br><span class="line">docker ps -a # 查看所有容器</span><br><span class="line">docker start 3f17 # 开启容器</span><br></pre></td></tr></table></figure>
+
+<p>通过检材 3 我们知道，数据库的连接地址为 192.168.1.174，所以我们要先修改检材 4 的静态 IP（关闭 DHCP服务）</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/76.png" class="">
+
+<p>修改网卡配置文件（CentOS）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip a # 查看配置文件名称 ens-33</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/77.png" class="">
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-ens33 # 修改配置文件</span><br></pre></td></tr></table></figure>
+
+<p>修改（红框）&#x2F;添加（黄框）以下内容</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/78.png" class="">
+
+<p>重启网络配置，查看是否修改成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart network</span><br><span class="line">ip a</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/79.png" class="">
+
+<p>配置好检材 4 后，再配置检材 3，开启 DHCP 服务，查看网络配置，检测是否能 ping 通检材 4</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/80.png" class="">
+
+<p>连接数据库（注意要选 SQL Server，而不是 MySQL ）</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/81.png" class="">
+
+<p>这时，如果我们是第一次连接 SQL Server 的话，会有报错“未发现数据源名称并且未指定默认驱动程序”。解决方法就是把 Navicat 安装目录下的 msodbcsql_64.msi 文件安装即可</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/82.png" class="">
+
+<p>不过安装的时候要注意选择“Will be installed on local hard drive”</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/83.png" class="">
+
+<p>安装完成后重新打开 Navicat 进行连接即可。然后竟然又报错了……</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/84.png" class="">
+
+<p>网上搜了半天也搜不到有效的解决方法，把电脑重启一遍后重新过一遍刚刚的流程竟然奇迹般又连上了……感觉真的很离谱</p>
+<p>回顾之前分析检材3时找到的网站登录时调用的“App_Web_dllogin.aspx.7d7c2f33.dll”文件，我们可以发现，在 dr_login_dllogin 类的 oCmd 方法中当用户登录信息与数据库比对时使用了 wduser.DUserLogin 函数</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/85.png" class="">
+
+<p>跟进查看这个函数，在 WBus.dll 文件的 WDUser 类中</p>
+<p>（ WBus.dll 文件也在 App_Web_dllogin.aspx.7d7c2f33.dll 文件开头引用）</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/86.png" class="">
+
+<p>DUserLogin 函数中调用了数据库中的 PD_UserLogin 函数</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/87.png" class="">
+
+<p>PD_UserLogin 函数内容如下图</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/88.png" class="">
+
+<p>函数中有几个关键点：</p>
+<ol>
+<li>先从 TD_Webs 表中根据 DW_Web 的取值取出 DW_Type 和 DW_DU_Id ，DW_Web 是域名&#x2F;IP</li>
+</ol>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/89.png" class="">
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/90.png" class="">
+
+<ol start="2">
+<li>再根据 DW_Type 的取值（0&#x2F;1）进入两个条件分支，在 TD_User 表中取用户数据</li>
+</ol>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/91.png" class="">
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/92.png" class="">
+
+<ol start="3">
+<li>TD_User 表中存放的密码是经过拼接、加密、MD5处理后的结果</li>
+</ol>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/93.png" class="">
+
+<p>通过检材 2 我们知道，嫌疑人的用户名为 liwente1314520，对应的 DU_Id 为 1001，根据以上代码的判断逻辑，我们只要让 DW_DU_Id 与 DU_Id 保持一致，再修改对应的 DW_Web 字段和 DU_Pwd 字段的值即可实现后台登录的绕过</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/94.png" class="">
+
+<p>我们以修改密码为“123456”为例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MD5(AESEncrypt(&#x27;123456&#x27;+&#x27;OvO&#x27;))</span><br><span class="line">Import-Module .\DBManager.dll</span><br><span class="line">[DBManager.Encryption]::AESEncrypt(&quot;123456OvO&quot;, &quot;forensix&quot;, &quot;HL&quot;)</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/95.png" class="">
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/96.png" class="">
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/97.png" class="">
+
+<p>将 liwente1314520 用户名对应的密码修改为 “123456” 在经过拼接加密 md5 处理后的结果</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/98.png" class="">
+
+<p>修改为后台网址的 IP</p>
+<p>修改完后保存，重启容器：<code>docker restart 3f17</code></p>
+<p>在检材 3 中开启 ASP.NET State Service 服务</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/99.png" class="">
+
+<p>然后就可以在本机的浏览器上通过 192.168.1.176&#x2F;dl 来访问网站啦，用户名 liwente1314520，密码 123456 进行登录</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/100.png" class="">
+
+<p>至此网站就重构成功啦</p>
+<h2 id="重构该网站，分析嫌疑用户的推广链接中参数里包含的-ID-是"><a href="#重构该网站，分析嫌疑用户的推广链接中参数里包含的-ID-是" class="headerlink" title="重构该网站，分析嫌疑用户的推广链接中参数里包含的 ID 是"></a>重构该网站，分析嫌疑用户的推广链接中参数里包含的 ID 是</h2><p>重构网址后一找就有啦</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/101.png" class="">
+
+<h2 id="重构该网站，该网站后台的代理用户数量为"><a href="#重构该网站，该网站后台的代理用户数量为" class="headerlink" title="重构该网站，该网站后台的代理用户数量为"></a>重构该网站，该网站后台的代理用户数量为</h2><img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/102.png" class="">
+
+<p>一共三页数就完事 9+9+8&#x3D;26 个</p>
+<h2 id="重构该网站，该网站注册用户中共有过（）个代理（包含删除的数据）"><a href="#重构该网站，该网站注册用户中共有过（）个代理（包含删除的数据）" class="headerlink" title="重构该网站，该网站注册用户中共有过（）个代理（包含删除的数据）"></a>重构该网站，该网站注册用户中共有过（）个代理（包含删除的数据）</h2><p>用与之前分析登录页面时相同的方法，先找到“用户列表”页面对应的 aspx 文件</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/103.png" class="">
+
+<p>tyyhlb.aspx，然后找到它继承自哪个动态链接库</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/104.png" class="">
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/105.png" class="">
+
+<p>App_Web_tyyhlb.aspx.df411ca0</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/106.png" class="">
+
+<p>导出后使用 dnspy 打开，找到其中和数据库交互的函数</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/107.png" class="">
+
+<p>寻找引用，在 WBus.dll 的 WUUser 类中，找到对应的表</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/108.png" class="">
+
+<p>统计行数</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/109.png" class="">
+
+<p>也可以这样</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/110.png" class="">
+
+<h2 id="重构该网站，对补发记录进行统计，统计-2019-年-10-月-1-日后补发成功的金额总值"><a href="#重构该网站，对补发记录进行统计，统计-2019-年-10-月-1-日后补发成功的金额总值" class="headerlink" title="重构该网站，对补发记录进行统计，统计 2019 年 10 月 1 日后补发成功的金额总值"></a>重构该网站，对补发记录进行统计，统计 2019 年 10 月 1 日后补发成功的金额总值</h2><p>和第 45 题一样的步骤，找到对应的数据库表，这里对应的是一个视图（view）</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/111.png" class="">
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/112.png" class="">
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/113.png" class="">
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/114.png" class="">
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/115.png" class="">
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/116.png" class="">
+
+<p>Page_Load 方法对于是否补发成功的判断如下</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/117.png" class="">
+
+<p>可以看到当 YY1T_CState 字段值为 100 时，补发成功；我们使用 sql 语句进行查找（记得还要加上时间范围的限定哦）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT SUM(YY1T_Money) FROM [dbo].[VY_TestLog] WHERE [YY1T_CState] = N&#x27;100&#x27; AND [YY1T_CDate] BETWEEN N&#x27;2019-10-01 00:00:00&#x27; AND N&#x27;2020-12-31 00:00:00&#x27;</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/118.png" class="">
+
+<h2 id="检材-4-中，对“TX-IpLog”表进行分析，所有在“武汉市”登录的次数为"><a href="#检材-4-中，对“TX-IpLog”表进行分析，所有在“武汉市”登录的次数为" class="headerlink" title="检材 4 中，对“TX_IpLog”表进行分析，所有在“武汉市”登录的次数为"></a>检材 4 中，对“TX_IpLog”表进行分析，所有在“武汉市”登录的次数为</h2><img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/119.png" class="">
+
+<h2 id="重构该网站，该嫌疑人下属代理“liyun10”账户下的余额有（）元"><a href="#重构该网站，该嫌疑人下属代理“liyun10”账户下的余额有（）元" class="headerlink" title="重构该网站，该嫌疑人下属代理“liyun10”账户下的余额有（）元"></a>重构该网站，该嫌疑人下属代理“liyun10”账户下的余额有（）元</h2><img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/120.png" class="">
+
+<p>点击“后台”无法直接跳转，此时我们需要在地址栏开头添加服务器的 IP</p>
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/121.png" class="">
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192.168.1.176/res/aspx/uin.aspx?user=liyun10&amp;pwd=F58249F4A628AE7B35753EA8416BA943&amp;t=fqgl</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/122.png" class="">
+
+<h2 id="接上一题，该用户的推广-ID-是"><a href="#接上一题，该用户的推广-ID-是" class="headerlink" title="接上一题，该用户的推广 ID 是"></a>接上一题，该用户的推广 ID 是</h2><img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/123.png" class="">
+
+<h2 id="接上一题，该代理商户的最后一次登陆时间是"><a href="#接上一题，该代理商户的最后一次登陆时间是" class="headerlink" title="接上一题，该代理商户的最后一次登陆时间是"></a>接上一题，该代理商户的最后一次登陆时间是</h2><img src="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/124.png" class="">
+
+<h2 id="Part4-小结"><a href="#Part4-小结" class="headerlink" title="Part4 小结"></a><strong>Part4</strong> 小结</h2><p>本部分围绕“网站重构”展开，作为每年的保留项目，考察点也不完全相同。21年主要考察对数据库服务器的“ raid 重组”，而20年则主要考察对数据库的“改查”操作，当然前提是要弄清楚登录判断和密码校验的逻辑，找到对应的表和对应的数据，才能正确修改。重构网站后剩下的步骤就比较简单了，使用 sql 语句或导出至 excel 中使用表格进行统计都可以顺利完成题目</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>最后再整体梳理一遍所有检材间的关系：</p>
+<ol>
+<li><p>检材 1 作为反向代理服务器，对外开放的三个域名最终都会转发到由检材 3 和检材 4 共同搭建的网站后台（192.168.1.176:80）。此外，根据后台网站的内容和功能可以判断，这三个域名是嫌疑人专门留给下线代理访问管理平台的地址，账号需要嫌疑人审核通过后才能登录</p>
+</li>
+<li><p>检材 2 是嫌疑人的个人 PC ，嫌疑人通过在检材 2 上的 Win 7 虚拟机中使用 XShell 远程管理检材 1</p>
+</li>
+<li><p>嫌疑人使用手机上的 Telegram 与广告供应商进行联系，并通过虚拟货币 Dogecoin 与广告供应商进行交易，手机备份存储在检材 2 中</p>
+</li>
+<li><p>检材 3 和检材 4 共同搭建了管理后台，检材 3 上通过 IIS 服务搭建了网站，检材 4 上部署了网站的数据库。检材 3 的 IP 地址为 192.168.1.176，恰好符合检材 1 中 nginx 代理转发的规则，80 端口对应后台首页；检材 4 的 IP 地址为 192.168.1.174，所有关于数据库的连接信息都是通过对检材 3 中 的网站登录代码分析得到</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>sheyu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xd-sy.github.io/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/" title="2020长安杯wp">https://xd-sy.github.io/2022/10/30/2020长安杯wp/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%94%B5%E5%AD%90%E6%95%B0%E6%8D%AE%E5%8F%96%E8%AF%81/" rel="tag"># 电子数据取证</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/" rel="prev" title="2021长安杯wp">
+      <i class="fa fa-chevron-left"></i> 2021长安杯wp
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/31/2019%E9%95%BF%E5%AE%89%E6%9D%AFwp/" rel="next" title="2019长安杯wp">
+      2019长安杯wp <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B5%9B%E9%A2%98%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">赛题背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-1"><span class="nav-number">2.</span> <span class="nav-text">检材 1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-1-%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E6%98%AF"><span class="nav-number">2.1.</span> <span class="nav-text">检材 1 的操作系统版本是</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-1-%E4%B8%AD%EF%BC%8C%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E6%98%AF"><span class="nav-number">2.2.</span> <span class="nav-text">检材 1 中，操作系统的内核版本是</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-1-%E4%B8%AD%E7%A3%81%E7%9B%98%E5%8C%85%E5%90%AB%E4%B8%80%E4%B8%AA-LVM-%E9%80%BB%E8%BE%91%E5%8D%B7%EF%BC%8C%E8%AF%A5-LVM-%E5%BC%80%E5%A7%8B%E7%9A%84%E9%80%BB%E8%BE%91%E5%8C%BA%E5%9D%97%E5%9C%B0%E5%9D%80%EF%BC%88LBA%EF%BC%89%E6%98%AF"><span class="nav-number">2.3.</span> <span class="nav-text">检材 1 中磁盘包含一个 LVM 逻辑卷，该 LVM 开始的逻辑区块地址（LBA）是</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-1-%E4%B8%AD%E7%BD%91%E7%AB%99-%E2%80%9Cwww-kkzjc-com%E2%80%9D-%E5%AF%B9%E5%BA%94%E7%9A%84-Web-%E6%9C%8D%E5%8A%A1%E5%AF%B9%E5%A4%96%E5%BC%80%E6%94%BE%E7%9A%84%E7%AB%AF%E5%8F%A3%E6%98%AF"><span class="nav-number">2.4.</span> <span class="nav-text">检材 1 中网站 “www.kkzjc.com” 对应的 Web 服务对外开放的端口是</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-1-%E6%89%80%E5%9C%A8%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%B1%E7%BB%91%E5%AE%9A%E4%BA%86%EF%BC%88%EF%BC%89%E4%B8%AA%E5%AF%B9%E5%A4%96%E5%BC%80%E6%94%BE%E7%9A%84%E5%9F%9F%E5%90%8D"><span class="nav-number">2.5.</span> <span class="nav-text">检材 1 所在的服务器共绑定了（）个对外开放的域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-1-%E6%89%80%E5%9C%A8%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%8E%9F%E5%A7%8B-IP-%E5%9C%B0%E5%9D%80"><span class="nav-number">2.6.</span> <span class="nav-text">检材 1 所在的服务器的原始 IP 地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AB%8C%E7%96%91%E4%BA%BA%E6%9B%BE%E7%BB%8F%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95%E8%BF%87%E6%A3%80%E6%9D%90-1-%E6%89%80%E5%9C%A8%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E5%88%86%E6%9E%90%E5%B9%B6%E6%89%BE%E5%87%BA%E5%85%B6%E7%99%BB%E5%BD%95%E4%BD%BF%E7%94%A8%E7%9A%84IP-%E5%9C%B0%E5%9D%80%E6%98%AF%EF%BC%88%E5%B9%B6%E4%BD%BF%E7%94%A8%E8%AF%A5%E5%9C%B0%E5%9D%80%E8%A7%A3%E5%8E%8B%E6%A3%80%E6%9D%90-2%EF%BC%89"><span class="nav-number">2.7.</span> <span class="nav-text">嫌疑人曾经远程登录过检材 1 所在的服务器，分析并找出其登录使用的IP 地址是（并使用该地址解压检材 2）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-1-%E6%89%80%E5%9C%A8%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E5%85%B6%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD%E4%B9%8B%E4%B8%80%E4%B8%BA%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E3%80%82%E6%89%BE%E5%87%BA-%E2%80%9Cwww-kkzjc-com%E2%80%9D-%E8%BD%AC%E5%8F%91%E7%9A%84%E5%90%8E%E5%8F%B0%E7%BD%91%E7%AB%99%E6%89%80%E4%BD%BF%E7%94%A8%E7%9A%84-IP-%E5%9C%B0%E5%9D%80%E6%98%AF%EF%BC%88%EF%BC%89%EF%BC%88%E5%B9%B6%E7%94%A8%E8%AF%A5-IP-%E5%9C%B0%E5%9D%80%E8%A7%A3%E5%8E%8B%E6%A3%80%E6%9D%903%EF%BC%89"><span class="nav-number">2.8.</span> <span class="nav-text">检材 1 所在的服务器，其主要功能之一为反向代理。找出 “www.kkzjc.com” 转发的后台网站所使用的 IP 地址是（）（并用该 IP 地址解压检材3）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AB%8C%E7%96%91%E4%BA%BA%E6%9B%BE%E7%BB%8F%E4%BB%8E%E9%A2%98-7-%E7%9A%84-IP-%E5%9C%B0%E5%9D%80%EF%BC%8C%E9%80%9A%E8%BF%87-WEB-%E6%96%B9%E5%BC%8F%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE%E8%BF%87%E7%BD%91%E7%AB%99%EF%BC%8C%E7%BB%9F%E8%AE%A1%E5%87%BA%E6%A3%80%E6%9D%90-1-%E4%B8%AD%E8%AF%A5IP-%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0%E4%B8%BA"><span class="nav-number">2.9.</span> <span class="nav-text">嫌疑人曾经从题 7 的 IP 地址，通过 WEB 方式远程访问过网站，统计出检材 1 中该IP 出现的次数为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part1-%E5%B0%8F%E7%BB%93"><span class="nav-number">2.10.</span> <span class="nav-text">Part1 小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-2"><span class="nav-number">3.</span> <span class="nav-text">检材 2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-2-%E7%9A%84%E5%8E%9F%E5%A7%8B%E7%A3%81%E7%9B%98-SHA256%E5%80%BC%E4%B8%BA"><span class="nav-number">3.1.</span> <span class="nav-text">检材 2 的原始磁盘 SHA256值为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-2-%E6%89%80%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84-OS-%E5%86%85%E9%83%A8%E7%89%88%E6%9C%AC%E5%8F%B7%E6%98%AF"><span class="nav-number">3.2.</span> <span class="nav-text">检材 2 所在计算机的 OS 内部版本号是</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-2-%E6%89%80%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%9C%80%E5%90%8E%E4%B8%80%E6%AC%A1%E6%AD%A3%E5%B8%B8%E5%85%B3%E6%9C%BA%E7%9A%84%E6%97%B6%E9%97%B4%E4%B8%BA"><span class="nav-number">3.3.</span> <span class="nav-text">检材 2 所在计算机最后一次正常关机的时间为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-2-%E4%B8%AD%EF%BC%8CVMware%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%AE%89%E8%A3%85%E6%97%B6%E9%97%B4%E4%B8%BA"><span class="nav-number">3.4.</span> <span class="nav-text">检材 2 中，VMware程序的安装时间为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-2-%E4%B8%AD%EF%BC%8CVmware-exe-%E7%A8%8B%E5%BA%8F%E6%80%BB%E8%AE%A1%E5%90%AF%E5%8A%A8%E8%BF%87%EF%BC%88%EF%BC%89%E6%AC%A1"><span class="nav-number">3.5.</span> <span class="nav-text">检材 2 中，Vmware.exe 程序总计启动过（）次</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AB%8C%E7%96%91%E4%BA%BA%E9%80%9A%E8%BF%87-Web-%E6%96%B9%E5%BC%8F%EF%BC%8C%E4%BB%8E%E6%A3%80%E6%9D%90-2-%E8%AE%BF%E9%97%AE%E6%A3%80%E6%9D%90-1-%E6%89%80%E5%9C%A8%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84%E7%BD%91%E7%AB%99%E6%97%B6%EF%BC%8C%E8%BF%9E%E6%8E%A5%E7%9A%84%E7%9B%AE%E6%A0%87%E7%AB%AF%E5%8F%A3%E6%98%AF"><span class="nav-number">3.6.</span> <span class="nav-text">嫌疑人通过 Web 方式，从检材 2 访问检材 1 所在的服务器上的网站时，连接的目标端口是</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5-15-%E9%A2%98%EF%BC%8C%E8%AF%A5%E7%AB%AF%E5%8F%A3%E4%B8%8A%E8%BF%90%E8%A1%8C%E7%9A%84%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%90%8D%E7%A7%B0%EF%BC%88Program-name%EF%BC%89%E4%B8%BA"><span class="nav-number">3.7.</span> <span class="nav-text">接 15 题，该端口上运行的进程的程序名称（Program name）为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AB%8C%E7%96%91%E4%BA%BA%E4%BB%8E%E6%A3%80%E6%9D%90-2-%E4%B8%8A%E8%AE%BF%E9%97%AE%E8%AF%A5%E7%BD%91%E7%AB%99%E6%97%B6%EF%BC%8C%E6%89%80%E4%BD%BF%E7%94%A8%E7%9A%84%E5%9F%9F%E5%90%8D%E4%B8%BA"><span class="nav-number">3.8.</span> <span class="nav-text">嫌疑人从检材 2 上访问该网站时，所使用的域名为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-2-%E4%B8%AD%EF%BC%8C%E5%AB%8C%E7%96%91%E4%BA%BA%E6%89%80%E4%BD%BF%E7%94%A8%E7%9A%84%E5%BE%AE%E4%BF%A1-ID-%E6%98%AF"><span class="nav-number">3.9.</span> <span class="nav-text">检材 2 中，嫌疑人所使用的微信 ID 是</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E6%A3%80%E6%9D%90-2%EF%BC%8C%E5%AB%8C%E7%96%91%E4%BA%BA%E4%B8%BA%E6%8E%A8%E5%B9%BF%E5%85%B6%E7%BD%91%E7%AB%99%EF%BC%8C%E4%B8%8E%E5%B9%BF%E5%91%8A%E4%BD%8D%E4%BE%9B%E5%BA%94%E5%95%86%E6%B2%9F%E9%80%9A%E6%97%B6%E4%BD%BF%E7%94%A8%E7%9A%84%E9%80%9A%E8%81%94%E5%B7%A5%E5%85%B7%E7%9A%84%E5%90%8D%E7%A7%B0%E4%B8%BA"><span class="nav-number">3.10.</span> <span class="nav-text">分析检材 2，嫌疑人为推广其网站，与广告位供应商沟通时使用的通联工具的名称为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E6%A3%80%E6%9D%90-2%EF%BC%8C%E5%AB%8C%E7%96%91%E4%BA%BA%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9F%E8%B4%A7%E5%B8%81%E4%B8%8E%E4%BE%9B%E5%BA%94%E5%95%86%E8%BF%9B%E8%A1%8C%E4%BA%A4%E6%98%93%EF%BC%8C%E8%AF%A5%E8%99%9A%E6%8B%9F%E8%B4%A7%E5%B8%81%E7%9A%84%E5%90%8D%E7%A7%B0%E6%98%AF"><span class="nav-number">3.11.</span> <span class="nav-text">分析检材 2，嫌疑人使用虚拟货币与供应商进行交易，该虚拟货币的名称是</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E8%BF%B0%E4%BA%A4%E6%98%93%E4%B8%AD%EF%BC%8C%E5%AF%B9%E6%96%B9%E7%9A%84%E6%94%B6%E6%AC%BE%E5%9C%B0%E5%9D%80%E6%98%AF"><span class="nav-number">3.12.</span> <span class="nav-text">上述交易中，对方的收款地址是</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E8%BF%B0%E4%BA%A4%E6%98%93%E4%B8%AD%EF%BC%8C%E5%AB%8C%E7%96%91%E4%BA%BA%E5%92%8C%E4%BE%9B%E5%BA%94%E5%95%86%E7%9A%84%E4%BA%A4%E6%98%93%E6%97%B6%E9%97%B4%E6%98%AF"><span class="nav-number">3.13.</span> <span class="nav-text">上述交易中，嫌疑人和供应商的交易时间是</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E8%BF%B0%E4%BA%A4%E6%98%93%E4%B8%AD%EF%BC%8C%E5%AB%8C%E7%96%91%E4%BA%BA%E6%94%AF%E4%BB%98%E8%B4%A7%E5%B8%81%E7%9A%84%E6%95%B0%E9%87%8F%E4%B8%BA"><span class="nav-number">3.14.</span> <span class="nav-text">上述交易中，嫌疑人支付货币的数量为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-2-%E4%B8%AD%EF%BC%8C%E5%AB%8C%E7%96%91%E4%BA%BA%E4%BD%BF%E7%94%A8%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E8%99%9A%E6%8B%9F%E7%A3%81%E7%9B%98%E8%A2%AB%E5%8A%A0%E5%AF%86%EF%BC%8C%E5%85%B6%E5%AF%86%E7%A0%81%E4%B8%BA"><span class="nav-number">3.15.</span> <span class="nav-text">检材 2 中，嫌疑人使用的虚拟机的虚拟磁盘被加密，其密码为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-2-%E4%B8%AD%EF%BC%8C%E5%AB%8C%E7%96%91%E4%BA%BA%E5%8F%91%E9%80%81%E7%BB%99%E5%B9%BF%E5%91%8A%E5%95%86%E7%9A%84%E9%82%AE%E4%BB%B6%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%E9%99%84%E4%BB%B6%E7%9A%84-SHA256-%E5%80%BC%E4%B8%BA"><span class="nav-number">3.16.</span> <span class="nav-text">检材 2 中，嫌疑人发送给广告商的邮件中的图片附件的 SHA256 值为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-2-%E4%B8%AD%EF%BC%8C%E5%AB%8C%E7%96%91%E4%BA%BA%E7%BB%99%E5%B9%BF%E5%91%8A%E5%95%86%E5%8F%91%E9%80%81%E5%B9%BF%E5%91%8A%E5%9B%BE%E7%89%87%E9%82%AE%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81%E6%97%B6%E9%97%B4%E6%98%AF"><span class="nav-number">3.17.</span> <span class="nav-text">检材 2 中，嫌疑人给广告商发送广告图片邮件的发送时间是</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-2-%E4%B8%AD%EF%BC%8C%E5%AB%8C%E7%96%91%E4%BA%BA%E7%9A%84%E9%82%AE%E7%AE%B1%E5%AF%86%E7%A0%81%E6%98%AF"><span class="nav-number">3.18.</span> <span class="nav-text">检材 2 中，嫌疑人的邮箱密码是</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-2-%E4%B8%AD%EF%BC%8C%E5%AB%8C%E7%96%91%E4%BA%BA%E4%BD%BF%E7%94%A8%E4%BA%86%EF%BC%88%EF%BC%89%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%EF%BC%8C%E7%99%BB%E5%BD%95%E4%BA%86%E6%A3%80%E6%9D%90-1-%E6%89%80%E5%9C%A8%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">3.19.</span> <span class="nav-text">检材 2 中，嫌疑人使用了（）远程管理工具，登录了检材 1 所在的服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-2-%E4%B8%AD%EF%BC%8C%E5%AB%8C%E7%96%91%E4%BA%BA%E4%BD%BF%E7%94%A8%E4%B8%8A%E8%BF%B0%E5%B7%A5%E5%85%B7%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%B6%EF%BC%8C%E4%BD%BF%E7%94%A8%E7%9A%84%E7%99%BB%E5%BD%95%E5%AF%86%E7%A0%81%E4%B8%BA"><span class="nav-number">3.20.</span> <span class="nav-text">检材 2 中，嫌疑人使用上述工具连接服务器时，使用的登录密码为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part2-%E5%B0%8F%E7%BB%93"><span class="nav-number">3.21.</span> <span class="nav-text">Part2 小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-3"><span class="nav-number">4.</span> <span class="nav-text">检材 3</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-3-%E7%9A%84%E5%8E%9F%E5%A7%8B%E7%A3%81%E7%9B%98-SHA256%E5%80%BC%E4%B8%BA"><span class="nav-number">4.1.</span> <span class="nav-text">检材 3 的原始磁盘 SHA256值为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-3-%E6%89%80%E5%9C%A8%E7%9A%84%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E6%98%AF"><span class="nav-number">4.2.</span> <span class="nav-text">检材 3 所在的计算机的操作系统版本是</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-3-%E4%B8%AD%EF%BC%8C%E9%83%A8%E7%BD%B2%E7%9A%84%E7%BD%91%E7%AB%99%E5%90%8D%E7%A7%B0%E6%98%AF"><span class="nav-number">4.3.</span> <span class="nav-text">检材 3 中，部署的网站名称是</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-3-%E4%B8%AD%EF%BC%8C%E9%83%A8%E7%BD%B2%E7%9A%84%E7%BD%91%E7%AB%99%E5%AF%B9%E5%BA%94%E7%9A%84%E7%BD%91%E7%AB%99%E6%A0%B9%E7%9B%AE%E5%BD%95%E6%98%AF"><span class="nav-number">4.4.</span> <span class="nav-text">检材 3 中，部署的网站对应的网站根目录是</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-3-%E4%B8%AD%EF%BC%8C%E9%83%A8%E7%BD%B2%E7%9A%84%E7%BD%91%E7%AB%99%E7%BB%91%E5%AE%9A%E7%9A%84%E7%AB%AF%E5%8F%A3%E6%98%AF"><span class="nav-number">4.5.</span> <span class="nav-text">检材 3 中，部署的网站绑定的端口是</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-3-%E4%B8%AD%EF%BC%8C%E5%85%B7%E5%A4%87%E7%99%BB%E9%99%86%E5%8A%9F%E8%83%BD%E7%9A%84%E4%BB%A3%E7%A0%81%E9%A1%B5%EF%BC%8C%E5%AF%B9%E5%BA%94%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%BA"><span class="nav-number">4.6.</span> <span class="nav-text">检材 3 中，具备登陆功能的代码页，对应的文件名为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-3-%E4%B8%AD%EF%BC%8C%E8%AF%B7%E5%AF%B9%E7%BD%91%E7%AB%99%E4%BB%A3%E7%A0%81%E8%BF%9B%E8%A1%8C%E5%88%86%E6%9E%90%EF%BC%8C%E7%BD%91%E7%AB%99%E7%99%BB%E5%BD%95%E8%BF%87%E7%A8%8B%E4%B8%AD%EF%BC%8C%E4%BB%A3%E7%A0%81%E4%B8%AD%E5%AF%B9%E8%BE%93%E5%85%A5%E7%9A%84%E6%98%8E%E6%96%87%E5%AF%86%E7%A0%81%E4%BD%9C%E4%BA%86%E8%BF%BD%E5%8A%A0%EF%BC%88%EF%BC%89%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86"><span class="nav-number">4.7.</span> <span class="nav-text">检材 3 中，请对网站代码进行分析，网站登录过程中，代码中对输入的明文密码作了追加（）字符串处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-3-%E4%B8%AD%EF%BC%8C%E8%AF%B7%E5%AF%B9%E7%BD%91%E7%AB%99%E4%BB%A3%E7%A0%81%E8%BF%9B%E8%A1%8C%E5%88%86%E6%9E%90%EF%BC%8C%E7%BD%91%E7%AB%99%E7%99%BB%E5%BD%95%E8%BF%87%E7%A8%8B%E4%B8%AD%EF%BC%8C%E4%BB%A3%E7%A0%81%E4%B8%AD%E8%B0%83%E7%94%A8%E7%9A%84%E5%8A%A8%E6%80%81%E6%89%A9%E5%B1%95%E5%BA%93%E6%96%87%E4%BB%B6%E7%9A%84%E5%AE%8C%E6%95%B4%E5%90%8D%E7%A7%B0%E4%B8%BA"><span class="nav-number">4.8.</span> <span class="nav-text">检材 3 中，请对网站代码进行分析，网站登录过程中，代码中调用的动态扩展库文件的完整名称为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-3-%E4%B8%AD%EF%BC%8C%E7%BD%91%E7%AB%99%E7%99%BB%E5%BD%95%E8%BF%87%E7%A8%8B%E4%B8%AD%EF%BC%8C%E5%90%8E%E5%8F%B0%E6%8E%A5%E6%94%B6%E5%88%B0%E6%98%8E%E6%96%87%E5%AF%86%E7%A0%81%E5%90%8E%E8%BF%9B%E8%A1%8C%E5%8A%A0%E5%AF%86%E5%A4%84%E7%90%86%EF%BC%8C%E9%A6%96%E5%85%88%E4%BD%BF%E7%94%A8%E7%9A%84%E7%AE%97%E6%B3%95%E6%98%AF-Encryption-%E4%B8%AD%E7%9A%84%EF%BC%88%EF%BC%89%E5%87%BD%E6%95%B0"><span class="nav-number">4.9.</span> <span class="nav-text">检材 3 中，网站登录过程中，后台接收到明文密码后进行加密处理，首先使用的算法是 Encryption 中的（）函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-3-%E4%B8%AD%EF%BC%8C%E5%88%86%E6%9E%90%E8%AF%A5%E7%BD%91%E7%AB%99%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9C%B0%E5%9D%80%E4%B8%BA%EF%BC%88%EF%BC%89%E5%B9%B6%E4%BD%BF%E7%94%A8%E8%AF%A5%E5%9C%B0%E5%9D%80%E8%A7%A3%E5%8E%8B%E6%A3%80%E6%9D%90-4"><span class="nav-number">4.10.</span> <span class="nav-text">检材 3 中，分析该网站连接的数据库地址为（）并使用该地址解压检材 4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-3-%E4%B8%AD%EF%BC%8C%E7%BD%91%E7%AB%99%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%BF%E7%94%A8%E7%9A%84%E5%AF%86%E7%A0%81%E4%B8%BA"><span class="nav-number">4.11.</span> <span class="nav-text">检材 3 中，网站连接数据库使用的密码为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-3-%E4%B8%AD%EF%BC%8C%E7%BD%91%E7%AB%99%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E7%AB%AF%E5%8F%A3%E6%98%AF"><span class="nav-number">4.12.</span> <span class="nav-text">检材 3 中，网站连接数据库服务器的端口是</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part3-%E5%B0%8F%E7%BB%93"><span class="nav-number">4.13.</span> <span class="nav-text">Part3 小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-4"><span class="nav-number">5.</span> <span class="nav-text">检材 4</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-4-%E7%9A%84%E5%8E%9F%E5%A7%8B%E7%A3%81%E7%9B%98-SHA256%E5%80%BC%E4%B8%BA"><span class="nav-number">5.1.</span> <span class="nav-text">检材 4 的原始磁盘 SHA256值为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E6%9E%84%E8%AF%A5%E7%BD%91%E7%AB%99%EF%BC%8C%E5%88%86%E6%9E%90%E5%AB%8C%E7%96%91%E7%94%A8%E6%88%B7%E7%9A%84%E6%8E%A8%E5%B9%BF%E9%93%BE%E6%8E%A5%E4%B8%AD%E5%8F%82%E6%95%B0%E9%87%8C%E5%8C%85%E5%90%AB%E7%9A%84-ID-%E6%98%AF"><span class="nav-number">5.2.</span> <span class="nav-text">重构该网站，分析嫌疑用户的推广链接中参数里包含的 ID 是</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E6%9E%84%E8%AF%A5%E7%BD%91%E7%AB%99%EF%BC%8C%E8%AF%A5%E7%BD%91%E7%AB%99%E5%90%8E%E5%8F%B0%E7%9A%84%E4%BB%A3%E7%90%86%E7%94%A8%E6%88%B7%E6%95%B0%E9%87%8F%E4%B8%BA"><span class="nav-number">5.3.</span> <span class="nav-text">重构该网站，该网站后台的代理用户数量为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E6%9E%84%E8%AF%A5%E7%BD%91%E7%AB%99%EF%BC%8C%E8%AF%A5%E7%BD%91%E7%AB%99%E6%B3%A8%E5%86%8C%E7%94%A8%E6%88%B7%E4%B8%AD%E5%85%B1%E6%9C%89%E8%BF%87%EF%BC%88%EF%BC%89%E4%B8%AA%E4%BB%A3%E7%90%86%EF%BC%88%E5%8C%85%E5%90%AB%E5%88%A0%E9%99%A4%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%89"><span class="nav-number">5.4.</span> <span class="nav-text">重构该网站，该网站注册用户中共有过（）个代理（包含删除的数据）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E6%9E%84%E8%AF%A5%E7%BD%91%E7%AB%99%EF%BC%8C%E5%AF%B9%E8%A1%A5%E5%8F%91%E8%AE%B0%E5%BD%95%E8%BF%9B%E8%A1%8C%E7%BB%9F%E8%AE%A1%EF%BC%8C%E7%BB%9F%E8%AE%A1-2019-%E5%B9%B4-10-%E6%9C%88-1-%E6%97%A5%E5%90%8E%E8%A1%A5%E5%8F%91%E6%88%90%E5%8A%9F%E7%9A%84%E9%87%91%E9%A2%9D%E6%80%BB%E5%80%BC"><span class="nav-number">5.5.</span> <span class="nav-text">重构该网站，对补发记录进行统计，统计 2019 年 10 月 1 日后补发成功的金额总值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90-4-%E4%B8%AD%EF%BC%8C%E5%AF%B9%E2%80%9CTX-IpLog%E2%80%9D%E8%A1%A8%E8%BF%9B%E8%A1%8C%E5%88%86%E6%9E%90%EF%BC%8C%E6%89%80%E6%9C%89%E5%9C%A8%E2%80%9C%E6%AD%A6%E6%B1%89%E5%B8%82%E2%80%9D%E7%99%BB%E5%BD%95%E7%9A%84%E6%AC%A1%E6%95%B0%E4%B8%BA"><span class="nav-number">5.6.</span> <span class="nav-text">检材 4 中，对“TX_IpLog”表进行分析，所有在“武汉市”登录的次数为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E6%9E%84%E8%AF%A5%E7%BD%91%E7%AB%99%EF%BC%8C%E8%AF%A5%E5%AB%8C%E7%96%91%E4%BA%BA%E4%B8%8B%E5%B1%9E%E4%BB%A3%E7%90%86%E2%80%9Cliyun10%E2%80%9D%E8%B4%A6%E6%88%B7%E4%B8%8B%E7%9A%84%E4%BD%99%E9%A2%9D%E6%9C%89%EF%BC%88%EF%BC%89%E5%85%83"><span class="nav-number">5.7.</span> <span class="nav-text">重构该网站，该嫌疑人下属代理“liyun10”账户下的余额有（）元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E4%B8%8A%E4%B8%80%E9%A2%98%EF%BC%8C%E8%AF%A5%E7%94%A8%E6%88%B7%E7%9A%84%E6%8E%A8%E5%B9%BF-ID-%E6%98%AF"><span class="nav-number">5.8.</span> <span class="nav-text">接上一题，该用户的推广 ID 是</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E4%B8%8A%E4%B8%80%E9%A2%98%EF%BC%8C%E8%AF%A5%E4%BB%A3%E7%90%86%E5%95%86%E6%88%B7%E7%9A%84%E6%9C%80%E5%90%8E%E4%B8%80%E6%AC%A1%E7%99%BB%E9%99%86%E6%97%B6%E9%97%B4%E6%98%AF"><span class="nav-number">5.9.</span> <span class="nav-text">接上一题，该代理商户的最后一次登陆时间是</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part4-%E5%B0%8F%E7%BB%93"><span class="nav-number">5.10.</span> <span class="nav-text">Part4 小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="sheyu"
+      src="/uploads/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">sheyu</p>
+  <div class="site-description" itemprop="description">学习笔记 & 日常分享</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xd-sy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xd-sy" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:526472325@qq.com" title="E-Mail → mailto:526472325@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      我的大佬朋友们
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://eqqie.cn/" title="https:&#x2F;&#x2F;eqqie.cn&#x2F;" rel="noopener" target="_blank">赤道企鹅</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://cdcq.github.io/" title="https:&#x2F;&#x2F;cdcq.github.io&#x2F;" rel="noopener" target="_blank">cdcq</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.woooo.tech/" title="https:&#x2F;&#x2F;blog.woooo.tech&#x2F;" rel="noopener" target="_blank">rx</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.ga1axy.top/" title="http:&#x2F;&#x2F;www.ga1axy.top&#x2F;" rel="noopener" target="_blank">galaxy</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.f1ag.com/" title="http:&#x2F;&#x2F;www.f1ag.com&#x2F;" rel="noopener" target="_blank">flag</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sheyu</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">128k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:57</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  <script src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

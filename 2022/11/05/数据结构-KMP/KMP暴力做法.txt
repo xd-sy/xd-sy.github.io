@@ -1,0 +1,19 @@
+#include<iostream>
+using namespace std;
+const int M = 1000010, N = 100010;
+
+// s[M]是匹配串（长串），p[N]是模式串（短串）
+char s[M], p[N];
+
+for (int i = 1; i <= m; i ++ ) // KMP中一般习惯下标从1开始
+{
+    bool flag = true;
+    for (int j = 1; j <= n; j ++ )
+    {
+        if (s[i + j - 1] != p[j])
+        {
+            flag = false;
+            break;
+        }
+    }
+}

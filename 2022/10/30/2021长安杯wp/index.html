@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-pen.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-pen.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css">
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xd-sy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本篇博客简单记录了我对2021长安杯电子数据取证比赛的学习复盘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2021长安杯wp">
+<meta property="og:url" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/index.html">
+<meta property="og:site_name" content="Blog">
+<meta property="og:description" content="本篇博客简单记录了我对2021长安杯电子数据取证比赛的学习复盘">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/timu1.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/timu2.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/timu3.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/1.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/2.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/3.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/4.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/5.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/6.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/7.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/8.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/9.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/10.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/11.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/12.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/13.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/14.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/15.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/16.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/17.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/18.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/19.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/20.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/21.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/22.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/23.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/24.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/25.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/26.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/27.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/28.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/29.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/30.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/31.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/32.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/33.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/34.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/35.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/36.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/37.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/38.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/39.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/40.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/41.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/42.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/43.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/44.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/45.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/46.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/47.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/48.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/49.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/50.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/51.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/52.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/53.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/54.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/55.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/56.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/57.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/58.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/59.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/60.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/61.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/62.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/63.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/64.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/65.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/66.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/67.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/68.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/69.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/70.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/71.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/72.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/73.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/74.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/75.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/76.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/77.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/78.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/79.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/80.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/81.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/82.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/83.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/84.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/85.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/86.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/87.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/88.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/89.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/90.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/91.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/92.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/93.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/94.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/95.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/96.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/97.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/98.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/99.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/100.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/101.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/102.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/103.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/104.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/105.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/106.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/107.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/108.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/109.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/110.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/111.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/112.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/113.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/114.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/115.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/116.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/117.png">
+<meta property="article:published_time" content="2022-10-30T03:40:33.000Z">
+<meta property="article:modified_time" content="2022-10-31T13:29:37.183Z">
+<meta property="article:author" content="sheyu">
+<meta property="article:tag" content="电子数据取证">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/timu1.png">
+
+<link rel="canonical" href="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>2021长安杯wp | Blog</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?aa230141ff1b40a6faeceb23894d3e74";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband">
+	<a target="_blank" rel="noopener" href="https://github.com/xd-sy" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    </div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-photos">
+
+    <a href="/photos/" rel="section"><i class="fa fa-camera fa-fw"></i>photos</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+      <meta itemprop="name" content="sheyu">
+      <meta itemprop="description" content="学习笔记 & 日常分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2021长安杯wp
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-30 11:40:33" itemprop="dateCreated datePublished" datetime="2022-10-30T11:40:33+08:00">2022-10-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-31 21:29:37" itemprop="dateModified" datetime="2022-10-31T21:29:37+08:00">2022-10-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%94%B5%E5%AD%90%E6%95%B0%E6%8D%AE%E5%8F%96%E8%AF%81/" itemprop="url" rel="index"><span itemprop="name">电子数据取证</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>12k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>11 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本篇博客简单记录了我对2021长安杯电子数据取证比赛的学习复盘</p>
+<span id="more"></span>
+
+<h1 id="赛题背景"><a href="#赛题背景" class="headerlink" title="赛题背景"></a>赛题背景</h1><p>长安杯2021的赛题背景为时下热门的“裸聊诈骗”案例，主要涉及 apk 分析、服务器取证、PC取证、手机取证四大方向，其中 apk 分析与服务器取证为此次比赛的重点和难点</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/timu1.png" class="">
+
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/timu2.png" class="">
+
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/timu3.png" class="">
+
+<h1 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h1><ol>
+<li><p>检材发放采用 VC 加密容器，需要使用获取到的密码解密容器挂载后方可看到检材</p>
+</li>
+<li><p>下载来的检材其实不是真的 txt 文本，是 VC 加密容器的格式，这里加 txt 后缀只是为了方便上传到阿里云盘供大家下载</p>
+</li>
+</ol>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/1.png" class="">
+
+<ol start="3">
+<li><p>做题思路：APK分析 -&gt; 服务器集群 -&gt; 嫌疑人</p>
+</li>
+<li><p>注意题目中具体要求的答案格式</p>
+</li>
+<li><p>在安卓手机中，每个 APK 在手机里的安装目录都是以应用包名进行命名，都位于 app&#x2F;data 目录下</p>
+</li>
+</ol>
+<h1 id="检材一（容器密码：2021第三届CAB-changancup-com）"><a href="#检材一（容器密码：2021第三届CAB-changancup-com）" class="headerlink" title="检材一（容器密码：2021第三届CAB-changancup.com）"></a>检材一（容器密码：2021第三届CAB-changancup.com）</h1><p>2021年4月25日，上午8点左右，警方接到被害人金某报案，声称自己被敲诈数万元；经询问，昨日金某被嫌疑人诱导裸聊， 下载了某“裸聊”软件，导致自己的通讯录和裸聊视频被嫌疑人获取，对其进行敲诈，最终金某不堪重负，选择了报警；警方从金某提供的本人手机中，定向采集到了该“裸聊”软件的安装包–zhibo.apk（检材一）</p>
+<h2 id="请计算检材一Apk的SHA256值"><a href="#请计算检材一Apk的SHA256值" class="headerlink" title="请计算检材一Apk的SHA256值"></a>请计算检材一Apk的SHA256值</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certutil -hashfile filename sha256</span><br></pre></td></tr></table></figure>
+
+<h2 id="该APK的应用包名为"><a href="#该APK的应用包名为" class="headerlink" title="该APK的应用包名为"></a>该APK的应用包名为</h2><p>APK题使用<strong>雷电APP智能分析</strong>软件（包含文件哈希，应用包名，APPID，静态权限、源码等信息）</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/2.png" class="">
+
+<p>想要获取 APK 的应用包名，还可以使用 jadx 进行反编译（雷电APP智能分析软件自带此功能），查看 AndroidManifest.xml 文件，package的值就是包名；也可以使用 GDA 进行分析，BaseInfo中 Package Name 的值就是包名</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/3.png" class="">
+
+<h2 id="该APK程序在封装服务商的应用唯一标识（APPID）为"><a href="#该APK程序在封装服务商的应用唯一标识（APPID）为" class="headerlink" title="该APK程序在封装服务商的应用唯一标识（APPID）为"></a>该APK程序在封装服务商的应用唯一标识（APPID）为</h2><p>APK程序在封装服务商的应用唯一标识（APPID）即为给 APK 打包的专业厂商对应的调证值，是为了方便公安取证时溯源找到对应厂商，每个厂商对应唯一。雷电APP智能分析软件中的第三方服务模块中有直接给出；也可以在 assets 的 apps 目录下找到</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/4.png" class="">
+
+<h2 id="该APK具备下列哪些危险权限"><a href="#该APK具备下列哪些危险权限" class="headerlink" title="该APK具备下列哪些危险权限"></a>该APK具备下列哪些危险权限</h2><p>手机 APP 权限申请主要集中在 AndroidManifest.xml 文件最上方，雷电APP智能分析软件做了可视化</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/5.png" class="">
+
+<p>具体权限的对应关系可以查看 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/linn/p/4046180.html">https://www.cnblogs.com/linn/p/4046180.html</a></p>
+<h2 id="该APK发送回后台服务器的数据包含一下哪些内容"><a href="#该APK发送回后台服务器的数据包含一下哪些内容" class="headerlink" title="该APK发送回后台服务器的数据包含一下哪些内容"></a>该APK发送回后台服务器的数据包含一下哪些内容</h2><p>在雷电APP智能分析软件中打开手机模拟器（雷电模拟器），在网络数据包模块中进行代理抓包（因为 APK 是框架编写，抓 HTTP 和 TCP 可能是抓不到包的），前提是在 APP 首页中选中“填写邀请码”，并输入了手机号和邀请码点击确定</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/6.png" class="">
+
+<p>可以抓到</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/7.png" class="">
+
+<p>上图可以看到，APK向后台服务器发送回了手机号、验证码和通讯录信息。其实最开始抓到的请求包里只有手机号和验证码，没有通讯录，这是因为模拟器里面的通讯录是空的……加上用户就好了</p>
+<p>答案其实还有一个 GPS 定位信息，通过抓包方式不能成功抓取到，进行确认有两种方法：1. 通过静态代码分析，可以看到代码中有传送GPS 信息的部分；2. 后续第三部分网站重构后，可以从后台中查看到有 GPS 信息传送回去</p>
+<p>其中，静态代码分析需要查看 index.html 文件。怎么找到这个文件的，其实有一个技巧，就是在 jadx 中搜索 APK 首页上出现的一些信息，比如“内涵一点，让您笑口常开。”</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/8.png" class="">
+
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/9.png" class="">
+
+<p>（不过需要注意的是，在雷电APP智能分析软件中自带的 jadx 并没有搜索资源和注释的功能，想要用上述技巧可能还需要把 jadx 再安一遍）</p>
+<p>index.html文件的具体路径在下图目录下</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/10.png" class="">
+
+<p>本次比赛中涉及的 APK 为框架编写，真正的源码都在资源文件下。我们可以发现 index.html 文件为其主要逻辑代码（记录了 APK 首页的源码），在里面我们发现了一堆奇怪的东西（核心代码段经过加密）</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/11.png" class="">
+
+<p>这其实是使用了 sojson.v4 加密，找个在线网站解密就好了，<a target="_blank" rel="noopener" href="https://ctf.bugku.com/tool/sojson4">https://ctf.bugku.com/tool/sojson4</a></p>
+<p>解密后会发现代码中提到了以下内容，所以也就可以确定答案了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sjh：手机号</span><br><span class="line">yqm：邀请码（验证码）</span><br><span class="line">jingweidu、position：GPS定位</span><br><span class="line">address book、contact：通讯录</span><br></pre></td></tr></table></figure>
+
+<h2 id="该APK程序回传通讯录时-使用的http请求方式为"><a href="#该APK程序回传通讯录时-使用的http请求方式为" class="headerlink" title="该APK程序回传通讯录时,使用的http请求方式为"></a>该APK程序回传通讯录时,使用的http请求方式为</h2><p>需要通过抓包获得，使用雷电APP分析软件或者 Fliddler 都可以捕捉到，答案其实在上面抓包时就已经得到</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/12.png" class="">
+
+<h2 id="该APK程序的回传地址域名为"><a href="#该APK程序的回传地址域名为" class="headerlink" title="该APK程序的回传地址域名为"></a>该APK程序的回传地址域名为</h2><p>见第 6 题</p>
+<h2 id="该APK程序代码中配置的变量apiserver的值为"><a href="#该APK程序代码中配置的变量apiserver的值为" class="headerlink" title="该APK程序代码中配置的变量apiserver的值为"></a>该APK程序代码中配置的变量apiserver的值为</h2><p>既然题目提示了要看代码，那肯定是通过分析静态代码（index.html文件）的方式获得</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">第16行：var apiserver =&#x27;http://www.honglian7001.com/api/uploads/&#x27;;</span><br><span class="line">第62行起：mui.ajax(apiserver + &#x27;apisms&#x27;,</span><br><span class="line">即为 www.honglian7001.com/api/uploads/apisms</span><br></pre></td></tr></table></figure>
+
+<p>duanxin、SMS：短信</p>
+<h2 id="分析该APK，发现该程序还具备获取短信回传到后台的功能，短信上传服务器接口地址为"><a href="#分析该APK，发现该程序还具备获取短信回传到后台的功能，短信上传服务器接口地址为" class="headerlink" title="分析该APK，发现该程序还具备获取短信回传到后台的功能，短信上传服务器接口地址为"></a>分析该APK，发现该程序还具备获取短信回传到后台的功能，短信上传服务器接口地址为</h2><p>见第 8 题</p>
+<h2 id="经分析，发现该APK在运行过程中会在手机中产生一个数据库文件，该文件的文件名为"><a href="#经分析，发现该APK在运行过程中会在手机中产生一个数据库文件，该文件的文件名为" class="headerlink" title="经分析，发现该APK在运行过程中会在手机中产生一个数据库文件，该文件的文件名为"></a>经分析，发现该APK在运行过程中会在手机中产生一个数据库文件，该文件的文件名为</h2><p>此处涉及APK分析中的hook方法，技术难度较大。当然，在解题过程中我们可以使用雷电APP智能分析，其中内置了Frida和相应功能的hook脚本</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/13.png" class="">
+
+<h2 id="经分析，发现该APK在运行过程中会在手机中产生一个数据库文件，该数据库的初始密码为"><a href="#经分析，发现该APK在运行过程中会在手机中产生一个数据库文件，该数据库的初始密码为" class="headerlink" title="经分析，发现该APK在运行过程中会在手机中产生一个数据库文件，该数据库的初始密码为"></a>经分析，发现该APK在运行过程中会在手机中产生一个数据库文件，该数据库的初始密码为</h2><p>见第 10 题</p>
+<h1 id="检材二（容器密码：www-honglian7001-com-）"><a href="#检材二（容器密码：www-honglian7001-com-）" class="headerlink" title="检材二（容器密码：www.honglian7001.com ）"></a>检材二（容器密码：<a target="_blank" rel="noopener" href="http://www.honglian7001.com/">www.honglian7001.com</a> ）</h1><p>经过掌握的APK程序后台服务器回连地址，警方成功调取该服务器的镜像，请使用第7题的答案对检材二进行解压进行分析</p>
+<h2 id="检材二的原始硬盘的SHA256值为："><a href="#检材二的原始硬盘的SHA256值为：" class="headerlink" title="检材二的原始硬盘的SHA256值为："></a>检材二的原始硬盘的SHA256值为：</h2><p>使用火眼证据分析软件</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/14.png" class="">
+
+<p>注意：对于原始硬盘的 hash 值计算，我们不能拿裸的 e01 镜像直接计算，裸的 e01 镜像和 zip 类似，是对原始文件进行压缩处理打包后的结果，我们需要先将其使用取证软件进行挂载，然后再进行计算。其实我们也能发现，对 e01 镜像挂载前后的大小是不一样的，上图我们可以看到设备实际大小是20G，但如果我们直接查看 e01 文件的属性信息，会发现它只有3.44G，所以 hash 计算的结果自然也就不同</p>
+<h2 id="查询涉案于案发时间段内登陆服务器的IP地址为"><a href="#查询涉案于案发时间段内登陆服务器的IP地址为" class="headerlink" title="查询涉案于案发时间段内登陆服务器的IP地址为"></a>查询涉案于案发时间段内登陆服务器的IP地址为</h2><p>使用火眼仿真取证软件进行仿真（记得要重置所有用户的密码）</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/15.png" class="">
+
+<p>根据题目背景，我们可以确定案发时间在2021年4月24日。我们知道 last 命令可以用于显示用户最近的登录信息。单独执行 last 命令，它会读取 &#x2F;var&#x2F;log&#x2F;wtmp 文件，并把该文件记录的登入系统的用户名单全部显示出来。所以我们可以在终端中执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">last | grep &quot;Apr 24&quot;</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/16.png" class="">
+
+<h2 id="请对检材二进行分析，并回答该服务器在集群中承担的主要作用是"><a href="#请对检材二进行分析，并回答该服务器在集群中承担的主要作用是" class="headerlink" title="请对检材二进行分析，并回答该服务器在集群中承担的主要作用是"></a>请对检材二进行分析，并回答该服务器在集群中承担的主要作用是</h2><p>在做后续题时可以发现，这个服务器的作用其实就是把一些请求根据一定的条件转发到其他服务器上，用专业术语讲就是负载均衡（基于HTPP协议）</p>
+<p>负载均衡，英文名称为Load Balance，其含义就是指将负载（工作任务）进行平衡、分摊到多个操作单元上进行运行，例如FTP服务器、Web服务器、企业核心应用服务器和其它主要任务服务器等，从而协同完成工作任务</p>
+<h2 id="上一题中，提到的主要功能对应的服务监听的端口为"><a href="#上一题中，提到的主要功能对应的服务监听的端口为" class="headerlink" title="上一题中，提到的主要功能对应的服务监听的端口为"></a>上一题中，提到的主要功能对应的服务监听的端口为</h2><p>当我们在普通用户权限下执行 history 指令时，会发现显示的历史命令比较少；所以我们执行 <code>su root</code> 指令，并输入密码123456，即可转到 root 用户。再执行 history 指令，就可以发现很多的历史命令。此外，我们也可以通过火眼证据分析软件，得到历史命令</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/17.png" class="">
+
+<p>通过以上操作，我们可以确定服务器的工作目录就是<code>/opt/honglianjingsai</code></p>
+<p>我们在仿真虚拟机中直接访问这个目录，发现该目录下有个 README.txt 文件（README 还是一个挺重要的文件，需要引起重视，没准就有宝藏）</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/18.png" class="">
+
+<p>于是查看 const.js 配置文件，可以发现端口改成了80（80端口是服务器中提供服务最常用的端口，这题蒙也要蒙80）</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/19.png" class="">
+
+<h2 id="上一题中，提到的服务所使用的启动命令为"><a href="#上一题中，提到的服务所使用的启动命令为" class="headerlink" title="上一题中，提到的服务所使用的启动命令为"></a>上一题中，提到的服务所使用的启动命令为</h2><p>通过观察历史命令可以发现，<code>node app.js</code> 命令总出现在 <code>cd honglianjingsai/</code> 和 <code>cd chronusNode/</code> 命令之后（下图1），还可以发现系统重启后只可能是 <code>node app.js</code> 来启动服务，因为其他的命令是清屏、查看 ip 配置、进入服务器目录和关闭服务（下图2）。我们打开 app.js 进行进一步验证，也可以发现里面涉及到了开启服务、关闭服务、运行服务的代码。其实 chronusNode 这个词就已经暗示的挺明白了，要用到 node 命令</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/20.png" class="">
+
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/21.png" class="">
+
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/22.png" class="">
+
+<h2 id="经分析，该服务对于请求来源IP的处理依据是：根据请求源IP地址的第（）位进行判断"><a href="#经分析，该服务对于请求来源IP的处理依据是：根据请求源IP地址的第（）位进行判断" class="headerlink" title="经分析，该服务对于请求来源IP的处理依据是：根据请求源IP地址的第（）位进行判断"></a>经分析，该服务对于请求来源IP的处理依据是：根据请求源IP地址的第（）位进行判断</h2><p>根据之前 README.txt 的提示，该服务对于请求来源 IP 的处理应该在</p>
+<p>&#x2F;opt&#x2F;honglianjingsai&#x2F;chronusNode&#x2F;controller&#x2F;ADProxy.js 文件中</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/23.png" class="">
+
+<p>我们可以看出，代码对 ip 进行了切片，取第三段化为整型。其实我们从变量名 clientIP3Int 也能看出。个人感觉题目这个“第几位”的问法很奇怪，题目实际求的应该是“第几段”</p>
+<h2 id="经分析，当判断条件小于50时，服务器会将该请求转发到IP为（）的服务器上"><a href="#经分析，当判断条件小于50时，服务器会将该请求转发到IP为（）的服务器上" class="headerlink" title="经分析，当判断条件小于50时，服务器会将该请求转发到IP为（）的服务器上"></a>经分析，当判断条件小于50时，服务器会将该请求转发到IP为（）的服务器上</h2><p>还是 ADProxy.js 文件，我们发现当判断条件小于 50 时服务器会将请求转发到名为 _proxy50 的服务器上，于是</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/24.png" class="">
+
+<p>其实从这题中就可以印证前面关于服务器负载均衡作用的答案</p>
+<h2 id="请分析，该服务器转发的目标服务器一共有几台"><a href="#请分析，该服务器转发的目标服务器一共有几台" class="headerlink" title="请分析，该服务器转发的目标服务器一共有几台"></a>请分析，该服务器转发的目标服务器一共有几台</h2><p>从上题图中就可以看到，一共 3 台</p>
+<h2 id="请分析，受害者通讯录被获取时，其设备的IP地址为"><a href="#请分析，受害者通讯录被获取时，其设备的IP地址为" class="headerlink" title="请分析，受害者通讯录被获取时，其设备的IP地址为"></a>请分析，受害者通讯录被获取时，其设备的IP地址为</h2><p>20题和21题其实均考察了对于日志的审计，所以放到一起解决。我们可以发现在 <code>/opt/honglianjingsai/chronusNode/logs</code> 路径下保存了服务器的日志，并且根据题目背景，我们可以确定案发时间是4月24日（具体的案发时间可以查看手机，在手机取证时一些社交软件的聊天记录中会有很准确的时间信息），而4月24的日志只有一个，那就很好办了。我们可以看到，在这个日志文件中出现次数最多的几个 IP 地址分别是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">192.168.110.203</span><br><span class="line">192.168.110.252</span><br><span class="line">192.168.110.113</span><br></pre></td></tr></table></figure>
+
+<p>而根据前面的题目我们知道，192.168.110.203是登陆服务器的 IP 地址，192.168.110.113是服务器请求转发的目标地址（21题答案），那么通过排除法，192.168.110.252显然就是本题的答案了</p>
+<p>这题如不采用排除法，将是非常麻烦的。需要参考手机的聊天记录（伊对APP），再和日志中的时间相对照来得到答案（此处还需要注意，日志中的时间是 UTC 时间，所以还需要 +8 小时才是北京时间）</p>
+<p>其实这道题目做完，我们是可以发现一个在应试 or 比赛中的小 Bug 的。那就是题目中出现的所有 ip 地址很可能都是属于同一网段的，比如本次比赛中所有的 ip 地址的答案都属于192.168.110.0网段。我们可以进一步查看 CentOS 7 的网卡配置文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-ens33</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/25.png" class="">
+
+<p>可以看到，这个负载均衡服务器配置的是 static 静态IP，它的静态 IP 就是192.168.110.110</p>
+<h2 id="请分析，受害者的通讯录被窃取之后，经由该服务器转发到了IP为（）的服务器上"><a href="#请分析，受害者的通讯录被窃取之后，经由该服务器转发到了IP为（）的服务器上" class="headerlink" title="请分析，受害者的通讯录被窃取之后，经由该服务器转发到了IP为（）的服务器上"></a>请分析，受害者的通讯录被窃取之后，经由该服务器转发到了IP为（）的服务器上</h2><p>见第 21 题</p>
+<h1 id="检材三（容器密码：192-168-110-113-CAB2021）"><a href="#检材三（容器密码：192-168-110-113-CAB2021）" class="headerlink" title="检材三（容器密码：192.168.110.113-CAB2021）"></a>检材三（容器密码：192.168.110.113-CAB2021）</h1><p>通过对检材二的分析，警方进一步掌握并落地到了目标服务器地址，通过对服务器进行证据固定，得到服务器镜像–检材三，请使用第 21题答案对检材三进行解密并分析</p>
+<h2 id="检材三的原始硬盘的SHA256值为"><a href="#检材三的原始硬盘的SHA256值为" class="headerlink" title="检材三的原始硬盘的SHA256值为"></a>检材三的原始硬盘的SHA256值为</h2><p>挂载检材三后我们可以得到三个 web 服务器的镜像，但是此时需要注意题目的要求，题目要求我们分析目标服务器，也就是说我们需要先判断出这三个服务器中到底哪一个对应着192.168.110.113，才能进一步解题</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/26.png" class="">
+
+<p>我们利用火眼证据分析软件依次检查三个镜像，已知 <code>/etc/sysconfig/network-scripts/ifcfg-ens33</code> 路径是 CentOS 7 的网卡配置文件，我们可以在软件分析板块中的网络信息-网络接口模块中发现</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/27.png" class="">
+
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/28.png" class="">
+
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/29.png" class="">
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">web1.E01镜像对应的静态IP为192.168.110.111</span><br><span class="line">web2.E01镜像对应的静态IP为192.168.110.112</span><br><span class="line">web3.E01镜像对应的静态IP为192.168.110.113，所以web3服务器才是我们要找的目标服务器</span><br></pre></td></tr></table></figure>
+
+<p>其实我们也可以用火眼仿真取证软件直接打开三个镜像，然后查找相应的网卡配置文件，其中 IPADDR 就是我们要找的 IP 地址，也可以发现 web3 对应着目标服务器。然后我们要求检材三的原始硬盘的 SHA256 值就很简单啦</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/30.png" class="">
+
+<p>吐槽一下，每次计算哈希时间都真的久……</p>
+<h2 id="请分析第21题中，所指的服务器的开机密码为"><a href="#请分析第21题中，所指的服务器的开机密码为" class="headerlink" title="请分析第21题中，所指的服务器的开机密码为"></a>请分析第21题中，所指的服务器的开机密码为</h2><p>在我们对 web3.E01 镜像进行仿真时，火眼仿真取证软件会直接重置开机密码，不会显示原来的密码（Windows会显示原来的）。所以这题并不能直接通过检材三得到答案，需要依靠检材四的 PC 镜像，在对 PC 镜像进行仿真后可以看到桌面上有 xshell，我们可以直接通过一些工具查看 xshell 保存的密码，也可以用取证软件解析出来（Xshell中保存有会话记录，从中可以看到密码）</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/31.png" class="">
+
+<h2 id="嫌疑人架设网站使用了宝塔面板，请问面板的登陆用户名为"><a href="#嫌疑人架设网站使用了宝塔面板，请问面板的登陆用户名为" class="headerlink" title="嫌疑人架设网站使用了宝塔面板，请问面板的登陆用户名为"></a>嫌疑人架设网站使用了宝塔面板，请问面板的登陆用户名为</h2><p>这题的话其实火眼证据分析软件中是可以直接看到的</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/32.png" class="">
+
+<p>也可以用以下方法。用火眼仿真取证软件对 web3.E01 镜像进行仿真时，会出现下图界面，和检材二仿真后的图像界面不一样了（还挺神奇的），我们尝试使用 root&#x2F;123456 进行登录，发现可以成功</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/33.png" class="">
+
+<p>然后使用 <code>bt default</code> 命令即可查看宝塔面板的登陆用户名和密码了</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/34.png" class="">
+
+<p>由上图可知，宝塔后台的登录入口为 <a target="_blank" rel="noopener" href="http://192.168.110.113:8888/12345678">http://192.168.110.113:8888/12345678</a> ，账号为 hl123 ，密码为 65606fc8</p>
+<p>PS：宝塔面板在近几年的电诈案件中真的很常见</p>
+<h2 id="请分析用于重置宝塔面板密码的函数名为"><a href="#请分析用于重置宝塔面板密码的函数名为" class="headerlink" title="请分析用于重置宝塔面板密码的函数名为"></a>请分析用于重置宝塔面板密码的函数名为</h2><p>根据经验我们知道，宝塔的面板文件目录在 <code>/www/server/panel</code> 路径下，这也是宝塔目录结构中最为重要的目录，重置宝塔面板密码的代码文件一定就在这个目录下。经过一番查找可以发现，宝塔面板重置网站密码功能调用的是 tools.py 文件，这其实也可由老版本宝塔重置密码命令得知：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /www/server/panel &amp;&amp; python tools.py panel testpasswd</span><br></pre></td></tr></table></figure>
+
+<p>因为当前虚拟机显示的是服务器的终端页面，而在终端查阅代码体验会很差，所以我们需要想办法登录到宝塔的 Web 端系统中。要想在Web 端上链接宝塔，需要将本地虚拟机的虚拟网络编辑器调整至 110 网段，并关闭 DHCP 服务。这种做法对于分析集群性服务器来说非常有用，因为这样可以保留服务器在原始真实环境中的 IP 地址，而并不是虚拟机 DHCP 服务分配的地址，可以降低网站重构的复杂程度</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/35.png" class="">
+
+<p>可以访问宝塔后台的登录入口</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/36.png" class="">
+
+<p>输入之前得到的用户名和密码进行登录</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/37.png" class="">
+
+<p>找到 <code>/www/server/panel</code> 路径下的 tools.py 文件，选中编辑，打开在线文本编辑器，这样读代码可就舒服多了</p>
+<p>注：如果想要将宝塔面板里的文件导出至本机，可以选中文件后点击右侧的下载按钮；文件夹右侧是没有下载按钮的，这时可以选择先把文件夹压缩，然后下载压缩包即可</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/38.png" class="">
+
+<p>在这里，我们可以看到我们在终端执行 bt 命令时得到的反馈信息，其中就涉及修改面板密码这个选项（5）</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/39.png" class="">
+
+<p>当输入的参数等于5时，可以看到最终会执行 set_panel_pwd 这个函数，所以这就是我们要找的用于重置宝塔面板密码的函数名啦</p>
+<h2 id="请分析宝塔面板登陆密码的加密方式所使用的哈希算法为"><a href="#请分析宝塔面板登陆密码的加密方式所使用的哈希算法为" class="headerlink" title="请分析宝塔面板登陆密码的加密方式所使用的哈希算法为"></a>请分析宝塔面板登陆密码的加密方式所使用的哈希算法为</h2><p>想要知道登陆密码的加密方式所使用的哈希算法，那就只能去找 set_panel_pwd 这个函数的具体定义了</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/40.png" class="">
+
+<p>所幸挺好找的，我们可以发现函数内部调用了 public 类的 md5 方法对我们输入的新密码进行了处理</p>
+<h2 id="请分析宝塔面板对于其默认用户的密码一共执行了几次上题中的哈希算法"><a href="#请分析宝塔面板对于其默认用户的密码一共执行了几次上题中的哈希算法" class="headerlink" title="请分析宝塔面板对于其默认用户的密码一共执行了几次上题中的哈希算法"></a>请分析宝塔面板对于其默认用户的密码一共执行了几次上题中的哈希算法</h2><p>由26题图我们可以看到，当我们重置密码时，传入的新密码先经过了 public.md5 函数的处理，然后又和 uid 这个参数一起传进了 public.password_salt 这个函数。所以只要查清楚这两个函数，问题也就迎刃而解了。我们还可以知道，在 tools.py 文件最开头的 import 部分，说明了 public 的引用在目录 <code>/www/server/panel/class/</code> 下，所以我们去该目录下查找即可</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/41.png" class="">
+
+<p>我们可以在该目录下的 public.py 文件里分别找到 password_salt 和 md5 两个方法</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/42.png" class="">
+
+<p>可以看到 md5 方法一共执行了一次哈希</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/43.png" class="">
+
+<p>可以看到在 password_salt 方法最后返回值时，对 password 添加后缀执行了一次哈希，然后加盐又进行了一次哈希，所以一共执行了两次哈希</p>
+<p>综上，md5 方法和 password_salt 方法一共进行了 3 次哈希</p>
+<h2 id="请分析当前宝塔面板密码加密过程中所使用的salt值为"><a href="#请分析当前宝塔面板密码加密过程中所使用的salt值为" class="headerlink" title="请分析当前宝塔面板密码加密过程中所使用的salt值为"></a>请分析当前宝塔面板密码加密过程中所使用的salt值为</h2><p>火眼证据分析软件可以直接得到</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/44.png" class="">
+
+<p>也可以溯源</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/45.png" class="">
+
+<p>还是分析先前代码可以发现，salt 是从数据库中读取的（users表中），而这个数据库是通过 M 方法调用，所以我们继续搜索 def M</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/46.png" class="">
+
+<p>可以发现默认数据库为 <code>/wwww/server/panel/data/default.db</code> ，因为该文件不支持在线查看，所以我们下载后使用数据库查看工具打开（navicat 等），答案就在用户表内</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/47.png" class="">
+
+<h2 id="请分析该服务器，网站源代码所在的绝对路径为"><a href="#请分析该服务器，网站源代码所在的绝对路径为" class="headerlink" title="请分析该服务器，网站源代码所在的绝对路径为"></a>请分析该服务器，网站源代码所在的绝对路径为</h2><p>在宝塔后台，我们可以找到网站源码所在的绝对路径</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/48.png" class="">
+
+<h2 id="请分析，网站所使用的数据库位于IP为（）的服务器上"><a href="#请分析，网站所使用的数据库位于IP为（）的服务器上" class="headerlink" title="请分析，网站所使用的数据库位于IP为（）的服务器上"></a>请分析，网站所使用的数据库位于IP为（）的服务器上</h2><p>我们继续在网站根目录下查找相关的代码文件，最终在</p>
+<p><code>/www/wwwroot/www.honglian7001/app/database.php</code> 文件中找到了网站的数据库配置</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/49.png" class="">
+
+<p>自然也就不难发现数据库所在服务器的 IP 地址和数据库的登录密码啦</p>
+<h2 id="请分析，数据库的登陆密码为"><a href="#请分析，数据库的登陆密码为" class="headerlink" title="请分析，数据库的登陆密码为"></a>请分析，数据库的登陆密码为</h2><p>见第 30 题</p>
+<h2 id="请尝试重构该网站，并指出，该网站的后台管理界面的入口为"><a href="#请尝试重构该网站，并指出，该网站的后台管理界面的入口为" class="headerlink" title="请尝试重构该网站，并指出，该网站的后台管理界面的入口为"></a>请尝试重构该网站，并指出，该网站的后台管理界面的入口为</h2><p>从网站的目录结构可以发现 <code>/www/wwwroot/www.honglian7001/app/admin……</code> ，所以我们最先猜测网站后台管理界面的入口就是 <code>/admin</code>，当然我们还可以从后面嫌疑人 PC 端的检材的取证结果中的浏览器历史记录来验证网站后台管理界面的入口就在 <code>/admin</code> 下</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/50.png" class="">
+
+<p>如果不对网站进行重构，我们在实际访问网站后台管理界面 <code>192.168.110.113/admin</code> 时就会报错</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/51.png" class="">
+
+<p>很明显这个报错信息是指数据库连接不上，就是说现在缺数据库。看宝塔面板也可以发现，里面的数据库配置为空</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/52.png" class="">
+
+<p>所以为了能顺利进入网站后台，我们将在下面简单介绍如何重构这个网站。这里首先需要使用网站数据库所在的服务器 IP 解压检材五，容器密码为：<code>192.168.110.115-CAB2021</code> ，然后发现检材五为一个raid重组后的阵列的三个镜像，需要对其进行raid重组</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/53.png" class="">
+
+<p>我们使用 R-Studio 这个工具</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/54.png" class="">
+
+<p>点击“打开镜像”</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/55.png" class="">
+
+<p>需要改为全部文件，否则识别不到 dd 文件</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/56.png" class="">
+
+<p>导入成功后，点击“创建虚拟RAID”</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/57.png" class="">
+
+<p>选择“创建虚拟块RAID和自动检测”，并将三个镜像文件“添加到RAID”</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/58.png" class="">
+
+<p>添加后点击“自动检测”</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/59.png" class="">
+
+<p>检测结束后会告诉我们可能的重组方式</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/60.png" class="">
+
+<p>我们可以看到，可能性最高的重组方式就是 123 RAID5左同步，数据块大小为 64k 。于是我们点击“应用”，如果成功，一般会恢复出一些分区</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/61.png" class="">
+
+<p>接着我们需要导出恢复出的镜像，选中“虚拟块RAID 1”，点击“创建镜像”，选择“逐字节镜像”</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/62.png" class="">
+
+<p>然后我们就得到了一个可以用来仿真的服务器镜像，我们使用火眼仿真取证软件进行仿真</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/63.png" class="">
+
+<p>常规操作，先登录，然后 <code>ifconfig</code> 一下确认 IP 是否为192.168.110.115，然后再次访问 <code>192.168.110.113/admin</code> 就可以成功啦（当然这时也得保证 Web3 的镜像也在仿真ing）</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/64.png" class="">
+
+<p>这时可以发现，地址自动变更为了 <a target="_blank" rel="noopener" href="http://192.168.110.113/admin/common/login.shtml">http://192.168.110.113/admin/common/login.shtml</a></p>
+<h2 id="已该涉案网站代码中对登录用户的密码做了加密处理。请找出加密算法中的salt值"><a href="#已该涉案网站代码中对登录用户的密码做了加密处理。请找出加密算法中的salt值" class="headerlink" title="已该涉案网站代码中对登录用户的密码做了加密处理。请找出加密算法中的salt值"></a>已该涉案网站代码中对登录用户的密码做了加密处理。请找出加密算法中的salt值</h2><p>同理，涉及管理员用户密码的代码肯定在 <code>/admin</code> 目录下，最终查找发现 common.php 文件中有写到管理员密码的加密方式</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/65.png" class="">
+
+<p>我们可以看到在加密过程中，在原密码 md5 后又拼接了 password_code 的 md5 ，此外在注释中也写到了 password_code 是密码额外加密字符，这不就说明参与拼接的字符串 password_code 就是我们要找的 salt 值吗</p>
+<h2 id="请分析该网站的管理员用户的密码为"><a href="#请分析该网站的管理员用户的密码为" class="headerlink" title="请分析该网站的管理员用户的密码为"></a>请分析该网站的管理员用户的密码为</h2><p>这需要我们去查找网站运行时的日志文件，我们首先查看 <code>/www/wwwlogs/www.honglian7001.log</code> 文件，很可惜里面没有有关 password 的信息，然后就在网站的目录里继续寻找，最终可以发现在 <code>/www/wwwroot/www.honglian7001/runtime/log</code> 路径下有很可疑的 202104 文件夹，进入文件夹发现了 24.log 这个简直要将答案“呼之欲出”的日志文件，赶紧打开全局搜索一下 password</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/66.png" class="">
+
+<p>但是此时搜到了两个不同结果，分别是 123456 和 security ，对应用户名还都是 admin 。这时的解决方法就是拿这两对用户名密码去尝试登录之前已经重构好的网页后台，能够顺利登录的就是正确的用户名密码。最终发现，admin&#x2F;security 可以顺利登录</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/67.png" class="">
+
+<h2 id="在对后台账号的密码加密处理过程中，后台一共计算几次哈希值"><a href="#在对后台账号的密码加密处理过程中，后台一共计算几次哈希值" class="headerlink" title="在对后台账号的密码加密处理过程中，后台一共计算几次哈希值"></a>在对后台账号的密码加密处理过程中，后台一共计算几次哈希值</h2><p>继续查看之前找到的 common.php 文件就一目了然啦（三次）</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/68.png" class="">
+
+<h2 id="请统计，后台中，一共有多少条设备记录"><a href="#请统计，后台中，一共有多少条设备记录" class="headerlink" title="请统计，后台中，一共有多少条设备记录"></a>请统计，后台中，一共有多少条设备记录</h2><p>进入后台很轻松就查到了</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/69.png" class="">
+
+<h2 id="请通过后台确认，本案中受害者的手机号码为"><a href="#请通过后台确认，本案中受害者的手机号码为" class="headerlink" title="请通过后台确认，本案中受害者的手机号码为"></a>请通过后台确认，本案中受害者的手机号码为</h2><p>37和38两题其实需要结合检材四的取证分析才能知道（拿到伊对APP中的聊天记录，就可以大致确定受害者第一次打开APP的时间），然后再去后台查找时间上最接近的登录记录即可</p>
+<p>注：如果我们没有找到网站后台的管理员用户名密码，该怎么进入网站后台呢？</p>
+<p>我们已知检材五是为网站提供数据库的服务器，即意味着在检材五上一定有和数据库相关的服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl | grep sql</span><br><span class="line">service mysqld status</span><br></pre></td></tr></table></figure>
+
+<p>进行查看</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/70.png" class="">
+
+<p>我们通过之前的题目已知登录数据库的服务器地址以及用户名和密码还有端口</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/71.png" class="">
+
+<p>我们就可以通过命令 <code>mysql -uwww_honglian7001 -pwxrM5GtNXk5k5EPX</code> 来连接数据库，但在第一次连接时会报错（直接原因是由于数据库中有空用户存在，导致使用工具无法连接数据库，跳过后删除空用户，还原配置则可以成功登陆数据库）</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/72.png" class="">
+
+<p>解决方法也很简单，修改 mysql 的配置文件即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/my.cnf</span><br></pre></td></tr></table></figure>
+
+<p>在 [mysqld] 后加一句 <code>skip-grant-tables</code> 跳过登录的权限检查，保存后重启 mysql 服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysqld restart </span><br></pre></td></tr></table></figure>
+
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/73.png" class="">
+
+<p>接着，我们通过 Navicat 连接数据库</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/74.png" class="">
+
+<p>然后就能很快找到网站后台管理员登录密码的 hash 值</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/75.png" class="">
+
+<p>因为我们已知网站对于登录用户的密码处理方式</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/76.png" class="">
+
+<p>所以我们可以自己构造密码进行处理，然后替换掉数据库中对应 admin 用户的密码，下面我们以 123456 为例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$password = &#x27;123456&#x27;</span><br><span class="line">md5($password) = e10adc3949ba59abbe56e057f20f883e</span><br><span class="line">md5($password_code) = 7f5918fe56f4a01d8b206f6a8aee40f2</span><br><span class="line">md5(md5($password) . md5($password_code)) = 9eb2b9ad495a75f80f9cf67ed08bbaae</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/77.png" class="">
+
+<p>修改后就可以直接使用 admin&#x2F;132456 登录网站后台啦</p>
+<h2 id="请分析，本案中受害者的通讯录一共有多少条记录"><a href="#请分析，本案中受害者的通讯录一共有多少条记录" class="headerlink" title="请分析，本案中受害者的通讯录一共有多少条记录"></a>请分析，本案中受害者的通讯录一共有多少条记录</h2><p>见第 37 题</p>
+<h1 id="检材四（容器密码：192-168-110-203-CAB2021）"><a href="#检材四（容器密码：192-168-110-203-CAB2021）" class="headerlink" title="检材四（容器密码：192.168.110.203-CAB2021）"></a>检材四（容器密码：192.168.110.203-CAB2021）</h1><p>通过对检材二和三进行分析，警方通过 IP 落地，警方掌成功抓获犯罪嫌疑人，现将嫌疑人的 PC 机和手机进行了取证，分别制作了镜像，请使用第 13 题的答案对检材四进行解密</p>
+<h2 id="请计算检材四-PC的原始硬盘的SHA256值"><a href="#请计算检材四-PC的原始硬盘的SHA256值" class="headerlink" title="请计算检材四-PC的原始硬盘的SHA256值"></a>请计算检材四-PC的原始硬盘的SHA256值</h2><p>当使用火眼证据分析软件分析PC.E01镜像时，会提示</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/78.png" class="">
+
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/79.png" class="">
+
+<p>这说明 pc 机本身是系统级 BitLocker 加密，因此直接用火眼加载的时候没有密钥是分析不出内容的。所以，在未解密分区 3 之前，无法正确计算检材四-PC的原始硬盘的 SHA256 值。但是不难发现，该 PC 还有几个分区是未被加密的，那么 BitLocker 恢复密钥很可能就在这几个分区中，其实在文件系统中搜索 Bitlocker 就能找到</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/80.png" class="">
+
+<p>选中文件，右键，选中“使用本地默认程序打开”</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/81.png" class="">
+
+<p>里面就有我们需要的BitLocker恢复密钥，然后就可以成功解密分区3啦。之后自然就可以正确计算检材四-PC的原始硬盘的 SHA256 值了</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/82.png" class="">
+
+<h2 id="请分析，检材四-PC的Bitlocker加密分区的解密密钥为"><a href="#请分析，检材四-PC的Bitlocker加密分区的解密密钥为" class="headerlink" title="请分析，检材四-PC的Bitlocker加密分区的解密密钥为"></a>请分析，检材四-PC的Bitlocker加密分区的解密密钥为</h2><p>由 39 题可知，检材四-PC的 Bitlocker 加密分区的解密密钥为 <code>511126-518936-161612-135234-698357-082929-144705-622578</code></p>
+<h2 id="请分析，检材四-PC的开机密码为"><a href="#请分析，检材四-PC的开机密码为" class="headerlink" title="请分析，检材四-PC的开机密码为"></a>请分析，检材四-PC的开机密码为</h2><p>在完成分区 3 的解密后，火眼证据分析软件就自动给出了检材四-PC的开机账号和密码</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/83.png" class="">
+
+<p>或者使用火眼仿真取证软件进行仿真（填入恢复密钥），也能自动获取 PC 的开机密码</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/84.png" class="">
+
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/85.png" class="">
+
+<h2 id="经分析发现，检材四-PC是嫌疑人用于管理服务器的设备，其主要通过哪个浏览器控制网站后台"><a href="#经分析发现，检材四-PC是嫌疑人用于管理服务器的设备，其主要通过哪个浏览器控制网站后台" class="headerlink" title="经分析发现，检材四-PC是嫌疑人用于管理服务器的设备，其主要通过哪个浏览器控制网站后台"></a>经分析发现，检材四-PC是嫌疑人用于管理服务器的设备，其主要通过哪个浏览器控制网站后台</h2><p>查看火眼证据分析软件的分析板块可以发现，嫌疑人的 PC 上一共有三个浏览器，那么直接查看浏览器的历史记录即可判断</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/86.png" class="">
+
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/87.png" class="">
+
+<p>最终可以确定是Chrome浏览器</p>
+<h2 id="请计算PC检材中用户目录下的zip文件的sha256值"><a href="#请计算PC检材中用户目录下的zip文件的sha256值" class="headerlink" title="请计算PC检材中用户目录下的zip文件的sha256值"></a>请计算PC检材中用户目录下的zip文件的sha256值</h2><p>直接找就是了</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/88.png" class="">
+
+<p>然后计算哈希</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/89.png" class="">
+
+<h2 id="请分析检材四-phone，该手机的IMEI号为"><a href="#请分析检材四-phone，该手机的IMEI号为" class="headerlink" title="请分析检材四-phone，该手机的IMEI号为"></a>请分析检材四-phone，该手机的IMEI号为</h2><p>IMEI是国际移动设备识别码，即通常所说的手机序列号、手机“串号”，用于在移动电话网络中识别每一部独立的手机等移动通信设备，相当于移动电话的身份证。手机 IMEI 码由15-17位数字组成。我们使用火眼证据分析软件打开 phone.image ，很快就能找到</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/90.png" class="">
+
+<p>双卡手机，有两个 IMEI 号</p>
+<h2 id="请分析检材四-phone，嫌疑人和本案受害者是通过什么软件开始接触的"><a href="#请分析检材四-phone，嫌疑人和本案受害者是通过什么软件开始接触的" class="headerlink" title="请分析检材四-phone，嫌疑人和本案受害者是通过什么软件开始接触的"></a>请分析检材四-phone，嫌疑人和本案受害者是通过什么软件开始接触的</h2><p>先看看受害者手机上有啥APP</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/91.png" class="">
+
+<p>结合裸聊受骗的题目背景，伊对和 Uki 这两个社交软件是最有可能的，分别对这两软件进行深入查找，可以发现伊对里的聊天记录时间和案发时间 4.24 是最重合的</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/92.png" class="">
+
+<p>看到“马铃薯视频”这几个字相信可以直接确定答案了（伊对）。同时，通过继续查看聊天记录，我们能大概确定受害人是在 2021-04-24 14:39:26 时间左右（北京时间）第一次打开了裸聊app</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/93.png" class="">
+
+<p>所以我们就可以回到之前在网站后台查找受害者手机号码和通讯录记录的问题，找到最后登陆时间和上述消息时间最接近的记录，就可以确定受害人的一些具体信息啦</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/94.png" class="">
+
+<h2 id="请分析检材四-phone，受害者下载恶意APK安装包的地址为"><a href="#请分析检材四-phone，受害者下载恶意APK安装包的地址为" class="headerlink" title="请分析检材四-phone，受害者下载恶意APK安装包的地址为"></a>请分析检材四-phone，受害者下载恶意APK安装包的地址为</h2><p>聊天记录中也有</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/95.png" class="">
+
+<h2 id="请分析检材四-phone，受害者的微信内部ID号为"><a href="#请分析检材四-phone，受害者的微信内部ID号为" class="headerlink" title="请分析检材四-phone，受害者的微信内部ID号为"></a>请分析检材四-phone，受害者的微信内部ID号为</h2><p>注意，这里问的是受害者不是嫌疑人，由之前伊对的聊天记录可以知道，受害者叫金先生，那么继续找微信的聊天记录就好啦</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/96.png" class="">
+
+<h2 id="请分析检材四-phone，嫌疑人用于敲诈本案受害者的QQ账号为"><a href="#请分析检材四-phone，嫌疑人用于敲诈本案受害者的QQ账号为" class="headerlink" title="请分析检材四-phone，嫌疑人用于敲诈本案受害者的QQ账号为"></a>请分析检材四-phone，嫌疑人用于敲诈本案受害者的QQ账号为</h2><p>注意，这里问的是嫌疑人不是受害者，那么继续找 QQ 的聊天记录就好啦</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/97.png" class="">
+
+<h2 id="请综合分析，嫌疑人用于管理敲诈对象的容器文件的SHA256值为"><a href="#请综合分析，嫌疑人用于管理敲诈对象的容器文件的SHA256值为" class="headerlink" title="请综合分析，嫌疑人用于管理敲诈对象的容器文件的SHA256值为"></a>请综合分析，嫌疑人用于管理敲诈对象的容器文件的SHA256值为</h2><p>由之前的取证可以知道（前面计算 zip 文件的哈希时其实已经在为后面做铺垫了），“我的赚钱工具.zip”这个压缩包，大小竟然有 8.7G 左右，这很明显不正常，我们将其导出解压（密码12306，即PC的开机密码，这个需要猜一下）</p>
+<p>我们在解压后可以看到得到的文件实际上是一个虚拟机目录</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/98.png" class="">
+
+<p>于是我们将其导入VMware（直接双击 vmx 文件即可），发现有开机密码，这时就可以先用火眼仿真取证软件进行仿真（选择那个不带后缀000002的 vmdk 镜像文件），即可拿到密码</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/99.png" class="">
+
+<p>进行登录，发现桌面干干净净啥东西都没有</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/100.png" class="">
+
+<p>这时想起之前解压的虚拟机目录下有快照，所以我们还原快照</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/101.png" class="">
+
+<p>重新启动，这下该有的都有了</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/102.png" class="">
+
+<p>我们可以发现桌面上没什么有价值的文件，所以就打开我的电脑，看一眼快速访问，好家伙果然发现了些奇奇怪怪的文件（名为小白鼠.txt 的疑似加密文件和名为 key.rar 的疑似密钥文件，小白鼠这个名字加上 1GB 的 txt 文件真的很暗示，小白鼠感觉很明显就是在暗指题目所说的敲诈对象嘛）</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/103.png" class="">
+
+<p>我们试着用桌面上的 VeraCrypt 进行解密</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/104.png" class="">
+
+<p>VeraCrypt 一打开也有小白鼠.txt ，这几乎属于明示了</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/105.png" class="">
+
+<p>果然成功，赶紧进到 A 盘里看看有啥好东西。打开一看，里面不就是所有敲诈对象们的信息嘛</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/106.png" class="">
+
+<p>这也同时说明小白鼠.txt 就是我们要找的嫌疑人用于管理敲诈对象的容器文件，接下来算哈希就好办了</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/107.png" class="">
+
+<p>此外，从上述分析也可知道，嫌疑人的主要电脑并没有被用于敲诈过程，整个过程是在嫌疑人电脑中的虚拟机里完成（嫌疑人很聪明，每次干完坏事，直接在虚拟机里打个快照然后把东西全删了）</p>
+<h2 id="请综合分析嫌疑人检材，另外一受害者“郭先生”的手机号码为"><a href="#请综合分析嫌疑人检材，另外一受害者“郭先生”的手机号码为" class="headerlink" title="请综合分析嫌疑人检材，另外一受害者“郭先生”的手机号码为"></a>请综合分析嫌疑人检材，另外一受害者“郭先生”的手机号码为</h2><p>直接进“郭先生”的文件夹里找就行了，设备通讯录的文件名中的电话号就是郭先生的手机号啦</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/108.png" class="">
+
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/109.png" class="">
+
+<h2 id="通过嫌疑人检材，其中记录了几位受害者的信息"><a href="#通过嫌疑人检材，其中记录了几位受害者的信息" class="headerlink" title="通过嫌疑人检材，其中记录了几位受害者的信息"></a>通过嫌疑人检材，其中记录了几位受害者的信息</h2><p>很明显 5 位</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/110.png" class="">
+
+<h2 id="请使用第11题的密码解压“金先生转账-zip”文件，并对压缩包中的文件计算SHA256值"><a href="#请使用第11题的密码解压“金先生转账-zip”文件，并对压缩包中的文件计算SHA256值" class="headerlink" title="请使用第11题的密码解压“金先生转账.zip”文件，并对压缩包中的文件计算SHA256值"></a>请使用第11题的密码解压“金先生转账.zip”文件，并对压缩包中的文件计算SHA256值</h2><p>已知“金先生转账.zip”就在桌面上，解压密码为 <code>c74d97b01eae257e44aa9d5bade97baf</code> ，我们解压后发现只有一个文件“金先生转账.jpg”，所以就简单在终端算一下哈希就好了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certutil -hashfile 金先生转账.jpg sha256</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/111.png" class="">
+
+<h2 id="请综合分析，受害者一共被嫌疑人敲诈了多少钱（转账截图被隐藏在多个地方）"><a href="#请综合分析，受害者一共被嫌疑人敲诈了多少钱（转账截图被隐藏在多个地方）" class="headerlink" title="请综合分析，受害者一共被嫌疑人敲诈了多少钱（转账截图被隐藏在多个地方）"></a>请综合分析，受害者一共被嫌疑人敲诈了多少钱（转账截图被隐藏在多个地方）</h2><p>此处受害人单指金先生，说实话这个还是挺难找的（太费时间且很难找全，性价比不高，可以放弃去做其他题）</p>
+<p>手机里有三笔</p>
+<p>伊对：1000元</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/112.png" class="">
+
+<p>微信：2000元</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/113.png" class="">
+
+<p>QQ：600元</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/114.png" class="">
+
+<p>此外 QQ 聊天记录中还提到了另外两笔转账</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/115.png" class="">
+
+<p>有一笔就在上面拿到的“金先生转账.jpg”里，2000元</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/116.png" class="">
+
+<p>最后一笔比较难找，在检材五的数据库里，找到“我的账单”表，右键保存数据为 1.jpg（数据库里是可以存图片的，blob格式）</p>
+<img src="/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/117.png" class="">
+
+<p>最后一算，一共是 <code>1000 + 2000 + 600 + 2000 + 1000 = 6600元</code></p>
+<p>（其实短信中也有相关敲诈剧情，但没成功罢了）</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>题目间的关联性很强，很多题目没法第一次就出答案，要等做到后面题时回过头来再完成。此次长安杯把入口点设在了 APK 上，并且涉及到了许多服务器取证的相关知识，延续了长安杯一贯的风格；网站重构也基本是年年都考，具体的重构方法也需要好好学习一下</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>sheyu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xd-sy.github.io/2022/10/30/2021%E9%95%BF%E5%AE%89%E6%9D%AFwp/" title="2021长安杯wp">https://xd-sy.github.io/2022/10/30/2021长安杯wp/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%94%B5%E5%AD%90%E6%95%B0%E6%8D%AE%E5%8F%96%E8%AF%81/" rel="tag"># 电子数据取证</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/30/%E7%94%B5%E5%AD%90%E6%95%B0%E6%8D%AE%E5%8F%96%E8%AF%81%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" rel="prev" title="电子数据取证常见问题总结">
+      <i class="fa fa-chevron-left"></i> 电子数据取证常见问题总结
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/30/2020%E9%95%BF%E5%AE%89%E6%9D%AFwp/" rel="next" title="2020长安杯wp">
+      2020长安杯wp <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B5%9B%E9%A2%98%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">赛题背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86"><span class="nav-number">2.</span> <span class="nav-text">预备知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A3%80%E6%9D%90%E4%B8%80%EF%BC%88%E5%AE%B9%E5%99%A8%E5%AF%86%E7%A0%81%EF%BC%9A2021%E7%AC%AC%E4%B8%89%E5%B1%8ACAB-changancup-com%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">检材一（容器密码：2021第三届CAB-changancup.com）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E8%AE%A1%E7%AE%97%E6%A3%80%E6%9D%90%E4%B8%80Apk%E7%9A%84SHA256%E5%80%BC"><span class="nav-number">3.1.</span> <span class="nav-text">请计算检材一Apk的SHA256值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%A5APK%E7%9A%84%E5%BA%94%E7%94%A8%E5%8C%85%E5%90%8D%E4%B8%BA"><span class="nav-number">3.2.</span> <span class="nav-text">该APK的应用包名为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%A5APK%E7%A8%8B%E5%BA%8F%E5%9C%A8%E5%B0%81%E8%A3%85%E6%9C%8D%E5%8A%A1%E5%95%86%E7%9A%84%E5%BA%94%E7%94%A8%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86%EF%BC%88APPID%EF%BC%89%E4%B8%BA"><span class="nav-number">3.3.</span> <span class="nav-text">该APK程序在封装服务商的应用唯一标识（APPID）为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%A5APK%E5%85%B7%E5%A4%87%E4%B8%8B%E5%88%97%E5%93%AA%E4%BA%9B%E5%8D%B1%E9%99%A9%E6%9D%83%E9%99%90"><span class="nav-number">3.4.</span> <span class="nav-text">该APK具备下列哪些危险权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%A5APK%E5%8F%91%E9%80%81%E5%9B%9E%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8C%85%E5%90%AB%E4%B8%80%E4%B8%8B%E5%93%AA%E4%BA%9B%E5%86%85%E5%AE%B9"><span class="nav-number">3.5.</span> <span class="nav-text">该APK发送回后台服务器的数据包含一下哪些内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%A5APK%E7%A8%8B%E5%BA%8F%E5%9B%9E%E4%BC%A0%E9%80%9A%E8%AE%AF%E5%BD%95%E6%97%B6-%E4%BD%BF%E7%94%A8%E7%9A%84http%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F%E4%B8%BA"><span class="nav-number">3.6.</span> <span class="nav-text">该APK程序回传通讯录时,使用的http请求方式为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%A5APK%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%9B%9E%E4%BC%A0%E5%9C%B0%E5%9D%80%E5%9F%9F%E5%90%8D%E4%B8%BA"><span class="nav-number">3.7.</span> <span class="nav-text">该APK程序的回传地址域名为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%A5APK%E7%A8%8B%E5%BA%8F%E4%BB%A3%E7%A0%81%E4%B8%AD%E9%85%8D%E7%BD%AE%E7%9A%84%E5%8F%98%E9%87%8Fapiserver%E7%9A%84%E5%80%BC%E4%B8%BA"><span class="nav-number">3.8.</span> <span class="nav-text">该APK程序代码中配置的变量apiserver的值为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E8%AF%A5APK%EF%BC%8C%E5%8F%91%E7%8E%B0%E8%AF%A5%E7%A8%8B%E5%BA%8F%E8%BF%98%E5%85%B7%E5%A4%87%E8%8E%B7%E5%8F%96%E7%9F%AD%E4%BF%A1%E5%9B%9E%E4%BC%A0%E5%88%B0%E5%90%8E%E5%8F%B0%E7%9A%84%E5%8A%9F%E8%83%BD%EF%BC%8C%E7%9F%AD%E4%BF%A1%E4%B8%8A%E4%BC%A0%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8E%A5%E5%8F%A3%E5%9C%B0%E5%9D%80%E4%B8%BA"><span class="nav-number">3.9.</span> <span class="nav-text">分析该APK，发现该程序还具备获取短信回传到后台的功能，短信上传服务器接口地址为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E5%88%86%E6%9E%90%EF%BC%8C%E5%8F%91%E7%8E%B0%E8%AF%A5APK%E5%9C%A8%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B%E4%B8%AD%E4%BC%9A%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%AD%E4%BA%A7%E7%94%9F%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6%EF%BC%8C%E8%AF%A5%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%BA"><span class="nav-number">3.10.</span> <span class="nav-text">经分析，发现该APK在运行过程中会在手机中产生一个数据库文件，该文件的文件名为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E5%88%86%E6%9E%90%EF%BC%8C%E5%8F%91%E7%8E%B0%E8%AF%A5APK%E5%9C%A8%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B%E4%B8%AD%E4%BC%9A%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%AD%E4%BA%A7%E7%94%9F%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6%EF%BC%8C%E8%AF%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%88%9D%E5%A7%8B%E5%AF%86%E7%A0%81%E4%B8%BA"><span class="nav-number">3.11.</span> <span class="nav-text">经分析，发现该APK在运行过程中会在手机中产生一个数据库文件，该数据库的初始密码为</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A3%80%E6%9D%90%E4%BA%8C%EF%BC%88%E5%AE%B9%E5%99%A8%E5%AF%86%E7%A0%81%EF%BC%9Awww-honglian7001-com-%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">检材二（容器密码：www.honglian7001.com ）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90%E4%BA%8C%E7%9A%84%E5%8E%9F%E5%A7%8B%E7%A1%AC%E7%9B%98%E7%9A%84SHA256%E5%80%BC%E4%B8%BA%EF%BC%9A"><span class="nav-number">4.1.</span> <span class="nav-text">检材二的原始硬盘的SHA256值为：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%B6%89%E6%A1%88%E4%BA%8E%E6%A1%88%E5%8F%91%E6%97%B6%E9%97%B4%E6%AE%B5%E5%86%85%E7%99%BB%E9%99%86%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84IP%E5%9C%B0%E5%9D%80%E4%B8%BA"><span class="nav-number">4.2.</span> <span class="nav-text">查询涉案于案发时间段内登陆服务器的IP地址为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E5%AF%B9%E6%A3%80%E6%9D%90%E4%BA%8C%E8%BF%9B%E8%A1%8C%E5%88%86%E6%9E%90%EF%BC%8C%E5%B9%B6%E5%9B%9E%E7%AD%94%E8%AF%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%A8%E9%9B%86%E7%BE%A4%E4%B8%AD%E6%89%BF%E6%8B%85%E7%9A%84%E4%B8%BB%E8%A6%81%E4%BD%9C%E7%94%A8%E6%98%AF"><span class="nav-number">4.3.</span> <span class="nav-text">请对检材二进行分析，并回答该服务器在集群中承担的主要作用是</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E4%B8%80%E9%A2%98%E4%B8%AD%EF%BC%8C%E6%8F%90%E5%88%B0%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD%E5%AF%B9%E5%BA%94%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%9B%91%E5%90%AC%E7%9A%84%E7%AB%AF%E5%8F%A3%E4%B8%BA"><span class="nav-number">4.4.</span> <span class="nav-text">上一题中，提到的主要功能对应的服务监听的端口为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E4%B8%80%E9%A2%98%E4%B8%AD%EF%BC%8C%E6%8F%90%E5%88%B0%E7%9A%84%E6%9C%8D%E5%8A%A1%E6%89%80%E4%BD%BF%E7%94%A8%E7%9A%84%E5%90%AF%E5%8A%A8%E5%91%BD%E4%BB%A4%E4%B8%BA"><span class="nav-number">4.5.</span> <span class="nav-text">上一题中，提到的服务所使用的启动命令为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E5%88%86%E6%9E%90%EF%BC%8C%E8%AF%A5%E6%9C%8D%E5%8A%A1%E5%AF%B9%E4%BA%8E%E8%AF%B7%E6%B1%82%E6%9D%A5%E6%BA%90IP%E7%9A%84%E5%A4%84%E7%90%86%E4%BE%9D%E6%8D%AE%E6%98%AF%EF%BC%9A%E6%A0%B9%E6%8D%AE%E8%AF%B7%E6%B1%82%E6%BA%90IP%E5%9C%B0%E5%9D%80%E7%9A%84%E7%AC%AC%EF%BC%88%EF%BC%89%E4%BD%8D%E8%BF%9B%E8%A1%8C%E5%88%A4%E6%96%AD"><span class="nav-number">4.6.</span> <span class="nav-text">经分析，该服务对于请求来源IP的处理依据是：根据请求源IP地址的第（）位进行判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E5%88%86%E6%9E%90%EF%BC%8C%E5%BD%93%E5%88%A4%E6%96%AD%E6%9D%A1%E4%BB%B6%E5%B0%8F%E4%BA%8E50%E6%97%B6%EF%BC%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%9A%E5%B0%86%E8%AF%A5%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E5%88%B0IP%E4%B8%BA%EF%BC%88%EF%BC%89%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A"><span class="nav-number">4.7.</span> <span class="nav-text">经分析，当判断条件小于50时，服务器会将该请求转发到IP为（）的服务器上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E5%88%86%E6%9E%90%EF%BC%8C%E8%AF%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BD%AC%E5%8F%91%E7%9A%84%E7%9B%AE%E6%A0%87%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%80%E5%85%B1%E6%9C%89%E5%87%A0%E5%8F%B0"><span class="nav-number">4.8.</span> <span class="nav-text">请分析，该服务器转发的目标服务器一共有几台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E5%88%86%E6%9E%90%EF%BC%8C%E5%8F%97%E5%AE%B3%E8%80%85%E9%80%9A%E8%AE%AF%E5%BD%95%E8%A2%AB%E8%8E%B7%E5%8F%96%E6%97%B6%EF%BC%8C%E5%85%B6%E8%AE%BE%E5%A4%87%E7%9A%84IP%E5%9C%B0%E5%9D%80%E4%B8%BA"><span class="nav-number">4.9.</span> <span class="nav-text">请分析，受害者通讯录被获取时，其设备的IP地址为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E5%88%86%E6%9E%90%EF%BC%8C%E5%8F%97%E5%AE%B3%E8%80%85%E7%9A%84%E9%80%9A%E8%AE%AF%E5%BD%95%E8%A2%AB%E7%AA%83%E5%8F%96%E4%B9%8B%E5%90%8E%EF%BC%8C%E7%BB%8F%E7%94%B1%E8%AF%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BD%AC%E5%8F%91%E5%88%B0%E4%BA%86IP%E4%B8%BA%EF%BC%88%EF%BC%89%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A"><span class="nav-number">4.10.</span> <span class="nav-text">请分析，受害者的通讯录被窃取之后，经由该服务器转发到了IP为（）的服务器上</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A3%80%E6%9D%90%E4%B8%89%EF%BC%88%E5%AE%B9%E5%99%A8%E5%AF%86%E7%A0%81%EF%BC%9A192-168-110-113-CAB2021%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">检材三（容器密码：192.168.110.113-CAB2021）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9D%90%E4%B8%89%E7%9A%84%E5%8E%9F%E5%A7%8B%E7%A1%AC%E7%9B%98%E7%9A%84SHA256%E5%80%BC%E4%B8%BA"><span class="nav-number">5.1.</span> <span class="nav-text">检材三的原始硬盘的SHA256值为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E5%88%86%E6%9E%90%E7%AC%AC21%E9%A2%98%E4%B8%AD%EF%BC%8C%E6%89%80%E6%8C%87%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%BC%80%E6%9C%BA%E5%AF%86%E7%A0%81%E4%B8%BA"><span class="nav-number">5.2.</span> <span class="nav-text">请分析第21题中，所指的服务器的开机密码为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AB%8C%E7%96%91%E4%BA%BA%E6%9E%B6%E8%AE%BE%E7%BD%91%E7%AB%99%E4%BD%BF%E7%94%A8%E4%BA%86%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%EF%BC%8C%E8%AF%B7%E9%97%AE%E9%9D%A2%E6%9D%BF%E7%9A%84%E7%99%BB%E9%99%86%E7%94%A8%E6%88%B7%E5%90%8D%E4%B8%BA"><span class="nav-number">5.3.</span> <span class="nav-text">嫌疑人架设网站使用了宝塔面板，请问面板的登陆用户名为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E5%88%86%E6%9E%90%E7%94%A8%E4%BA%8E%E9%87%8D%E7%BD%AE%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E5%AF%86%E7%A0%81%E7%9A%84%E5%87%BD%E6%95%B0%E5%90%8D%E4%B8%BA"><span class="nav-number">5.4.</span> <span class="nav-text">请分析用于重置宝塔面板密码的函数名为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E5%88%86%E6%9E%90%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E7%99%BB%E9%99%86%E5%AF%86%E7%A0%81%E7%9A%84%E5%8A%A0%E5%AF%86%E6%96%B9%E5%BC%8F%E6%89%80%E4%BD%BF%E7%94%A8%E7%9A%84%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95%E4%B8%BA"><span class="nav-number">5.5.</span> <span class="nav-text">请分析宝塔面板登陆密码的加密方式所使用的哈希算法为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E5%88%86%E6%9E%90%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E5%AF%B9%E4%BA%8E%E5%85%B6%E9%BB%98%E8%AE%A4%E7%94%A8%E6%88%B7%E7%9A%84%E5%AF%86%E7%A0%81%E4%B8%80%E5%85%B1%E6%89%A7%E8%A1%8C%E4%BA%86%E5%87%A0%E6%AC%A1%E4%B8%8A%E9%A2%98%E4%B8%AD%E7%9A%84%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95"><span class="nav-number">5.6.</span> <span class="nav-text">请分析宝塔面板对于其默认用户的密码一共执行了几次上题中的哈希算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E5%88%86%E6%9E%90%E5%BD%93%E5%89%8D%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E5%AF%86%E7%A0%81%E5%8A%A0%E5%AF%86%E8%BF%87%E7%A8%8B%E4%B8%AD%E6%89%80%E4%BD%BF%E7%94%A8%E7%9A%84salt%E5%80%BC%E4%B8%BA"><span class="nav-number">5.7.</span> <span class="nav-text">请分析当前宝塔面板密码加密过程中所使用的salt值为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E5%88%86%E6%9E%90%E8%AF%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E7%BD%91%E7%AB%99%E6%BA%90%E4%BB%A3%E7%A0%81%E6%89%80%E5%9C%A8%E7%9A%84%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84%E4%B8%BA"><span class="nav-number">5.8.</span> <span class="nav-text">请分析该服务器，网站源代码所在的绝对路径为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E5%88%86%E6%9E%90%EF%BC%8C%E7%BD%91%E7%AB%99%E6%89%80%E4%BD%BF%E7%94%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%8D%E4%BA%8EIP%E4%B8%BA%EF%BC%88%EF%BC%89%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A"><span class="nav-number">5.9.</span> <span class="nav-text">请分析，网站所使用的数据库位于IP为（）的服务器上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E5%88%86%E6%9E%90%EF%BC%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%99%BB%E9%99%86%E5%AF%86%E7%A0%81%E4%B8%BA"><span class="nav-number">5.10.</span> <span class="nav-text">请分析，数据库的登陆密码为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E5%B0%9D%E8%AF%95%E9%87%8D%E6%9E%84%E8%AF%A5%E7%BD%91%E7%AB%99%EF%BC%8C%E5%B9%B6%E6%8C%87%E5%87%BA%EF%BC%8C%E8%AF%A5%E7%BD%91%E7%AB%99%E7%9A%84%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%95%8C%E9%9D%A2%E7%9A%84%E5%85%A5%E5%8F%A3%E4%B8%BA"><span class="nav-number">5.11.</span> <span class="nav-text">请尝试重构该网站，并指出，该网站的后台管理界面的入口为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%B2%E8%AF%A5%E6%B6%89%E6%A1%88%E7%BD%91%E7%AB%99%E4%BB%A3%E7%A0%81%E4%B8%AD%E5%AF%B9%E7%99%BB%E5%BD%95%E7%94%A8%E6%88%B7%E7%9A%84%E5%AF%86%E7%A0%81%E5%81%9A%E4%BA%86%E5%8A%A0%E5%AF%86%E5%A4%84%E7%90%86%E3%80%82%E8%AF%B7%E6%89%BE%E5%87%BA%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E4%B8%AD%E7%9A%84salt%E5%80%BC"><span class="nav-number">5.12.</span> <span class="nav-text">已该涉案网站代码中对登录用户的密码做了加密处理。请找出加密算法中的salt值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E5%88%86%E6%9E%90%E8%AF%A5%E7%BD%91%E7%AB%99%E7%9A%84%E7%AE%A1%E7%90%86%E5%91%98%E7%94%A8%E6%88%B7%E7%9A%84%E5%AF%86%E7%A0%81%E4%B8%BA"><span class="nav-number">5.13.</span> <span class="nav-text">请分析该网站的管理员用户的密码为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E5%AF%B9%E5%90%8E%E5%8F%B0%E8%B4%A6%E5%8F%B7%E7%9A%84%E5%AF%86%E7%A0%81%E5%8A%A0%E5%AF%86%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B%E4%B8%AD%EF%BC%8C%E5%90%8E%E5%8F%B0%E4%B8%80%E5%85%B1%E8%AE%A1%E7%AE%97%E5%87%A0%E6%AC%A1%E5%93%88%E5%B8%8C%E5%80%BC"><span class="nav-number">5.14.</span> <span class="nav-text">在对后台账号的密码加密处理过程中，后台一共计算几次哈希值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E7%BB%9F%E8%AE%A1%EF%BC%8C%E5%90%8E%E5%8F%B0%E4%B8%AD%EF%BC%8C%E4%B8%80%E5%85%B1%E6%9C%89%E5%A4%9A%E5%B0%91%E6%9D%A1%E8%AE%BE%E5%A4%87%E8%AE%B0%E5%BD%95"><span class="nav-number">5.15.</span> <span class="nav-text">请统计，后台中，一共有多少条设备记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E9%80%9A%E8%BF%87%E5%90%8E%E5%8F%B0%E7%A1%AE%E8%AE%A4%EF%BC%8C%E6%9C%AC%E6%A1%88%E4%B8%AD%E5%8F%97%E5%AE%B3%E8%80%85%E7%9A%84%E6%89%8B%E6%9C%BA%E5%8F%B7%E7%A0%81%E4%B8%BA"><span class="nav-number">5.16.</span> <span class="nav-text">请通过后台确认，本案中受害者的手机号码为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E5%88%86%E6%9E%90%EF%BC%8C%E6%9C%AC%E6%A1%88%E4%B8%AD%E5%8F%97%E5%AE%B3%E8%80%85%E7%9A%84%E9%80%9A%E8%AE%AF%E5%BD%95%E4%B8%80%E5%85%B1%E6%9C%89%E5%A4%9A%E5%B0%91%E6%9D%A1%E8%AE%B0%E5%BD%95"><span class="nav-number">5.17.</span> <span class="nav-text">请分析，本案中受害者的通讯录一共有多少条记录</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A3%80%E6%9D%90%E5%9B%9B%EF%BC%88%E5%AE%B9%E5%99%A8%E5%AF%86%E7%A0%81%EF%BC%9A192-168-110-203-CAB2021%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">检材四（容器密码：192.168.110.203-CAB2021）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E8%AE%A1%E7%AE%97%E6%A3%80%E6%9D%90%E5%9B%9B-PC%E7%9A%84%E5%8E%9F%E5%A7%8B%E7%A1%AC%E7%9B%98%E7%9A%84SHA256%E5%80%BC"><span class="nav-number">6.1.</span> <span class="nav-text">请计算检材四-PC的原始硬盘的SHA256值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E5%88%86%E6%9E%90%EF%BC%8C%E6%A3%80%E6%9D%90%E5%9B%9B-PC%E7%9A%84Bitlocker%E5%8A%A0%E5%AF%86%E5%88%86%E5%8C%BA%E7%9A%84%E8%A7%A3%E5%AF%86%E5%AF%86%E9%92%A5%E4%B8%BA"><span class="nav-number">6.2.</span> <span class="nav-text">请分析，检材四-PC的Bitlocker加密分区的解密密钥为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E5%88%86%E6%9E%90%EF%BC%8C%E6%A3%80%E6%9D%90%E5%9B%9B-PC%E7%9A%84%E5%BC%80%E6%9C%BA%E5%AF%86%E7%A0%81%E4%B8%BA"><span class="nav-number">6.3.</span> <span class="nav-text">请分析，检材四-PC的开机密码为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E5%88%86%E6%9E%90%E5%8F%91%E7%8E%B0%EF%BC%8C%E6%A3%80%E6%9D%90%E5%9B%9B-PC%E6%98%AF%E5%AB%8C%E7%96%91%E4%BA%BA%E7%94%A8%E4%BA%8E%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E8%AE%BE%E5%A4%87%EF%BC%8C%E5%85%B6%E4%B8%BB%E8%A6%81%E9%80%9A%E8%BF%87%E5%93%AA%E4%B8%AA%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8E%A7%E5%88%B6%E7%BD%91%E7%AB%99%E5%90%8E%E5%8F%B0"><span class="nav-number">6.4.</span> <span class="nav-text">经分析发现，检材四-PC是嫌疑人用于管理服务器的设备，其主要通过哪个浏览器控制网站后台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E8%AE%A1%E7%AE%97PC%E6%A3%80%E6%9D%90%E4%B8%AD%E7%94%A8%E6%88%B7%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84zip%E6%96%87%E4%BB%B6%E7%9A%84sha256%E5%80%BC"><span class="nav-number">6.5.</span> <span class="nav-text">请计算PC检材中用户目录下的zip文件的sha256值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E5%88%86%E6%9E%90%E6%A3%80%E6%9D%90%E5%9B%9B-phone%EF%BC%8C%E8%AF%A5%E6%89%8B%E6%9C%BA%E7%9A%84IMEI%E5%8F%B7%E4%B8%BA"><span class="nav-number">6.6.</span> <span class="nav-text">请分析检材四-phone，该手机的IMEI号为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E5%88%86%E6%9E%90%E6%A3%80%E6%9D%90%E5%9B%9B-phone%EF%BC%8C%E5%AB%8C%E7%96%91%E4%BA%BA%E5%92%8C%E6%9C%AC%E6%A1%88%E5%8F%97%E5%AE%B3%E8%80%85%E6%98%AF%E9%80%9A%E8%BF%87%E4%BB%80%E4%B9%88%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%A7%8B%E6%8E%A5%E8%A7%A6%E7%9A%84"><span class="nav-number">6.7.</span> <span class="nav-text">请分析检材四-phone，嫌疑人和本案受害者是通过什么软件开始接触的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E5%88%86%E6%9E%90%E6%A3%80%E6%9D%90%E5%9B%9B-phone%EF%BC%8C%E5%8F%97%E5%AE%B3%E8%80%85%E4%B8%8B%E8%BD%BD%E6%81%B6%E6%84%8FAPK%E5%AE%89%E8%A3%85%E5%8C%85%E7%9A%84%E5%9C%B0%E5%9D%80%E4%B8%BA"><span class="nav-number">6.8.</span> <span class="nav-text">请分析检材四-phone，受害者下载恶意APK安装包的地址为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E5%88%86%E6%9E%90%E6%A3%80%E6%9D%90%E5%9B%9B-phone%EF%BC%8C%E5%8F%97%E5%AE%B3%E8%80%85%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%86%85%E9%83%A8ID%E5%8F%B7%E4%B8%BA"><span class="nav-number">6.9.</span> <span class="nav-text">请分析检材四-phone，受害者的微信内部ID号为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E5%88%86%E6%9E%90%E6%A3%80%E6%9D%90%E5%9B%9B-phone%EF%BC%8C%E5%AB%8C%E7%96%91%E4%BA%BA%E7%94%A8%E4%BA%8E%E6%95%B2%E8%AF%88%E6%9C%AC%E6%A1%88%E5%8F%97%E5%AE%B3%E8%80%85%E7%9A%84QQ%E8%B4%A6%E5%8F%B7%E4%B8%BA"><span class="nav-number">6.10.</span> <span class="nav-text">请分析检材四-phone，嫌疑人用于敲诈本案受害者的QQ账号为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E7%BB%BC%E5%90%88%E5%88%86%E6%9E%90%EF%BC%8C%E5%AB%8C%E7%96%91%E4%BA%BA%E7%94%A8%E4%BA%8E%E7%AE%A1%E7%90%86%E6%95%B2%E8%AF%88%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%AE%B9%E5%99%A8%E6%96%87%E4%BB%B6%E7%9A%84SHA256%E5%80%BC%E4%B8%BA"><span class="nav-number">6.11.</span> <span class="nav-text">请综合分析，嫌疑人用于管理敲诈对象的容器文件的SHA256值为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E7%BB%BC%E5%90%88%E5%88%86%E6%9E%90%E5%AB%8C%E7%96%91%E4%BA%BA%E6%A3%80%E6%9D%90%EF%BC%8C%E5%8F%A6%E5%A4%96%E4%B8%80%E5%8F%97%E5%AE%B3%E8%80%85%E2%80%9C%E9%83%AD%E5%85%88%E7%94%9F%E2%80%9D%E7%9A%84%E6%89%8B%E6%9C%BA%E5%8F%B7%E7%A0%81%E4%B8%BA"><span class="nav-number">6.12.</span> <span class="nav-text">请综合分析嫌疑人检材，另外一受害者“郭先生”的手机号码为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E5%AB%8C%E7%96%91%E4%BA%BA%E6%A3%80%E6%9D%90%EF%BC%8C%E5%85%B6%E4%B8%AD%E8%AE%B0%E5%BD%95%E4%BA%86%E5%87%A0%E4%BD%8D%E5%8F%97%E5%AE%B3%E8%80%85%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="nav-number">6.13.</span> <span class="nav-text">通过嫌疑人检材，其中记录了几位受害者的信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E4%BD%BF%E7%94%A8%E7%AC%AC11%E9%A2%98%E7%9A%84%E5%AF%86%E7%A0%81%E8%A7%A3%E5%8E%8B%E2%80%9C%E9%87%91%E5%85%88%E7%94%9F%E8%BD%AC%E8%B4%A6-zip%E2%80%9D%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B9%B6%E5%AF%B9%E5%8E%8B%E7%BC%A9%E5%8C%85%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%AE%A1%E7%AE%97SHA256%E5%80%BC"><span class="nav-number">6.14.</span> <span class="nav-text">请使用第11题的密码解压“金先生转账.zip”文件，并对压缩包中的文件计算SHA256值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E7%BB%BC%E5%90%88%E5%88%86%E6%9E%90%EF%BC%8C%E5%8F%97%E5%AE%B3%E8%80%85%E4%B8%80%E5%85%B1%E8%A2%AB%E5%AB%8C%E7%96%91%E4%BA%BA%E6%95%B2%E8%AF%88%E4%BA%86%E5%A4%9A%E5%B0%91%E9%92%B1%EF%BC%88%E8%BD%AC%E8%B4%A6%E6%88%AA%E5%9B%BE%E8%A2%AB%E9%9A%90%E8%97%8F%E5%9C%A8%E5%A4%9A%E4%B8%AA%E5%9C%B0%E6%96%B9%EF%BC%89"><span class="nav-number">6.15.</span> <span class="nav-text">请综合分析，受害者一共被嫌疑人敲诈了多少钱（转账截图被隐藏在多个地方）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="sheyu"
+      src="/uploads/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">sheyu</p>
+  <div class="site-description" itemprop="description">学习笔记 & 日常分享</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xd-sy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xd-sy" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:526472325@qq.com" title="E-Mail → mailto:526472325@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      我的大佬朋友们
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://eqqie.cn/" title="https:&#x2F;&#x2F;eqqie.cn&#x2F;" rel="noopener" target="_blank">赤道企鹅</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://cdcq.github.io/" title="https:&#x2F;&#x2F;cdcq.github.io&#x2F;" rel="noopener" target="_blank">cdcq</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.woooo.tech/" title="https:&#x2F;&#x2F;blog.woooo.tech&#x2F;" rel="noopener" target="_blank">rx</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.ga1axy.top/" title="http:&#x2F;&#x2F;www.ga1axy.top&#x2F;" rel="noopener" target="_blank">galaxy</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.f1ag.com/" title="http:&#x2F;&#x2F;www.f1ag.com&#x2F;" rel="noopener" target="_blank">flag</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sheyu</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">128k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:57</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  <script src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

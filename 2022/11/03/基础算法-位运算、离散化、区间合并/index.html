@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-pen.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-pen.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css">
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xd-sy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本篇博客简单记录了基础算法学习中的位运算、离散化、区间合并的相关内容（AcWing-day6）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基础算法-位运算、离散化、区间合并">
+<meta property="og:url" content="https://xd-sy.github.io/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/index.html">
+<meta property="og:site_name" content="Blog">
+<meta property="og:description" content="本篇博客简单记录了基础算法学习中的位运算、离散化、区间合并的相关内容（AcWing-day6）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xd-sy.github.io/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/1.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/2.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/3.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/4.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/5.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/6.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/7.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/8.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/9.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/10.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/11.png">
+<meta property="article:published_time" content="2022-11-03T12:52:03.000Z">
+<meta property="article:modified_time" content="2022-11-15T07:56:59.008Z">
+<meta property="article:author" content="sheyu">
+<meta property="article:tag" content="基础算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xd-sy.github.io/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/1.png">
+
+<link rel="canonical" href="https://xd-sy.github.io/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>基础算法-位运算、离散化、区间合并 | Blog</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?aa230141ff1b40a6faeceb23894d3e74";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband">
+	<a target="_blank" rel="noopener" href="https://github.com/xd-sy" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    </div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-photos">
+
+    <a href="/photos/" rel="section"><i class="fa fa-camera fa-fw"></i>photos</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xd-sy.github.io/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+      <meta itemprop="name" content="sheyu">
+      <meta itemprop="description" content="学习笔记 & 日常分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基础算法-位运算、离散化、区间合并
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-03 20:52:03" itemprop="dateCreated datePublished" datetime="2022-11-03T20:52:03+08:00">2022-11-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-15 15:56:59" itemprop="dateModified" datetime="2022-11-15T15:56:59+08:00">2022-11-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">基础算法</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>4.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本篇博客简单记录了基础算法学习中的<strong>位运算、离散化、区间合并</strong>的相关内容（AcWing-day6）</p>
+<span id="more"></span>
+
+<h1 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h1><p>此处只介绍两种最常见的操作</p>
+<h2 id="求n的二进制表示中第k位是几"><a href="#求n的二进制表示中第k位是几" class="headerlink" title="求n的二进制表示中第k位是几"></a>求n的二进制表示中第k位是几</h2><img src="/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/1.png" class="">
+
+<p>我们规定个位是第 0 位</p>
+<h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><ol>
+<li><p>先把第k位移到第0位（个位） <code>n &gt;&gt; k</code></p>
+</li>
+<li><p>再看第0位（个位）是几  <code>&amp; 1</code></p>
+</li>
+</ol>
+<p>两步合并即为：<code>n &gt;&gt; k &amp; 1</code></p>
+<h3 id="例题：求n的二进制表示"><a href="#例题：求n的二进制表示" class="headerlink" title="例题：求n的二进制表示"></a>例题：求n的二进制表示</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">10</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> k = <span class="number">3</span>; k &gt;= <span class="number">0</span>; k--) cout &lt;&lt; (n &gt;&gt; k &amp; <span class="number">1</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="lowbit-操作"><a href="#lowbit-操作" class="headerlink" title="lowbit 操作"></a>lowbit 操作</h2><p>lowbit 操作是树状数组的一个基本操作</p>
+<p>lowbit(x) 的作用是：返回 x 最右端的一位 1 到最右端的整个二进制序列</p>
+<img src="/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/2.png" class="">
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lowbit(x) = x &amp; -x = x &amp; (～x+1)</span><br></pre></td></tr></table></figure>
+
+<p>其中 ～x 是 x 取反的意思（反码），-x 为 x 的补码（补码 &#x3D; 反码 + 1）</p>
+<img src="/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/3.png" class="">
+
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>lowbit 操作最简单的应用就是统计 x 中 1 的个数</p>
+<p>思想就是每一次把 x 中最右端的 1 去掉（减掉），直到 x 等于 0 为止，统计去掉 1 的次数</p>
+<h3 id="AcWing-801-二进制中1的个数"><a href="#AcWing-801-二进制中1的个数" class="headerlink" title="AcWing 801. 二进制中1的个数"></a>AcWing 801. 二进制中1的个数</h3><img src="/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/4.png" class="">
+
+<p>使用 lowbit 操作即可</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lowbit</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x &amp; -x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">while</span>(n--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> x;</span><br><span class="line">        cin &gt;&gt; x;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(x) x -= <span class="built_in">lowbit</span>(x), res++;</span><br><span class="line">        cout &lt;&lt; res &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="原码、反码、补码的关系"><a href="#原码、反码、补码的关系" class="headerlink" title="原码、反码、补码的关系"></a>原码、反码、补码的关系</h3><p>计算机中的负数用补码表示（为什么？因为计算机中的减法其实是用加法实现的）</p>
+<img src="/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/5.png" class="">
+
+<h1 id="离散化"><a href="#离散化" class="headerlink" title="离散化"></a>离散化</h1><p>此处特指整数的离散化，而且是保序的离散化</p>
+<p>离散化的基本概念：把无限空间中有限的个体映射到有限的空间中去，以此提高算法的时空效率。通俗的说，离散化是在不改变数据相对大小的条件下，对数据进行相应的缩小</p>
+<img src="/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/6.png" class="">
+
+<p>离散化中一般有两个问题</p>
+<ol>
+<li><p>原始数据中可能有重复元素，需要去重（使用库函数）</p>
+</li>
+<li><p>如何算出原始数据离散化后的值（利用二分算法映射为从1开始的自然数下标）</p>
+</li>
+</ol>
+<h2 id="AcWing-802-区间和"><a href="#AcWing-802-区间和" class="headerlink" title="AcWing 802. 区间和"></a>AcWing 802. 区间和</h2><img src="/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/7.png" class="">
+
+<p>题目所给的数据范围比较小的话（10^5以内）可以直接用前缀和做，数据范围比较大的话（如这题是10^9）则需要借助离散化</p>
+<p>虽然题目的数据跨度是2*10^9，但实则用到的坐标最多只有3*10^5，这就是典型的离散化问题</p>
+<h3 id="基本思路-1"><a href="#基本思路-1" class="headerlink" title="基本思路"></a>基本思路</h3><p>将题目所有用到的下标先排个序，然后映射为从 1 开始的自然数即可（由于要求前缀和，所以是从 1 开始映射，而不是从 0 开始。还有需要注意的是，这里的映射需要保证下标的相对大小不变）。所以如果要在 x 的位置上加 c ，只需把 x 映射为某一自然数，在该自然数位置上加 c 即可。求区间和时也是一样，先把 l 和 r 映射为某两个自然数，然后求这两个自然数之间所有数的和即可。全部映射完成后，题目所有用到的下标就都集中在 1 到 3*10^5 之间了，然后求前缀和即可</p>
+<img src="/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/8.png" class="">
+
+<h3 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 因为add（加c）和query（询问）中所需的操作数均为两个，所以使用pair进行存储；并且规定后续使用PII来代替pair&lt;int, int&gt;这样的繁杂写法</span></span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; PII; </span><br><span class="line"></span><br><span class="line"><span class="comment">// 我们需要将x\l\r离散化到新数组，最坏情况下，x\l\r离散化后的映射均不重复，此时新数组需要n+2m的空间，结合题目中n\m的具体范围，即为300000</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">300010</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"><span class="type">int</span> a[N], s[N]; <span class="comment">// a[N]存储离散化后的新数据，s[N]存储新数据的前缀和</span></span><br><span class="line"></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; alls; <span class="comment">// alls存储待离散化的原始数据</span></span><br><span class="line">vector&lt;PII&gt; add, query; <span class="comment">// add和query数组中存储的数据均为pair类型，即一对操作数</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span> <span class="comment">// find函数用于对x离散化</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 实际采用二分算法达到离散化的目的</span></span><br><span class="line">    <span class="type">int</span> l = <span class="number">0</span>, r = alls.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (l &lt; r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (alls[mid] &gt;= x) r = mid; <span class="comment">// 要找第一个大于等于x的位置</span></span><br><span class="line">        <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> r + <span class="number">1</span>; <span class="comment">// 新数组下标为从1开始的自然数，这样容易处理前缀和的边界问题</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自写unique函数</span></span><br><span class="line">vector&lt;<span class="type">int</span>&gt;::<span class="function">iterator <span class="title">unique</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp;a)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;a.<span class="built_in">size</span>(); i++)</span><br><span class="line">        <span class="keyword">if</span>(!i||a[i]!=a[i<span class="number">-1</span>]) a[j++]=a[i]; <span class="comment">// 把原a数组中所有不重复的数存到a[0]~a[j-1]的位置上</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> a.<span class="built_in">begin</span>() + j;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> x, c;</span><br><span class="line">        cin &gt;&gt; x &gt;&gt; c;</span><br><span class="line">        add.<span class="built_in">push_back</span>(&#123;x, c&#125;); <span class="comment">// 把x和c两个参数作为一个整体加到add数组中</span></span><br><span class="line"></span><br><span class="line">        alls.<span class="built_in">push_back</span>(x); <span class="comment">// 把x加到待离散化的数组中</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> l, r;</span><br><span class="line">        cin &gt;&gt; l &gt;&gt; r;</span><br><span class="line">        query.<span class="built_in">push_back</span>(&#123;l, r&#125;); <span class="comment">// 把l和r两个参数作为一个整体加到query数组中</span></span><br><span class="line"></span><br><span class="line">        alls.<span class="built_in">push_back</span>(l); <span class="comment">// 把l加到待离散化的数组中</span></span><br><span class="line">        alls.<span class="built_in">push_back</span>(r); <span class="comment">// 把r加到待离散化的数组中</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 去重</span></span><br><span class="line">    <span class="built_in">sort</span>(alls.<span class="built_in">begin</span>(), alls.<span class="built_in">end</span>()); <span class="comment">// 先排序</span></span><br><span class="line">    alls.<span class="built_in">erase</span>(<span class="built_in">unique</span>(alls), alls.<span class="built_in">end</span>()); <span class="comment">// 后去重</span></span><br><span class="line">    <span class="comment">// 也可以用C++自带的unique函数</span></span><br><span class="line">    <span class="comment">// alls.erase(unique(alls.begin(), alls.end()), alls.end());</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 处理插入</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> item : add)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> x = <span class="built_in">find</span>(item.first); <span class="comment">// 取&#123;x,c&#125;中的x</span></span><br><span class="line">        a[x] += item.second; <span class="comment">// 取&#123;x,c&#125;中的c加到a[x]中</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 预处理前缀和</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= alls.<span class="built_in">size</span>(); i ++ ) s[i] = s[i - <span class="number">1</span>] + a[i]; <span class="comment">// 前缀和公式</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 处理询问</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> item : query)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> l = <span class="built_in">find</span>(item.first), r = <span class="built_in">find</span>(item.second); <span class="comment">// 分别取&#123;l,r&#125;中的l和r</span></span><br><span class="line">        cout &lt;&lt; s[r] - s[l - <span class="number">1</span>] &lt;&lt; endl; <span class="comment">// 输出区间和</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="区间合并"><a href="#区间合并" class="headerlink" title="区间合并"></a>区间合并</h1><p>给定 n 个区间，将所有有交集的区间进行合并，最后返回合并后的区间个数</p>
+<p>边界问题：如果两个区间只有端点相交，也认为可以合并</p>
+<p>示例：</p>
+<img src="/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/9.png" class="">
+
+<h2 id="基本思路-2"><a href="#基本思路-2" class="headerlink" title="基本思路"></a>基本思路</h2><ol>
+<li><p>按区间左端点排序（贪心）</p>
+</li>
+<li><p>区间合并的三种情形</p>
+</li>
+</ol>
+<img src="/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/10.png" class="">
+
+<h2 id="AcWing-803-区间合并"><a href="#AcWing-803-区间合并" class="headerlink" title="AcWing 803. 区间合并"></a>AcWing 803. 区间合并</h2><img src="/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/11.png" class="">
+
+<h3 id="基本思路-3"><a href="#基本思路-3" class="headerlink" title="基本思路"></a>基本思路</h3><p>先维护一个区间，将它与有交集的区间进行合并，然后确定合并后的区间是否有新的交集区间，如果有就继续合并，如果没有就开始维护下一个区间</p>
+<h3 id="代码如下-1"><a href="#代码如下-1" class="headerlink" title="代码如下"></a>代码如下</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">100010</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt; PII; <span class="comment">// 左右端点</span></span><br><span class="line">vector&lt;PII&gt; segs;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">merge</span><span class="params">(vector&lt;PII&gt; &amp;segs)</span> <span class="comment">// 区间合并</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    vector&lt;PII&gt; res;</span><br><span class="line">    <span class="built_in">sort</span>(segs.<span class="built_in">begin</span>(),segs.<span class="built_in">end</span>()); <span class="comment">// 要先排序，pair类型排序时默认优先比较first值</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> st=<span class="number">-2e9</span>, ed=<span class="number">-2e9</span>; </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> seg:segs) <span class="comment">// 再合并区间</span></span><br><span class="line">        <span class="keyword">if</span>(ed &lt; seg.first)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(st!=<span class="number">-2e9</span>) res.<span class="built_in">push_back</span>(&#123;st,ed&#125;); <span class="comment">// 加一个判断条件，起始分段不能算进去</span></span><br><span class="line">            st = seg.first, ed = seg.second;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> ed = <span class="built_in">max</span>(ed,seg.second);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(st!=<span class="number">-2e9</span>) res.<span class="built_in">push_back</span>(&#123;st,ed&#125;); <span class="comment">// segs不为空</span></span><br><span class="line"></span><br><span class="line">    segs = res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> l,r;</span><br><span class="line">        cin &gt;&gt; l &gt;&gt; r;</span><br><span class="line">        segs.<span class="built_in">push_back</span>(&#123;l,r&#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">merge</span>(segs);</span><br><span class="line">    cout &lt;&lt; segs.<span class="built_in">size</span>() &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>sheyu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xd-sy.github.io/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E4%BD%8D%E8%BF%90%E7%AE%97%E3%80%81%E7%A6%BB%E6%95%A3%E5%8C%96%E3%80%81%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/" title="基础算法-位运算、离散化、区间合并">https://xd-sy.github.io/2022/11/03/基础算法-位运算、离散化、区间合并/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" rel="tag"># 基础算法</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/11/03/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95-%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95/" rel="prev" title="基础算法-双指针算法">
+      <i class="fa fa-chevron-left"></i> 基础算法-双指针算法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/11/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8/" rel="next" title="数据结构-链表">
+      数据结构-链表 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="nav-number">1.</span> <span class="nav-text">位运算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%82n%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%A1%A8%E7%A4%BA%E4%B8%AD%E7%AC%ACk%E4%BD%8D%E6%98%AF%E5%87%A0"><span class="nav-number">1.1.</span> <span class="nav-text">求n的二进制表示中第k位是几</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.1.</span> <span class="nav-text">基本思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98%EF%BC%9A%E6%B1%82n%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.1.2.</span> <span class="nav-text">例题：求n的二进制表示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lowbit-%E6%93%8D%E4%BD%9C"><span class="nav-number">1.2.</span> <span class="nav-text">lowbit 操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">1.2.1.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AcWing-801-%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0"><span class="nav-number">1.2.2.</span> <span class="nav-text">AcWing 801. 二进制中1的个数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%A0%81%E3%80%81%E5%8F%8D%E7%A0%81%E3%80%81%E8%A1%A5%E7%A0%81%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.2.3.</span> <span class="nav-text">原码、反码、补码的关系</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A6%BB%E6%95%A3%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">离散化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-802-%E5%8C%BA%E9%97%B4%E5%92%8C"><span class="nav-number">2.1.</span> <span class="nav-text">AcWing 802. 区间和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF-1"><span class="nav-number">2.1.1.</span> <span class="nav-text">基本思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%A6%82%E4%B8%8B"><span class="nav-number">2.1.2.</span> <span class="nav-text">代码如下</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6"><span class="nav-number">3.</span> <span class="nav-text">区间合并</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF-2"><span class="nav-number">3.1.</span> <span class="nav-text">基本思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-803-%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6"><span class="nav-number">3.2.</span> <span class="nav-text">AcWing 803. 区间合并</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF-3"><span class="nav-number">3.2.1.</span> <span class="nav-text">基本思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%A6%82%E4%B8%8B-1"><span class="nav-number">3.2.2.</span> <span class="nav-text">代码如下</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="sheyu"
+      src="/uploads/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">sheyu</p>
+  <div class="site-description" itemprop="description">学习笔记 & 日常分享</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xd-sy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xd-sy" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:526472325@qq.com" title="E-Mail → mailto:526472325@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      我的大佬朋友们
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://eqqie.cn/" title="https:&#x2F;&#x2F;eqqie.cn&#x2F;" rel="noopener" target="_blank">赤道企鹅</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://cdcq.github.io/" title="https:&#x2F;&#x2F;cdcq.github.io&#x2F;" rel="noopener" target="_blank">cdcq</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.woooo.tech/" title="https:&#x2F;&#x2F;blog.woooo.tech&#x2F;" rel="noopener" target="_blank">rx</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.ga1axy.top/" title="http:&#x2F;&#x2F;www.ga1axy.top&#x2F;" rel="noopener" target="_blank">galaxy</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.f1ag.com/" title="http:&#x2F;&#x2F;www.f1ag.com&#x2F;" rel="noopener" target="_blank">flag</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sheyu</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">128k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:57</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  <script src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

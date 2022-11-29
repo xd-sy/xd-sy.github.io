@@ -1,0 +1,40 @@
+#include<iostream>
+using namespace std;
+const int N = 100010;
+
+// head 表示头结点的下标
+// e[i] 表示结点i的值
+// ne[i] 表示结点i的next指针是多少
+// idx 指向下一个待用的结点
+int head, e[N], ne[N], idx;
+
+// 初始化
+void init()
+{
+    head = -1;
+    idx = 0;
+}
+
+// 将值为x的新结点插到链表头
+void add_to_head(int x)
+{
+    e[idx] = x; // 为新结点赋值
+    ne[idx] = head; // 原来的头结点成为新结点的next结点
+    head = idx; // 新结点成为头结点
+    idx ++ ; // 新结点头插操作已完成，idx移到下一个待用的结点
+}
+
+// 将值为x的新结点插到下标为k的结点后面
+void add(int k, int x)
+{
+    e[idx] = x; // 为新结点赋值
+    ne[idx] = ne[k]; // k结点的next结点成为新结点的next结点
+    ne[k] = idx; // 新结点成为k结点的next结点
+    idx ++ ; // 新结点插入操作已完成，idx移到下一个待用的结点
+}
+
+// 将下标为k的结点的next结点删除
+void remove(int k)
+{
+    ne[k] = ne[ne[k]];
+}
