@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-pen.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-pen.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css">
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xd-sy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本篇博客简单记录了Django框架学习中的Django框架及Python3语法的相关内容（AcWing-day21）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django框架-Django框架及Python3语法">
+<meta property="og:url" content="https://xd-sy.github.io/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:site_name" content="Blog">
+<meta property="og:description" content="本篇博客简单记录了Django框架学习中的Django框架及Python3语法的相关内容（AcWing-day21）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xd-sy.github.io/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/1.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/2.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/3.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/4.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/5.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/6.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/7.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/8.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/9.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/10.png">
+<meta property="og:image" content="https://xd-sy.github.io/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/11.png">
+<meta property="article:published_time" content="2022-12-09T03:51:54.000Z">
+<meta property="article:modified_time" content="2022-12-09T06:44:03.990Z">
+<meta property="article:author" content="sheyu">
+<meta property="article:tag" content="Django框架">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xd-sy.github.io/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/1.png">
+
+<link rel="canonical" href="https://xd-sy.github.io/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Django框架-Django框架及Python3语法 | Blog</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?aa230141ff1b40a6faeceb23894d3e74";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband">
+	<a target="_blank" rel="noopener" href="https://github.com/xd-sy" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    </div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-photos">
+
+    <a href="/photos/" rel="section"><i class="fa fa-camera fa-fw"></i>photos</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xd-sy.github.io/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+      <meta itemprop="name" content="sheyu">
+      <meta itemprop="description" content="学习笔记 & 日常分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Django框架-Django框架及Python3语法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-09 11:51:54 / 修改时间：14:44:03" itemprop="dateCreated datePublished" datetime="2022-12-09T11:51:54+08:00">2022-12-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">Django框架</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>5.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本篇博客简单记录了Django框架学习中的<strong>Django框架及Python3语法</strong>的相关内容（AcWing-day21）</p>
+<span id="more"></span>
+
+<h1 id="Django框架"><a href="#Django框架" class="headerlink" title="Django框架"></a>Django框架</h1><h2 id="Django简介"><a href="#Django简介" class="headerlink" title="Django简介"></a>Django简介</h2><ul>
+<li>Django是后起之秀，近些年越来越流行，Youtube（月活20亿+）、Instagram（月活10亿+）等公司均采用了Django框架</li>
+<li>Django框架可以作为Web、App、小程序、AcWing云端App（AC APP）等各种项目的后端</li>
+</ul>
+<h2 id="Django优势"><a href="#Django优势" class="headerlink" title="Django优势"></a>Django优势</h2><ul>
+<li>开发效率高，生态完善，有 <a target="_blank" rel="noopener" href="https://www.djangoproject.com/">官方社区</a> 长期支持</li>
+<li>运行效率高（常见误区：<code>Python</code> 运行效率低，所以 <code>Python</code> 写的应用运行效率也低）<ol>
+<li>项目运行效率的瓶颈有很多，如：数据库查询、网络带宽&#x2F;延迟、硬盘读写速度等，这些均与框架关系不大</li>
+<li>计算密集型的模块可以用 <code>C/C++</code> 实现，然后编译成动态链接库再 <code>import</code> 进来</li>
+<li>计算密集型的微服务可以通过 <code>thrift</code> 等工具对接，微服务的 <code>Server</code> 端代码可以用 <code>C/C++</code> 实现</li>
+<li>有很多工具可以将 <code>Python</code> 代码翻译成 <code>C/C++</code> ，如 <code>Cython</code> 、<code>Pypy</code> 等。AcWing 题库中的不少题目，会发现 <code>Python3</code> 比 <code>Java</code> 还快一些</li>
+</ol>
+</li>
+<li>既适合大公司，也适合个人开发者，平均开发一个Web&#x2F;AC App只需要半个月到一个月</li>
+</ul>
+<h2 id="实战项目"><a href="#实战项目" class="headerlink" title="实战项目"></a>实战项目</h2><p>在之后的Django框架学习中，会尝试开发一款支持在线联机对战的简易版吃鸡游戏，前后端分离，前端支持AC APP端和Web端</p>
+<p>功能包括：</p>
+<ul>
+<li>游戏菜单、游戏设置：熟悉 <code>http</code> 协议</li>
+<li>存储对局信息、账户信息：熟悉数据库操作</li>
+<li>在 <code>Redis</code> 中存储每局对战状态：熟悉内存数据库操作</li>
+<li>在线聊天室、实时移动、实时放技能：熟悉 <code>websocket</code> 协议</li>
+<li>在线匹配系统：熟悉 <code>thrift</code> 和微服务</li>
+<li>配置 <code>nginx</code> ：熟悉 <code>nginx</code> 部署云服务</li>
+</ul>
+<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><img src="/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/1.png" class="">
+
+<ul>
+<li>完全无需配置本地环境。利用 <code>Terminal</code> 直接在云端开发，使用工具：<code>vim</code> 、<code>tmux</code> 等。不推荐在本地开发<ol>
+<li>实战项目会涉及多台服务器间的网络通信，如在本地开发，未来将不方便调试与部署</li>
+<li>在本地开发无法统一开发环境，部分 <code>Python</code> 包在 <code>Windows</code> 系统上安装困难</li>
+</ol>
+</li>
+<li>需要一台具有 <code>公网IP</code> 的云服务器，并安装 <code>docker</code><ol>
+<li>服务器配置无要求</li>
+<li>后期可以利用 <code>docker</code> 随意迁移</li>
+</ol>
+</li>
+<li>使用统一的 <code>docker</code> 镜像<ol>
+<li>标准化开发环境，避免未来出现软件版本不兼容的情况</li>
+<li>省去极为麻烦的配环境环节</li>
+</ol>
+</li>
+<li>使用 <code>AC Git</code> 管理项目代码<ol>
+<li>方便回滚代码</li>
+</ol>
+</li>
+</ul>
+<h1 id="Python3语法"><a href="#Python3语法" class="headerlink" title="Python3语法"></a>Python3语法</h1><p>面向<a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/tutorial/index.html">Python3官方文档</a> 学习</p>
+<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><ol>
+<li>Flask框架太轻量，功能远没有Django框架全面</li>
+<li>Python容易调试，且Python是完备的语言，最大的好处是可以跟着官方文档来学</li>
+<li>后端主要负责管理各种服务，如mysql、redis、云盘、thrift等</li>
+<li>前后端分离的好处在于一个后端可以对接多个前端</li>
+<li>推荐直接在云端进行开发</li>
+<li>Python文件的开头建议加上以下两行</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/env python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>运行Python文件可用 <code>python3 main.py</code> 或 <code>./main.py</code></li>
+<li>Python中使用 <code>#</code> 进行注释</li>
+<li>Python中 <code>/</code> 默认是浮点数运算，<code>//</code> 才是整除（向下取整），<code>**</code> 是乘方</li>
+<li>Python中无需特别定义变量，为变量赋值即为定义变量</li>
+<li>交互模式下，上一次输出的表达式的值会赋给变量 <code>_</code> </li>
+<li>Python中无论 <code>&#39;&#39;</code> 还是 <code>&quot;&quot;</code> 都表示字符串，<code>\</code> 用于转义；单引号中的双引号无需转义，双引号中的双引号需要转义；字符串前加 <code>r</code> 可以原样输出字符串；<code>&quot;&quot;&quot;</code> 也表示字符串</li>
+<li>Python中的字符串支持索引（下标访问，就像数组那样）；索引还支持负数，即从左往右访问，下标从 0 开始，从右往左访问，下标从 -1 开始；除了索引，字符串还支持切片（用于提取子字符串，左闭右开）；字符串常与 <code>split()</code> 方法搭配使用</li>
+<li>Python中的字符串是不能修改的，因此为字符串中某个索引位置赋值会报错；要生成不同的字符串，应新建一个字符串</li>
+<li>Python的内置函数 <code>len()</code> 可以返回Python中所有类型变量的长度</li>
+<li>Python中共有三个常用的数据结构，<code>list</code>（列表）、<code>set</code>（集合）、<code>dict</code>（字典）</li>
+<li>列表就是数组，是用中括号标注、逗号分隔的一组值，列表可以包含不同类型的元素；和字符串一样，列表也支持索引和切片；列表还支持合并操作；列表可以打包，也可以解包</li>
+<li>与字符串不同，列表的内容可以改变；<code>append()</code> 方法可以在列表结尾添加新元素；为切片赋值可以改变列表大小，甚至清空整个列表；还可以嵌套列表；<code>sorted()</code> 函数可以对列表进行排序，<code>reversed()</code> 函数可以对列表进行反转，但它们均不会对原列表产生修改；列表的 <code>sort()</code> 方法可以对列表进行排序，列表的 <code>reverse()</code> 方法可以对列表进行反转，且它们均是对原列表的修改</li>
+<li>Python通过缩进区分代码块</li>
+<li>Python中的 <code>for</code> 语句是迭代列表或字符串等任意序列；也可以遍历集合，但遍历集合时会修改集合的内容，容易生成错误的结果，因此不能直接进行循环，而是应遍历该集合的副本或创建新的集合</li>
+<li>Python的内置函数 <code>range()</code> 常用于遍历数字序列，左闭右开，还可以设置步长（可以为负）</li>
+<li>Python中的循环语句支持 <code>else</code> 子句；<code>for</code> 循环中，可迭代对象中的元素全部循环完毕，或 <code>while</code> 循环的条件为假时，执行该子句；<code>break</code> 语句没有终止循环时，执行该子句</li>
+<li>Python中的 <code>True</code> 和 <code>False</code> 首字母需大写</li>
+<li>Python中的函数若没有定义返回值，则默认返回 <code>None</code> ；当函数的参数是变量时，若函数内部对变量值进行了修改，也不会影响函数外的变量值；当函数的参数是列表时，若函数内部对列表进行了修改，则会影响函数外的列表，此时传入函数的参数其实是对象的引用；函数的参数可以包含在一个列表或字典中，在调用函数时，可以用 <code>*</code> 操作符把参数从列表或字典中解包出来（ <code>*</code> 列表 or  <code>**</code> 字典）</li>
+<li>使用列表推导式创建列表的方式更简洁、易读，如</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">squares = [x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>)]</span><br></pre></td></tr></table></figure>
+
+<ol start="26">
+<li>元组和列表非常相似，唯一的区别在于元组使用小括号（定义的时候甚至可以省略小括号），且元组内的元素不可修改；元组可以打包，也可以解包</li>
+<li>集合是由不重复元素组成的无序容器，创建集合用花括号或 <code>set()</code> 函数，创建空集合只能用 <code>set()</code> ，不能用花括号，花括号创建的是空字典；集合常用于成员检测、消除重复元素等。集合对象还支持合集、交集、差集、对称差分等数学运算</li>
+<li>Python中的 <code>type()</code> 函数可以返回变量的类型</li>
+<li>字典可以理解为键值对的集合，键值对用逗号分隔，且字典的键必须是唯一的；字典的值可以修改；字典的 <code>items()</code> 方法可以将字典转换为列表，列表中的每一元素都是一个二元对</li>
+<li>同时循环两个或多个序列时，用 <code>zip()</code> 函数可以将其内的元素一一匹配</li>
+<li>为了方便维护程序，最好把脚本拆分成多个文件，然后作为子模块导入主模块。在模块内部，通过全局变量 <code>__name__</code> 可以获取模块名（即字符串）</li>
+<li>Python自带一个标准模块的库，非常好用</li>
+<li>Python中 <code>%</code> 运算符也可用于字符串格式化。给定 <code>&#39;string&#39; % values</code> ，则 <code>string</code> 中的 <code>%</code> 实例会以零个或多个 <code>values</code> 元素替换，此操作被称为字符串插值</li>
+<li>在处理文件对象（读写文件）时，最好使用 <code>with</code> 关键字。优点是子句体结束后，文件会正确关闭，即便触发异常也可以</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;test.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> fout:</span><br><span class="line">	fout.write(<span class="string">&quot;Hello World&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<ol start="35">
+<li>Python中的异常处理只需学会以下代码块即可。如不发生异常，则执行 <code>else</code> 代码段；无论是否发生异常，均执行 <code>finally</code> 代码段</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">divide</span>(<span class="params">x, y</span>):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        result = x / y</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">str</span>(e))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;result is&quot;</span>, result)</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;executing finally clause&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<ol start="36">
+<li>Python中的类只需学会以下代码块即可</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span>:</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, x, y</span>):</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">&quot;created!&quot;</span>)</span><br><span class="line">		self.a = [x, y]</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">update</span>(<span class="params">self</span>):</span><br><span class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(self.a)):</span><br><span class="line">			self.a[i] *= <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<ol start="37">
+<li>Python中的输入函数是 <code>input()</code> ，多搭配 <code>split()</code> 方法和 <code>map()</code> 函数使用，如一行输入用空格隔开的两个整数</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a, b = <span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split(<span class="string">&#x27; &#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<ol start="38">
+<li>Python中的或逻辑运算符是 <code>or</code> ，如</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> a % b == <span class="number">0</span> <span class="keyword">or</span> b % a == <span class="number">0</span>:</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&quot;Sao Multiplos&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<ol start="39">
+<li>Python中求平方根可以使用 <code>math</code> 包的 <code>sqrt()</code> 函数</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">x = math.sqrt(y)</span><br></pre></td></tr></table></figure>
+
+<h1 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h1><h2 id="AcWing-608-差"><a href="#AcWing-608-差" class="headerlink" title="AcWing 608. 差"></a>AcWing 608. 差</h2><img src="/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/2.png" class="">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">A = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">B = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">C = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">D = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line"><span class="comment"># X = A * B - C * D</span></span><br><span class="line"><span class="comment"># print(&quot;DIFERENCA =&quot;, X)</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;DIFERENCA = %d&quot;</span> % (A * B - C * D))</span><br></pre></td></tr></table></figure>
+
+<h2 id="AcWing-665-倍数"><a href="#AcWing-665-倍数" class="headerlink" title="AcWing 665. 倍数"></a>AcWing 665. 倍数</h2><img src="/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/3.png" class="">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A, B = <span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split(<span class="string">&#x27; &#x27;</span>))</span><br><span class="line"><span class="keyword">if</span> A % B == <span class="number">0</span> <span class="keyword">or</span> B % A == <span class="number">0</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Sao Multiplos&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Nao sao Multiplos&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="AcWing-670-动物"><a href="#AcWing-670-动物" class="headerlink" title="AcWing 670. 动物"></a>AcWing 670. 动物</h2><img src="/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/4.png" class="">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="built_in">input</span>()</span><br><span class="line">b = <span class="built_in">input</span>()</span><br><span class="line">c = <span class="built_in">input</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> a == <span class="string">&#x27;vertebrado&#x27;</span>:</span><br><span class="line">    <span class="keyword">if</span> b == <span class="string">&#x27;ave&#x27;</span>:</span><br><span class="line">        <span class="keyword">if</span> c == <span class="string">&#x27;carnivoro&#x27;</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;aguia&#x27;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;pomba&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> c == <span class="string">&#x27;onivoro&#x27;</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;homem&#x27;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;vaca&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">if</span> b == <span class="string">&#x27;inseto&#x27;</span>:</span><br><span class="line">        <span class="keyword">if</span> c == <span class="string">&#x27;hematofago&#x27;</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;pulga&#x27;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;lagarta&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> c == <span class="string">&#x27;hematofago&#x27;</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;sanguessuga&#x27;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;minhoca&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="AcWing-660-零食"><a href="#AcWing-660-零食" class="headerlink" title="AcWing 660. 零食"></a>AcWing 660. 零食</h2><img src="/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/5.png" class="">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x, y = <span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split(<span class="string">&#x27; &#x27;</span>))</span><br><span class="line">prices = [<span class="number">0</span>, <span class="number">4.00</span> , <span class="number">4.50</span>, <span class="number">5.00</span>, <span class="number">2.00</span>, <span class="number">1.50</span>]</span><br><span class="line"><span class="built_in">sum</span> = prices[x] * y</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Total: R$ %.2f&quot;</span> % <span class="built_in">sum</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="AcWing-760-字符串长度"><a href="#AcWing-760-字符串长度" class="headerlink" title="AcWing 760. 字符串长度"></a>AcWing 760. 字符串长度</h2><img src="/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/6.png" class="">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(<span class="built_in">input</span>()))</span><br></pre></td></tr></table></figure>
+
+<h2 id="AcWing-721-递增序列"><a href="#AcWing-721-递增序列" class="headerlink" title="AcWing 721. 递增序列"></a>AcWing 721. 递增序列</h2><img src="/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/7.png" class="">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    a = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">    <span class="keyword">if</span> a != <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, a + <span class="number">1</span>):</span><br><span class="line">            <span class="built_in">print</span>(i, end = <span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="AcWing-726-质数"><a href="#AcWing-726-质数" class="headerlink" title="AcWing 726. 质数"></a>AcWing 726. 质数</h2><img src="/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/8.png" class="">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">n = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">    x = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, <span class="built_in">int</span>(math.sqrt(x)) + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> x % j == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(x, <span class="string">&quot;is not prime&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(x, <span class="string">&quot;is prime&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="AcWing-745-数组的右上半部分"><a href="#AcWing-745-数组的右上半部分" class="headerlink" title="AcWing 745. 数组的右上半部分"></a>AcWing 745. 数组的右上半部分</h2><img src="/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/9.png" class="">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">op = <span class="built_in">input</span>()</span><br><span class="line"><span class="built_in">sum</span>, count = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">12</span>):</span><br><span class="line">    a = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">float</span>, <span class="built_in">input</span>().split()))</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">12</span>):</span><br><span class="line">        <span class="keyword">if</span> j &gt; i:</span><br><span class="line">            <span class="built_in">sum</span> += a[j]</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> op == <span class="string">&#x27;S&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;%.1f&quot;</span> % <span class="built_in">sum</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;%.1f&quot;</span> % (<span class="built_in">sum</span> / count))</span><br></pre></td></tr></table></figure>
+
+<h2 id="AcWing-756-蛇形矩阵"><a href="#AcWing-756-蛇形矩阵" class="headerlink" title="AcWing 756. 蛇形矩阵"></a>AcWing 756. 蛇形矩阵</h2><img src="/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/10.png" class="">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 此题在面试时考察频率很高</span></span><br><span class="line">n, m = <span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())</span><br><span class="line"></span><br><span class="line">res = [[<span class="number">0</span> <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(m)] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">dx, dy = [-<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, -<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">x, y, d = <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n * m + <span class="number">1</span>):</span><br><span class="line">    res[x][y] = i</span><br><span class="line">    a, b = x + dx[d], y + dy[d]</span><br><span class="line">    <span class="keyword">if</span> a &lt; <span class="number">0</span> <span class="keyword">or</span> a == n <span class="keyword">or</span> b &lt; <span class="number">0</span> <span class="keyword">or</span> b == m <span class="keyword">or</span> res[a][b]:</span><br><span class="line">        d = (d + <span class="number">1</span>) % <span class="number">4</span></span><br><span class="line">        a, b = x + dx[d], y + dy[d]</span><br><span class="line">    x, y = a, b</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">        <span class="built_in">print</span>(res[i][j], end = <span class="string">&#x27; &#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>()</span><br></pre></td></tr></table></figure>
+
+<h2 id="AcWing-823-排列"><a href="#AcWing-823-排列" class="headerlink" title="AcWing 823. 排列"></a>AcWing 823. 排列</h2><img src="/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/11.png" class="">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">n = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">path = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">used = [<span class="literal">False</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">u</span>):</span><br><span class="line">    <span class="keyword">if</span> u == n:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="built_in">print</span>(path[i] + <span class="number">1</span>, end=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> used[i]:</span><br><span class="line">                path[u] = i</span><br><span class="line">                used[i] = <span class="literal">True</span></span><br><span class="line">                dfs(u + <span class="number">1</span>)</span><br><span class="line">                used[i] = <span class="literal">False</span></span><br><span class="line">                path[u] = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">dfs(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>sheyu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xd-sy.github.io/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/" title="Django框架-Django框架及Python3语法">https://xd-sy.github.io/2022/12/09/Django框架-Django框架及Python3语法/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Django%E6%A1%86%E6%9E%B6/" rel="tag"># Django框架</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/12/04/Linux%E5%9F%BA%E7%A1%80-%E7%A7%9F%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%8A%E9%85%8D%E7%BD%AEdocker%E7%8E%AF%E5%A2%83/" rel="prev" title="Linux基础-租云服务器及配置docker环境">
+      <i class="fa fa-chevron-left"></i> Linux基础-租云服务器及配置docker环境
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Django%E6%A1%86%E6%9E%B6"><span class="nav-number">1.</span> <span class="nav-text">Django框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Django%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">Django简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Django%E4%BC%98%E5%8A%BF"><span class="nav-number">1.2.</span> <span class="nav-text">Django优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E6%88%98%E9%A1%B9%E7%9B%AE"><span class="nav-number">1.3.</span> <span class="nav-text">实战项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="nav-number">1.4.</span> <span class="nav-text">开发环境</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python3%E8%AF%AD%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">Python3语法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%A5%E5%85%85"><span class="nav-number">3.</span> <span class="nav-text">补充</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A"><span class="nav-number">4.</span> <span class="nav-text">作业</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-608-%E5%B7%AE"><span class="nav-number">4.1.</span> <span class="nav-text">AcWing 608. 差</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-665-%E5%80%8D%E6%95%B0"><span class="nav-number">4.2.</span> <span class="nav-text">AcWing 665. 倍数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-670-%E5%8A%A8%E7%89%A9"><span class="nav-number">4.3.</span> <span class="nav-text">AcWing 670. 动物</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-660-%E9%9B%B6%E9%A3%9F"><span class="nav-number">4.4.</span> <span class="nav-text">AcWing 660. 零食</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-760-%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6"><span class="nav-number">4.5.</span> <span class="nav-text">AcWing 760. 字符串长度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-721-%E9%80%92%E5%A2%9E%E5%BA%8F%E5%88%97"><span class="nav-number">4.6.</span> <span class="nav-text">AcWing 721. 递增序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-726-%E8%B4%A8%E6%95%B0"><span class="nav-number">4.7.</span> <span class="nav-text">AcWing 726. 质数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-745-%E6%95%B0%E7%BB%84%E7%9A%84%E5%8F%B3%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86"><span class="nav-number">4.8.</span> <span class="nav-text">AcWing 745. 数组的右上半部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-756-%E8%9B%87%E5%BD%A2%E7%9F%A9%E9%98%B5"><span class="nav-number">4.9.</span> <span class="nav-text">AcWing 756. 蛇形矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-823-%E6%8E%92%E5%88%97"><span class="nav-number">4.10.</span> <span class="nav-text">AcWing 823. 排列</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="sheyu"
+      src="/uploads/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">sheyu</p>
+  <div class="site-description" itemprop="description">学习笔记 & 日常分享</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xd-sy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xd-sy" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:526472325@qq.com" title="E-Mail → mailto:526472325@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      我的大佬朋友们
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://eqqie.cn/" title="https:&#x2F;&#x2F;eqqie.cn&#x2F;" rel="noopener" target="_blank">赤道企鹅</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://cdcq.github.io/" title="https:&#x2F;&#x2F;cdcq.github.io&#x2F;" rel="noopener" target="_blank">cdcq</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.woooo.tech/" title="https:&#x2F;&#x2F;blog.woooo.tech&#x2F;" rel="noopener" target="_blank">rx</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.ga1axy.top/" title="http:&#x2F;&#x2F;www.ga1axy.top&#x2F;" rel="noopener" target="_blank">galaxy</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://www.f1ag.com/" title="http:&#x2F;&#x2F;www.f1ag.com&#x2F;" rel="noopener" target="_blank">flag</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sheyu</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">138k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:05</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  <script src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
