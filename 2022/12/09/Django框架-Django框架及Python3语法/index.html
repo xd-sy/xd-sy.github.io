@@ -20,7 +20,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"xd-sy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"xd-sy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="本篇博客简单记录了Django框架学习中的Django框架及Python3语法的相关内容（AcWing-day21）">
@@ -42,7 +42,7 @@
 <meta property="og:image" content="https://xd-sy.github.io/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/10.png">
 <meta property="og:image" content="https://xd-sy.github.io/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/11.png">
 <meta property="article:published_time" content="2022-12-09T03:51:54.000Z">
-<meta property="article:modified_time" content="2022-12-09T06:44:03.990Z">
+<meta property="article:modified_time" content="2022-12-22T09:45:47.340Z">
 <meta property="article:author" content="sheyu">
 <meta property="article:tag" content="Django框架">
 <meta name="twitter:card" content="summary">
@@ -207,10 +207,6 @@
     </header>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
 
 
     <main class="main">
@@ -247,10 +243,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-12-09 11:51:54 / 修改时间：14:44:03" itemprop="dateCreated datePublished" datetime="2022-12-09T11:51:54+08:00">2022-12-09</time>
+              <time title="创建时间：2022-12-09 11:51:54" itemprop="dateCreated datePublished" datetime="2022-12-09T11:51:54+08:00">2022-12-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-22 17:45:47" itemprop="dateModified" datetime="2022-12-22T17:45:47+08:00">2022-12-22</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -266,13 +268,13 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>5.8k</span>
+              <span>2.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
-              <span>5 分钟</span>
+              <span>14 分钟</span>
             </span>
 
         </div>
@@ -287,11 +289,11 @@
         <p>本篇博客简单记录了Django框架学习中的<strong>Django框架及Python3语法</strong>的相关内容（AcWing-day21）</p>
 <span id="more"></span>
 
-<h1 id="Django框架"><a href="#Django框架" class="headerlink" title="Django框架"></a>Django框架</h1><h2 id="Django简介"><a href="#Django简介" class="headerlink" title="Django简介"></a>Django简介</h2><ul>
+<h1 id="Django框架"><a href="#Django框架" class="headerlink" title="Django框架"></a>Django框架</h1><h2 id="1-Django简介"><a href="#1-Django简介" class="headerlink" title="1. Django简介"></a>1. Django简介</h2><ul>
 <li>Django是后起之秀，近些年越来越流行，Youtube（月活20亿+）、Instagram（月活10亿+）等公司均采用了Django框架</li>
 <li>Django框架可以作为Web、App、小程序、AcWing云端App（AC APP）等各种项目的后端</li>
 </ul>
-<h2 id="Django优势"><a href="#Django优势" class="headerlink" title="Django优势"></a>Django优势</h2><ul>
+<h2 id="2-Django优势"><a href="#2-Django优势" class="headerlink" title="2. Django优势"></a>2. Django优势</h2><ul>
 <li>开发效率高，生态完善，有 <a target="_blank" rel="noopener" href="https://www.djangoproject.com/">官方社区</a> 长期支持</li>
 <li>运行效率高（常见误区：<code>Python</code> 运行效率低，所以 <code>Python</code> 写的应用运行效率也低）<ol>
 <li>项目运行效率的瓶颈有很多，如：数据库查询、网络带宽&#x2F;延迟、硬盘读写速度等，这些均与框架关系不大</li>
@@ -302,7 +304,7 @@
 </li>
 <li>既适合大公司，也适合个人开发者，平均开发一个Web&#x2F;AC App只需要半个月到一个月</li>
 </ul>
-<h2 id="实战项目"><a href="#实战项目" class="headerlink" title="实战项目"></a>实战项目</h2><p>在之后的Django框架学习中，会尝试开发一款支持在线联机对战的简易版吃鸡游戏，前后端分离，前端支持AC APP端和Web端</p>
+<h2 id="3-实战项目"><a href="#3-实战项目" class="headerlink" title="3.实战项目"></a>3.实战项目</h2><p>在之后的Django框架学习中，会尝试开发一款支持在线联机对战的简易版吃鸡游戏，前后端分离，前端支持AC APP端和Web端</p>
 <p>功能包括：</p>
 <ul>
 <li>游戏菜单、游戏设置：熟悉 <code>http</code> 协议</li>
@@ -312,7 +314,7 @@
 <li>在线匹配系统：熟悉 <code>thrift</code> 和微服务</li>
 <li>配置 <code>nginx</code> ：熟悉 <code>nginx</code> 部署云服务</li>
 </ul>
-<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><img src="/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/1.png" class="">
+<h2 id="4-开发环境"><a href="#4-开发环境" class="headerlink" title="4.开发环境"></a>4.开发环境</h2><img src="/2022/12/09/Django%E6%A1%86%E6%9E%B6-Django%E6%A1%86%E6%9E%B6%E5%8F%8APython3%E8%AF%AD%E6%B3%95/1.png" class="">
 
 <ul>
 <li>完全无需配置本地环境。利用 <code>Terminal</code> 直接在云端开发，使用工具：<code>vim</code> 、<code>tmux</code> 等。不推荐在本地开发<ol>
@@ -547,7 +549,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Django%E6%A1%86%E6%9E%B6"><span class="nav-number">1.</span> <span class="nav-text">Django框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Django%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">Django简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Django%E4%BC%98%E5%8A%BF"><span class="nav-number">1.2.</span> <span class="nav-text">Django优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E6%88%98%E9%A1%B9%E7%9B%AE"><span class="nav-number">1.3.</span> <span class="nav-text">实战项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="nav-number">1.4.</span> <span class="nav-text">开发环境</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python3%E8%AF%AD%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">Python3语法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%A5%E5%85%85"><span class="nav-number">3.</span> <span class="nav-text">补充</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A"><span class="nav-number">4.</span> <span class="nav-text">作业</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-608-%E5%B7%AE"><span class="nav-number">4.1.</span> <span class="nav-text">AcWing 608. 差</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-665-%E5%80%8D%E6%95%B0"><span class="nav-number">4.2.</span> <span class="nav-text">AcWing 665. 倍数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-670-%E5%8A%A8%E7%89%A9"><span class="nav-number">4.3.</span> <span class="nav-text">AcWing 670. 动物</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-660-%E9%9B%B6%E9%A3%9F"><span class="nav-number">4.4.</span> <span class="nav-text">AcWing 660. 零食</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-760-%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6"><span class="nav-number">4.5.</span> <span class="nav-text">AcWing 760. 字符串长度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-721-%E9%80%92%E5%A2%9E%E5%BA%8F%E5%88%97"><span class="nav-number">4.6.</span> <span class="nav-text">AcWing 721. 递增序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-726-%E8%B4%A8%E6%95%B0"><span class="nav-number">4.7.</span> <span class="nav-text">AcWing 726. 质数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-745-%E6%95%B0%E7%BB%84%E7%9A%84%E5%8F%B3%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86"><span class="nav-number">4.8.</span> <span class="nav-text">AcWing 745. 数组的右上半部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-756-%E8%9B%87%E5%BD%A2%E7%9F%A9%E9%98%B5"><span class="nav-number">4.9.</span> <span class="nav-text">AcWing 756. 蛇形矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-823-%E6%8E%92%E5%88%97"><span class="nav-number">4.10.</span> <span class="nav-text">AcWing 823. 排列</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Django%E6%A1%86%E6%9E%B6"><span class="nav-text">Django框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Django%E7%AE%80%E4%BB%8B"><span class="nav-text">1. Django简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Django%E4%BC%98%E5%8A%BF"><span class="nav-text">2. Django优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%AE%9E%E6%88%98%E9%A1%B9%E7%9B%AE"><span class="nav-text">3.实战项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="nav-text">4.开发环境</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python3%E8%AF%AD%E6%B3%95"><span class="nav-text">Python3语法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%A5%E5%85%85"><span class="nav-text">补充</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A"><span class="nav-text">作业</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-608-%E5%B7%AE"><span class="nav-text">AcWing 608. 差</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-665-%E5%80%8D%E6%95%B0"><span class="nav-text">AcWing 665. 倍数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-670-%E5%8A%A8%E7%89%A9"><span class="nav-text">AcWing 670. 动物</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-660-%E9%9B%B6%E9%A3%9F"><span class="nav-text">AcWing 660. 零食</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-760-%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6"><span class="nav-text">AcWing 760. 字符串长度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-721-%E9%80%92%E5%A2%9E%E5%BA%8F%E5%88%97"><span class="nav-text">AcWing 721. 递增序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-726-%E8%B4%A8%E6%95%B0"><span class="nav-text">AcWing 726. 质数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-745-%E6%95%B0%E7%BB%84%E7%9A%84%E5%8F%B3%E4%B8%8A%E5%8D%8A%E9%83%A8%E5%88%86"><span class="nav-text">AcWing 745. 数组的右上半部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-756-%E8%9B%87%E5%BD%A2%E7%9F%A9%E9%98%B5"><span class="nav-text">AcWing 756. 蛇形矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-823-%E6%8E%92%E5%88%97"><span class="nav-text">AcWing 823. 排列</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -563,7 +565,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -618,6 +620,10 @@
   </div>
 
       </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
 
     </div>
   </aside>
@@ -645,12 +651,8 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">142k</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-coffee"></i>
-    </span>
-    <span title="站点阅读时长">2:09</span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">71k</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
@@ -669,6 +671,7 @@
   </div>
 
   
+  <script color='' opacity='' zIndex='' count='' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
@@ -687,6 +690,7 @@
 <script src="/js/next-boot.js"></script>
 
 
+  <script defer src="/lib/three/three.min.js"></script>
 
 
   

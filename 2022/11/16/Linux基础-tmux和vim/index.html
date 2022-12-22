@@ -20,7 +20,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"xd-sy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"xd-sy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="本篇博客简单记录了Linux基础学习中的tmux和vim的相关内容（AcWing-day14）">
@@ -31,7 +31,7 @@
 <meta property="og:description" content="本篇博客简单记录了Linux基础学习中的tmux和vim的相关内容（AcWing-day14）">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-16T13:29:09.000Z">
-<meta property="article:modified_time" content="2022-11-16T14:00:08.407Z">
+<meta property="article:modified_time" content="2022-12-22T09:53:51.574Z">
 <meta property="article:author" content="sheyu">
 <meta property="article:tag" content="Linux基础">
 <meta name="twitter:card" content="summary">
@@ -195,10 +195,6 @@
     </header>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
 
 
     <main class="main">
@@ -235,10 +231,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-11-16 21:29:09 / 修改时间：22:00:08" itemprop="dateCreated datePublished" datetime="2022-11-16T21:29:09+08:00">2022-11-16</time>
+              <time title="创建时间：2022-11-16 21:29:09" itemprop="dateCreated datePublished" datetime="2022-11-16T21:29:09+08:00">2022-11-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-22 17:53:51" itemprop="dateModified" datetime="2022-12-22T17:53:51+08:00">2022-12-22</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -254,13 +256,13 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>7k</span>
+              <span>3.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
-              <span>6 分钟</span>
+              <span>18 分钟</span>
             </span>
 
         </div>
@@ -275,20 +277,20 @@
         <p>本篇博客简单记录了Linux基础学习中的<strong>tmux和vim</strong>的相关内容（AcWing-day14）</p>
 <span id="more"></span>
 
-<h1 id="tmux"><a href="#tmux" class="headerlink" title="tmux"></a>tmux</h1><h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><p>(1) 分屏。（很实用）</p>
+<h1 id="tmux"><a href="#tmux" class="headerlink" title="tmux"></a>tmux</h1><h2 id="1-功能"><a href="#1-功能" class="headerlink" title="1.功能"></a>1.功能</h2><p>(1) 分屏。（很实用）</p>
 <p>(2) 允许断开 Terminal 连接后，继续运行进程。（很实用）</p>
-<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p>一个 tmux 可以包含多个 session（会话），一个 session 可以包含多个 window（窗口），一个 window 可以包含多个 pane（小窗口）。pane 是 tmux 中的最小单位，一个 pane 会开启一个 shell 。</p>
+<h2 id="2-结构"><a href="#2-结构" class="headerlink" title="2.结构"></a>2.结构</h2><p>一个 tmux 可以包含多个 session（会话），一个 session 可以包含多个 window（窗口），一个 window 可以包含多个 pane（小窗口）。pane 是 tmux 中的最小单位，一个 pane 会开启一个 shell 。</p>
 <p>实例：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">tmux:</span><br><span class="line">    session 0:</span><br><span class="line">       window 0:</span><br><span class="line">            pane 0</span><br><span class="line">            pane 1</span><br><span class="line">            pane 2</span><br><span class="line">            ...</span><br><span class="line">       window 1</span><br><span class="line">       window 2</span><br><span class="line">       ...</span><br><span class="line">    session 1</span><br><span class="line">    session 2</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
 
-<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">(1) tmux：新建一个session，其中包含一个window，window中包含一个pane，pane里打开了一个shell对话框。</span><br><span class="line">(2) 按下Ctrl + a后手指松开，然后按%：将当前pane左右平分成两个pane。</span><br><span class="line">(3) 按下Ctrl + a后手指松开，然后按&quot;（双引号）：将当前pane上下平分成两个pane。</span><br><span class="line">(4) Ctrl + d：关闭当前pane；如果当前window的所有pane均已关闭，则自动关闭window；如果当前session的所有window均已关闭，则自动关闭session。</span><br><span class="line">(5) 鼠标点击可以选pane。</span><br><span class="line">(6) 按下ctrl + a后手指松开，然后按方向键：选择相邻的pane。</span><br><span class="line">(7) 鼠标拖动pane之间的分割线，可以调整分割线的位置。</span><br><span class="line">(8) 按住ctrl + a的同时按方向键，可以调整pane之间分割线的位置。</span><br><span class="line">(9) 按下ctrl + a后手指松开，然后按z：将当前pane全屏/取消全屏。</span><br><span class="line">(10) 按下ctrl + a后手指松开，然后按d：挂起当前session。</span><br><span class="line">(11) tmux a：打开之前挂起的session。</span><br><span class="line">(12) 按下ctrl + a后手指松开，然后按s：选择其它session。</span><br><span class="line">     方向键 —— 上：选择上一项 session/window/pane</span><br><span class="line">     方向键 —— 下：选择下一项 session/window/pane</span><br><span class="line">     方向键 —— 右：展开当前项 session/window</span><br><span class="line">     方向键 —— 左：闭合当前项 session/window</span><br><span class="line">(13) 按下Ctrl + a后手指松开，然后按c：在当前session中创建一个新的window。</span><br><span class="line">(14) 按下Ctrl + a后手指松开，然后按w：选择其他window，操作方法与(12)完全相同。</span><br><span class="line">(15) 按下Ctrl + a后手指松开，然后按PageUp：翻阅当前pane内的内容。</span><br><span class="line">(16) 鼠标滚轮：翻阅当前pane内的内容。</span><br><span class="line">(17) 在tmux中选中文本时，需要按住shift键。（仅支持Windows和Linux，不支持Mac，不过该操作并不是必须的，因此影响不大）</span><br><span class="line">(18) tmux中复制/粘贴文本的通用方式（仅支持英文）：</span><br><span class="line">    (1) 按下Ctrl + a后松开手指，然后按[</span><br><span class="line">    (2) 用鼠标选中文本，被选中的文本会被自动复制到tmux的剪贴板</span><br><span class="line">    (3) 按下Ctrl + a后松开手指，然后按]，会将剪贴板中的内容粘贴到光标处</span><br><span class="line">(19) tmux中复制/粘贴文本的另一种方式：</span><br><span class="line">    (1) 按住Shift键选中需要复制的文本</span><br><span class="line">    (2) Ctrl + Insert复制；Shift + Insert粘贴</span><br></pre></td></tr></table></figure>
+<h2 id="3-操作"><a href="#3-操作" class="headerlink" title="3.操作"></a>3.操作</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">(1) tmux：新建一个session，其中包含一个window，window中包含一个pane，pane里打开了一个shell对话框。</span><br><span class="line">(2) 按下Ctrl + a后手指松开，然后按%：将当前pane左右平分成两个pane。</span><br><span class="line">(3) 按下Ctrl + a后手指松开，然后按&quot;（双引号）：将当前pane上下平分成两个pane。</span><br><span class="line">(4) Ctrl + d：关闭当前pane；如果当前window的所有pane均已关闭，则自动关闭window；如果当前session的所有window均已关闭，则自动关闭session。</span><br><span class="line">(5) 鼠标点击可以选pane。</span><br><span class="line">(6) 按下ctrl + a后手指松开，然后按方向键：选择相邻的pane。</span><br><span class="line">(7) 鼠标拖动pane之间的分割线，可以调整分割线的位置。</span><br><span class="line">(8) 按住ctrl + a的同时按方向键，可以调整pane之间分割线的位置。</span><br><span class="line">(9) 按下ctrl + a后手指松开，然后按z：将当前pane全屏/取消全屏。</span><br><span class="line">(10) 按下ctrl + a后手指松开，然后按d：挂起当前session。</span><br><span class="line">(11) tmux a：打开之前挂起的session。</span><br><span class="line">(12) 按下ctrl + a后手指松开，然后按s：选择其它session。</span><br><span class="line">     方向键 —— 上：选择上一项 session/window/pane</span><br><span class="line">     方向键 —— 下：选择下一项 session/window/pane</span><br><span class="line">     方向键 —— 右：展开当前项 session/window</span><br><span class="line">     方向键 —— 左：闭合当前项 session/window</span><br><span class="line">(13) 按下Ctrl + a后手指松开，然后按c：在当前session中创建一个新的window。</span><br><span class="line">(14) 按下Ctrl + a后手指松开，然后按w：选择其他window，操作方法与(12)完全相同。</span><br><span class="line">(15) 按下Ctrl + a后手指松开，然后按PageUp：翻阅当前pane内的内容。</span><br><span class="line">(16) 鼠标滚轮：翻阅当前pane内的内容。</span><br><span class="line">(17) 在tmux中选中文本时，需要按住shift键。（仅支持Windows和Linux，不支持Mac，不过该操作并不是必须的，因此影响不大）</span><br><span class="line">(18) tmux中复制/粘贴文本的通用方式（仅支持英文）：</span><br><span class="line">    (1) 按下Ctrl + a后松开手指，然后按[</span><br><span class="line">    (2) 用鼠标选中文本，被选中的文本会被自动复制到tmux的剪贴板</span><br><span class="line">    (3) 按下Ctrl + a后松开手指，然后按]，会将剪贴板中的内容粘贴到光标处</span><br><span class="line">(19) tmux中复制/粘贴文本的另一种方式：</span><br><span class="line">    (1) 按住Shift键选中需要复制的文本</span><br><span class="line">    (2) Ctrl + Insert复制；Shift + Insert粘贴</span><br></pre></td></tr></table></figure>
 
-<h1 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h1><h2 id="功能-1"><a href="#功能-1" class="headerlink" title="功能"></a>功能</h2><p>(1) 命令行模式下的文本编辑器（支持中文）。</p>
+<h1 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h1><h2 id="1-功能-1"><a href="#1-功能-1" class="headerlink" title="1.功能"></a>1.功能</h2><p>(1) 命令行模式下的文本编辑器（支持中文）。</p>
 <p>(2) 根据文件扩展名自动判别编程语言。支持代码缩进、代码高亮等功能。</p>
 <p>(3) 使用方式：<code>vim filename</code></p>
 <p>​      如果已有该文件，则打开它。</p>
 <p>​      如果没有该文件，则创建一个新文件，并命名为 filename 。</p>
-<h2 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h2><p><strong>(1) 一般命令模式</strong></p>
+<h2 id="2-模式"><a href="#2-模式" class="headerlink" title="2.模式"></a>2.模式</h2><p><strong>(1) 一般命令模式</strong></p>
 <p>默认模式。命令输入方式：类似于打游戏放技能，按不同字符来进行不同操作。可以复制、粘贴、删除文本等。</p>
 <p><strong>(2) 编辑模式</strong></p>
 <p>在一般命令模式里按下 <code>i</code> ，会进入编辑模式。</p>
@@ -296,9 +298,9 @@
 <p><strong>(3) 命令行模式</strong></p>
 <p>在一般命令模式里按下 <code>:/?</code> 三个字母中的任意一个，会进入命令行模式。命令行在最下面。</p>
 <p>可以查找、替换、保存、退出、配置编辑器等。</p>
-<h2 id="操作-1"><a href="#操作-1" class="headerlink" title="操作"></a>操作</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">(1) i：进入编辑模式</span><br><span class="line">(2) ESC：进入一般命令模式</span><br><span class="line">(3) h 或 左箭头键：光标向左移动一个字符</span><br><span class="line">(4) j 或 向下箭头：光标向下移动一个字符</span><br><span class="line">(5) k 或 向上箭头：光标向上移动一个字符</span><br><span class="line">(6) l 或 向右箭头：光标向右移动一个字符</span><br><span class="line">(7) n&lt;Space&gt;：n表示数字，按下数字后再按空格，光标会向右移动这一行的n个字符</span><br><span class="line">(8) 0 或 功能键[Home]：光标移动到本行开头</span><br><span class="line">(9) $ 或 功能键[End]：光标移动到本行末尾</span><br><span class="line">(10) G：光标移动到最后一行</span><br><span class="line">(11) :n 或 nG：n为数字，光标移动到第n行</span><br><span class="line">(12) gg：光标移动到第一行，相当于1G</span><br><span class="line">(13) n&lt;Enter&gt;：n为数字，光标向下移动n行</span><br><span class="line">(14) /word：向光标之下寻找第一个值为word的字符串。</span><br><span class="line">(15) ?word：向光标之上寻找第一个值为word的字符串。</span><br><span class="line">(16) n：重复前一个查找操作</span><br><span class="line">(17) N：反向重复前一个查找操作</span><br><span class="line">(18) :n1,n2s/word1/word2/g：n1与n2为数字，在第n1行与n2行之间寻找word1这个字符串，并将该字符串替换为word2</span><br><span class="line">(19) :1,$s/word1/word2/g：将全文的word1替换为word2</span><br><span class="line">(20) :1,$s/word1/word2/gc：将全文的word1替换为word2，且在替换前要求用户确认。</span><br><span class="line">(21) v：选中文本，按两次ESC退出（是通过命令跳转进行选中，不是通过鼠标）</span><br><span class="line">(22) d：删除选中的文本（实则是剪切，选中的文本会被自动复制到vim的剪贴板，不会复制行号）</span><br><span class="line">(23) dd: 删除当前行（实则是剪切，选中的文本会被自动复制到vim的剪贴板，不会复制行号）</span><br><span class="line">(24) y：复制选中的文本</span><br><span class="line">(25) yy: 复制当前行</span><br><span class="line">(26) p: 将复制的数据在光标的下一行/下一个位置粘贴</span><br><span class="line">(27) u：撤销</span><br><span class="line">(28) Ctrl + r：取消撤销</span><br><span class="line">(29) 大于号 &gt;：将选中的文本整体向右缩进一次</span><br><span class="line">(30) 小于号 &lt;：将选中的文本整体向左缩进一次</span><br><span class="line">(31) :w 保存</span><br><span class="line">(32) :w! 强制保存</span><br><span class="line">(33) :q 退出</span><br><span class="line">(34) :q! 强制退出</span><br><span class="line">(35) :wq 保存并退出</span><br><span class="line">(36) :wq! 强制保存并退出</span><br><span class="line">(37) :set paste 设置成粘贴模式，取消代码自动缩进</span><br><span class="line">(38) :set nopaste 取消粘贴模式，开启代码自动缩进</span><br><span class="line">(39) :set nu 显示行号</span><br><span class="line">(40) :set nonu 隐藏行号</span><br><span class="line">(41) :noh 关闭查找关键词高亮</span><br><span class="line">(42) ggdG：组合键，删除文件全部内容</span><br><span class="line">(43) gg=G：将全文代码格式化</span><br><span class="line">(44) Ctrl + q：当vim卡死时，可以取消当前正在执行的命令</span><br><span class="line">(45) delete：删除光标所在位置后面的字符</span><br></pre></td></tr></table></figure>
+<h2 id="3-操作-1"><a href="#3-操作-1" class="headerlink" title="3.操作"></a>3.操作</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">(1) i：进入编辑模式</span><br><span class="line">(2) ESC：进入一般命令模式</span><br><span class="line">(3) h 或 左箭头键：光标向左移动一个字符</span><br><span class="line">(4) j 或 向下箭头：光标向下移动一个字符</span><br><span class="line">(5) k 或 向上箭头：光标向上移动一个字符</span><br><span class="line">(6) l 或 向右箭头：光标向右移动一个字符</span><br><span class="line">(7) n&lt;Space&gt;：n表示数字，按下数字后再按空格，光标会向右移动这一行的n个字符</span><br><span class="line">(8) 0 或 功能键[Home]：光标移动到本行开头</span><br><span class="line">(9) $ 或 功能键[End]：光标移动到本行末尾</span><br><span class="line">(10) G：光标移动到最后一行</span><br><span class="line">(11) :n 或 nG：n为数字，光标移动到第n行</span><br><span class="line">(12) gg：光标移动到第一行，相当于1G</span><br><span class="line">(13) n&lt;Enter&gt;：n为数字，光标向下移动n行</span><br><span class="line">(14) /word：向光标之下寻找第一个值为word的字符串。</span><br><span class="line">(15) ?word：向光标之上寻找第一个值为word的字符串。</span><br><span class="line">(16) n：重复前一个查找操作</span><br><span class="line">(17) N：反向重复前一个查找操作</span><br><span class="line">(18) :n1,n2s/word1/word2/g：n1与n2为数字，在第n1行与n2行之间寻找word1这个字符串，并将该字符串替换为word2</span><br><span class="line">(19) :1,$s/word1/word2/g：将全文的word1替换为word2</span><br><span class="line">(20) :1,$s/word1/word2/gc：将全文的word1替换为word2，且在替换前要求用户确认。</span><br><span class="line">(21) v：选中文本，按两次ESC退出（是通过命令跳转进行选中，不是通过鼠标）</span><br><span class="line">(22) d：删除选中的文本（实则是剪切，选中的文本会被自动复制到vim的剪贴板，不会复制行号）</span><br><span class="line">(23) dd: 删除当前行（实则是剪切，选中的文本会被自动复制到vim的剪贴板，不会复制行号）</span><br><span class="line">(24) y：复制选中的文本</span><br><span class="line">(25) yy: 复制当前行</span><br><span class="line">(26) p: 将复制的数据在光标的下一行/下一个位置粘贴</span><br><span class="line">(27) u：撤销</span><br><span class="line">(28) Ctrl + r：取消撤销</span><br><span class="line">(29) 大于号 &gt;：将选中的文本整体向右缩进一次</span><br><span class="line">(30) 小于号 &lt;：将选中的文本整体向左缩进一次</span><br><span class="line">(31) :w 保存</span><br><span class="line">(32) :w! 强制保存</span><br><span class="line">(33) :q 退出</span><br><span class="line">(34) :q! 强制退出</span><br><span class="line">(35) :wq 保存并退出</span><br><span class="line">(36) :wq! 强制保存并退出</span><br><span class="line">(37) :set paste 设置成粘贴模式，取消代码自动缩进</span><br><span class="line">(38) :set nopaste 取消粘贴模式，开启代码自动缩进</span><br><span class="line">(39) :set nu 显示行号</span><br><span class="line">(40) :set nonu 隐藏行号</span><br><span class="line">(41) :noh 关闭查找关键词高亮</span><br><span class="line">(42) ggdG：组合键，删除文件全部内容</span><br><span class="line">(43) gg=G：将全文代码格式化</span><br><span class="line">(44) Ctrl + q：当vim卡死时，可以取消当前正在执行的命令</span><br><span class="line">(45) delete：删除光标所在位置后面的字符</span><br></pre></td></tr></table></figure>
 
-<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><p>每次用 vim 编辑文件时，会自动创建一个 <code>.filename.swp</code> 的临时文件。</p>
+<h2 id="4-异常处理"><a href="#4-异常处理" class="headerlink" title="4.异常处理"></a>4.异常处理</h2><p>每次用 vim 编辑文件时，会自动创建一个 <code>.filename.swp</code> 的临时文件。</p>
 <p>如果打开某个文件时，该文件的 swp 文件已存在，则会报错。此时解决办法有两种：</p>
 <p>(1) 找到正在打开该文件的程序，并退出。</p>
 <p>(2) 直接删掉该swp文件即可。</p>
@@ -435,7 +437,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#tmux"><span class="nav-number">1.</span> <span class="nav-text">tmux</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD"><span class="nav-number">1.1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C"><span class="nav-number">1.3.</span> <span class="nav-text">操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vim"><span class="nav-number">2.</span> <span class="nav-text">vim</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD-1"><span class="nav-number">2.1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C-1"><span class="nav-number">2.3.</span> <span class="nav-text">操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="nav-number">2.4.</span> <span class="nav-text">异常处理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A"><span class="nav-number">3.</span> <span class="nav-text">作业</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#tmux"><span class="nav-text">tmux</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%8A%9F%E8%83%BD"><span class="nav-text">1.功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%BB%93%E6%9E%84"><span class="nav-text">2.结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%93%8D%E4%BD%9C"><span class="nav-text">3.操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vim"><span class="nav-text">vim</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%8A%9F%E8%83%BD-1"><span class="nav-text">1.功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%A8%A1%E5%BC%8F"><span class="nav-text">2.模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%93%8D%E4%BD%9C-1"><span class="nav-text">3.操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="nav-text">4.异常处理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%9C%E4%B8%9A"><span class="nav-text">作业</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -451,7 +453,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -506,6 +508,10 @@
   </div>
 
       </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
 
     </div>
   </aside>
@@ -533,12 +539,8 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">142k</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-coffee"></i>
-    </span>
-    <span title="站点阅读时长">2:09</span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">71k</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
@@ -557,6 +559,7 @@
   </div>
 
   
+  <script color='' opacity='' zIndex='' count='' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
@@ -575,6 +578,7 @@
 <script src="/js/next-boot.js"></script>
 
 
+  <script defer src="/lib/three/three.min.js"></script>
 
 
   

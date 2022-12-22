@@ -20,7 +20,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"xd-sy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"xd-sy.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="本篇博客简单记录了数据结构学习中的堆的相关内容（AcWing-day12）">
@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://xd-sy.github.io/2022/11/14/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%A0%86/2.png">
 <meta property="og:image" content="https://xd-sy.github.io/2022/11/14/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%A0%86/3.png">
 <meta property="article:published_time" content="2022-11-14T01:59:26.000Z">
-<meta property="article:modified_time" content="2022-11-15T07:57:25.204Z">
+<meta property="article:modified_time" content="2022-12-22T12:27:52.739Z">
 <meta property="article:author" content="sheyu">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
@@ -199,10 +199,6 @@
     </header>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
 
 
     <main class="main">
@@ -247,7 +243,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-15 15:57:25" itemprop="dateModified" datetime="2022-11-15T15:57:25+08:00">2022-11-15</time>
+                <time title="修改时间：2022-12-22 20:27:52" itemprop="dateModified" datetime="2022-12-22T20:27:52+08:00">2022-12-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -264,13 +260,13 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>3.5k</span>
+              <span>1.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
-              <span>3 分钟</span>
+              <span>8 分钟</span>
             </span>
 
         </div>
@@ -318,19 +314,19 @@
 <p>时间复杂度都是 O(log n)</p>
 <p>下面看如何利用 down 和 up 这两基本操作来实现上面提到的五个操作</p>
 <p>用 heap 表示堆，用 size 表示当前堆的大小</p>
-<h3 id="向堆中插入一个数"><a href="#向堆中插入一个数" class="headerlink" title="向堆中插入一个数"></a>向堆中插入一个数</h3><p>把数插到堆的最后</p>
+<h3 id="1-向堆中插入一个数"><a href="#1-向堆中插入一个数" class="headerlink" title="1.向堆中插入一个数"></a>1.向堆中插入一个数</h3><p>把数插到堆的最后</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">heap[++ size] = x;</span><br><span class="line">up[size];</span><br></pre></td></tr></table></figure>
 
-<h3 id="求堆中的最小值"><a href="#求堆中的最小值" class="headerlink" title="求堆中的最小值"></a>求堆中的最小值</h3><p>堆（小根堆）中的最小值就是堆顶元素</p>
+<h3 id="2-求堆中的最小值"><a href="#2-求堆中的最小值" class="headerlink" title="2.求堆中的最小值"></a>2.求堆中的最小值</h3><p>堆（小根堆）中的最小值就是堆顶元素</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heap[<span class="number">1</span>];</span><br></pre></td></tr></table></figure>
 
-<h3 id="删除堆中的最小值"><a href="#删除堆中的最小值" class="headerlink" title="删除堆中的最小值"></a>删除堆中的最小值</h3><p>用堆中的最后一个元素覆盖堆顶元素，然后去掉最后一个元素（ size – ），最后再把堆顶元素 down 一遍即可</p>
+<h3 id="3-删除堆中的最小值"><a href="#3-删除堆中的最小值" class="headerlink" title="3.删除堆中的最小值"></a>3.删除堆中的最小值</h3><p>用堆中的最后一个元素覆盖堆顶元素，然后去掉最后一个元素（ size – ），最后再把堆顶元素 down 一遍即可</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">heap[<span class="number">1</span>] = heap[size];</span><br><span class="line">size --;</span><br><span class="line"><span class="built_in">down</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
 
-<h3 id="删除堆中的任意一个元素"><a href="#删除堆中的任意一个元素" class="headerlink" title="删除堆中的任意一个元素"></a>删除堆中的任意一个元素</h3><p>和删除堆中的最小值操作类似，不过需要注意的是，当用堆中的最后一个元素覆盖当前需要删除的元素后，需要判断是执行 down 操作还是 up 操作，不过总归两个操作只能执行其中一个，所以不妨在代码里都写上（为了简化代码就不判断了，这其实也是一种很实用的技巧）</p>
+<h3 id="4-删除堆中的任意一个元素"><a href="#4-删除堆中的任意一个元素" class="headerlink" title="4.删除堆中的任意一个元素"></a>4.删除堆中的任意一个元素</h3><p>和删除堆中的最小值操作类似，不过需要注意的是，当用堆中的最后一个元素覆盖当前需要删除的元素后，需要判断是执行 down 操作还是 up 操作，不过总归两个操作只能执行其中一个，所以不妨在代码里都写上（为了简化代码就不判断了，这其实也是一种很实用的技巧）</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">heap[k] = heap[size];</span><br><span class="line">size --;</span><br><span class="line"><span class="built_in">down</span>(k);</span><br><span class="line"><span class="built_in">up</span>(k);</span><br></pre></td></tr></table></figure>
 
-<h3 id="修改堆中的任意一个元素"><a href="#修改堆中的任意一个元素" class="headerlink" title="修改堆中的任意一个元素"></a>修改堆中的任意一个元素</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">heap[k] = x;</span><br><span class="line"><span class="built_in">down</span>(k);</span><br><span class="line"><span class="built_in">up</span>(k);</span><br></pre></td></tr></table></figure>
+<h3 id="5-修改堆中的任意一个元素"><a href="#5-修改堆中的任意一个元素" class="headerlink" title="5.修改堆中的任意一个元素"></a>5.修改堆中的任意一个元素</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">heap[k] = x;</span><br><span class="line"><span class="built_in">down</span>(k);</span><br><span class="line"><span class="built_in">up</span>(k);</span><br></pre></td></tr></table></figure>
 
 <h2 id="AcWing-838-堆排序"><a href="#AcWing-838-堆排序" class="headerlink" title="AcWing 838. 堆排序"></a>AcWing 838. 堆排序</h2><img src="/2022/11/14/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%A0%86/2.png" class="">
 
@@ -440,7 +436,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A0%86"><span class="nav-number">1.</span> <span class="nav-text">堆</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%86%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">堆的基本结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%86%E7%9A%84%E5%AD%98%E5%82%A8"><span class="nav-number">1.2.</span> <span class="nav-text">堆的存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%86%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">1.3.</span> <span class="nav-text">堆的基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%91%E5%A0%86%E4%B8%AD%E6%8F%92%E5%85%A5%E4%B8%80%E4%B8%AA%E6%95%B0"><span class="nav-number">1.3.1.</span> <span class="nav-text">向堆中插入一个数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%82%E5%A0%86%E4%B8%AD%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="nav-number">1.3.2.</span> <span class="nav-text">求堆中的最小值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%A0%86%E4%B8%AD%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="nav-number">1.3.3.</span> <span class="nav-text">删除堆中的最小值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%A0%86%E4%B8%AD%E7%9A%84%E4%BB%BB%E6%84%8F%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0"><span class="nav-number">1.3.4.</span> <span class="nav-text">删除堆中的任意一个元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%A0%86%E4%B8%AD%E7%9A%84%E4%BB%BB%E6%84%8F%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0"><span class="nav-number">1.3.5.</span> <span class="nav-text">修改堆中的任意一个元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-838-%E5%A0%86%E6%8E%92%E5%BA%8F"><span class="nav-number">1.4.</span> <span class="nav-text">AcWing 838. 堆排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-839-%E6%A8%A1%E6%8B%9F%E5%A0%86"><span class="nav-number">1.5.</span> <span class="nav-text">AcWing 839. 模拟堆</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A0%86"><span class="nav-text">堆</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%86%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-text">堆的基本结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%86%E7%9A%84%E5%AD%98%E5%82%A8"><span class="nav-text">堆的存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%86%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-text">堆的基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%90%91%E5%A0%86%E4%B8%AD%E6%8F%92%E5%85%A5%E4%B8%80%E4%B8%AA%E6%95%B0"><span class="nav-text">1.向堆中插入一个数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%B1%82%E5%A0%86%E4%B8%AD%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="nav-text">2.求堆中的最小值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%88%A0%E9%99%A4%E5%A0%86%E4%B8%AD%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="nav-text">3.删除堆中的最小值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%88%A0%E9%99%A4%E5%A0%86%E4%B8%AD%E7%9A%84%E4%BB%BB%E6%84%8F%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0"><span class="nav-text">4.删除堆中的任意一个元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E4%BF%AE%E6%94%B9%E5%A0%86%E4%B8%AD%E7%9A%84%E4%BB%BB%E6%84%8F%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0"><span class="nav-text">5.修改堆中的任意一个元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-838-%E5%A0%86%E6%8E%92%E5%BA%8F"><span class="nav-text">AcWing 838. 堆排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AcWing-839-%E6%A8%A1%E6%8B%9F%E5%A0%86"><span class="nav-text">AcWing 839. 模拟堆</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -456,7 +452,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -511,6 +507,10 @@
   </div>
 
       </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
 
     </div>
   </aside>
@@ -538,12 +538,8 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">142k</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-coffee"></i>
-    </span>
-    <span title="站点阅读时长">2:09</span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">71k</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
@@ -562,6 +558,7 @@
   </div>
 
   
+  <script color='' opacity='' zIndex='' count='' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
@@ -580,6 +577,7 @@
 <script src="/js/next-boot.js"></script>
 
 
+  <script defer src="/lib/three/three.min.js"></script>
 
 
   
